@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import SearchInput from "../../Components/SearchInput/SearchInput"
+
 export default class Players extends Component {
 
     constructor(props) {
@@ -11,13 +13,14 @@ export default class Players extends Component {
     }
 
     componentDidMount() {
-
+        document.title = "Stat Tracker | Players"
     }
 
     render() {
         return (
          <div>   
-            <h1>Players Page</h1>
+            <h1 className = "PlayersTitle">Search a player here</h1>
+            <SearchInput searchParam = "Search Player Here..."/>
         </div>
         )
     }
