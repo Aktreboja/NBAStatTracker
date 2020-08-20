@@ -3,5 +3,20 @@
     background-color: gray;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: space-between;
+}
+
+.NavbarTitle {
+    font-size: 40px;
+    margin-left: 100px;
+}
+
+.NavbarLinks {
+    margin-right: 100px;
+    background-color: white;
+}
+
+.NavbarLinks a {
+    font-size: 30px;
+    margin: 30px;
 }

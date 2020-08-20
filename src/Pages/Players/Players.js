@@ -8,12 +8,21 @@ export default class Players extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            search: ''
+            data: []
         }
     }
 
     componentDidMount() {
         document.title = "Stat Tracker | Players"
+
+        axios({
+            url: "https://www.balldontlie.io/api/v1/players?per_page=1"
+        })
+        .then(res => {
+            console.log(res)
+            let combined = this.state.data.concat(res.data)
+            this.setState({data: combined})
+        })
     }
 
     render() {
@@ -21,6 +30,7 @@ export default class Players extends Component {
          <div>   
             <h1 className = "PlayersTitle">Search a player here</h1>
             <SearchInput searchParam = "Search Player Here..."/>
+           
         </div>
         )
     }
