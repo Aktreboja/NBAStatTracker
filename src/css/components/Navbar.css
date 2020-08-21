@@ -13,10 +13,12 @@
 
 .NavbarLinks {
     margin-right: 100px;
-    background-color: white;
+  
 }
 
 .NavbarLinks a {
     font-size: 30px;
     margin: 30px;
+    text-decoration: none;
+    color: black;
 }

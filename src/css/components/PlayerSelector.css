@@ -1,0 +1,13 @@
+.PlayerSelector { 
+    border: 1px solid black;
+    width: 30%;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 10px 10px;
+    border-radius: 0.3rem;
+}
+
+.PlayerSelector:hover {
+    box-shadow: 5px 10px 10px rgba(0,0,0,0.2);
+}

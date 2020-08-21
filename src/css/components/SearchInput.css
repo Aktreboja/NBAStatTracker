@@ -2,4 +2,7 @@
     width: 50vw;
     font-size: 30px;
     padding:  12px 20px;
+    margin: 30px auto;
+    border-radius: 0.8rem;
+    border: 1px solid black;
 }
