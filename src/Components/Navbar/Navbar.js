@@ -5,7 +5,7 @@ import "../../css/components/Navbar.css"
 export default function Navbar() {
     return (
         <div className = "Navbar">
-            <h1 className = "NavbarTitle">Ball Up</h1>
+            <Link to ="/"><h1 className = "NavbarTitle">Ball Up</h1></Link>
             <div className = "NavbarLinks">
                 <Link to = "/api/players">Players</Link>
                 <Link to = "/api/teams">Teams</Link>

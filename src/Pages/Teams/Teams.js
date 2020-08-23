@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react'
 
 import Navbar from "../../Components/Navbar/Navbar"
 import SearchInput from "../../Components/SearchInput/SearchInput"
+import TeamSelector from "../../Components/Selectors/TeamSelector/TeamSelector"
 import axios from "axios"
+import "../../css/components/Pages/Teams.css"
 
 
 class Teams extends React.Component {
@@ -22,18 +24,21 @@ class Teams extends React.Component {
         })
         .then(res => {
             console.log(res.data);
-            this.setState({data: res.data})
+            this.setState({data: res.data.data})
         })
     }
 
     render() {
 
-        let teamsList = this.state.data.map( (team) => <h1>{team.city}</h1> )
+        let teamsList = this.state.data.map( (team) =>  <TeamSelector key = {team.id} team_name = {team.full_name} conference = {team.conference} city = {team.city}/> )
 
         return (
             <div>
                 <Navbar />
-                {teamsList}
+                <div className = "TeamBox">
+                    {teamsList}
+                </div>
+               
             </div>
         )
     }

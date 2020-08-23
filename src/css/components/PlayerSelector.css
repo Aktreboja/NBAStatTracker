@@ -6,8 +6,18 @@
     transition: all 0.2s ease;
     margin: 10px 10px;
     border-radius: 0.3rem;
+    animation: fade_in 0.3s ease;
 }
 
 .PlayerSelector:hover {
     box-shadow: 5px 10px 10px rgba(0,0,0,0.2);
+}
+
+@keyframes fade_in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
