@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 export default function PlayerSelector(props) {
     let [image, setImage] = useState('');
-    useEffect()
+
 
 
     async function scrapeNBAImage() {

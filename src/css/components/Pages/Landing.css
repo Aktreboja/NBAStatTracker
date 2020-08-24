@@ -1,5 +1,58 @@
 .LandingShowcase {
     width: 100vw;
     height: 100vh;
-    background-color: red;
+    margin-top: 215px;
+    z-index: 10;
 }
+
+
+a { 
+    text-decoration: none;
+    color: black;
+}
+
+.PlayoffGames {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    background-color: cadetblue;
+}
+
+.PlayoffGame {
+    width: 50%;
+    height: 150px;
+    border: 1px solid black;
+    margin: 20px 0px;
+}
+
+.NBASchedule {
+    text-align: center;
+}
+
+
+.Parallax {
+    position: relative;
+    background-image: url("../../../Bucket.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    margin-top: 105px;
+    width: 100%;
+    height: 100vh;
+    opacity: 0.75;
+    
+}
+
+.Parallax p {
+    position: absolute;
+    bottom: 50%;
+    right: 20%;
+    color: white;
+    font-size: 25px;
+}
+
+/*\
+<span>Photo by <a href="https://unsplash.com/@markusspiske?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Markus Spiske</a> on <a href="https://unsplash.com/s/photos/basketball?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+<span>Photo by <a href="https://unsplash.com/@rapiana?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ramiro Pianarosa</a> on <a href="https://unsplash.com/s/photos/kobe-bryant?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> */

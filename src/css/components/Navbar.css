@@ -1,14 +1,24 @@
 .Navbar {
     width: 100vw;
-    background-color: gray;
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 2px solid black;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    z-index: 1;
+
 }
 
 .NavbarTitle {
     font-size: 40px;
     margin-left: 100px;
+    font-family: 'Russo One', sans-serif;
+    letter-spacing: 2px;
+    color: black;
+    
 }
 
 .NavbarLinks {

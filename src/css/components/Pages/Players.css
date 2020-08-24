@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+.SearchDiv {
+    margin-top: 150px;
+}
+
 .PlayersBox {
     width: 80%;
     padding: 20px;

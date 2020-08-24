@@ -3,6 +3,21 @@ import { Link } from 'react-router-dom'
 import "../../css/components/Navbar.css"
 
 export default function Navbar() {
+
+       // window.onscroll = () => myfunction();
+
+        /*
+        let nav = document.getElementsByClassName("Navbar");
+        var sticky = nav.offsetTop
+        
+        const myfunction = () => {
+            if (window.pageYOffset => sticky) {
+                nav
+            }
+        }
+        */
+
+
     return (
         <div className = "Navbar">
             <Link to ="/"><h1 className = "NavbarTitle">Ball Up</h1></Link>

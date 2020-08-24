@@ -18,8 +18,9 @@ export default class Players extends Component {
         }
     }
 
+
     componentDidMount() {
-        document.title = "Stat Tracker | Players"
+        document.title = "Ball Up | Players"
 
         axios({
             url: "https://www.balldontlie.io/api/v1/players?per_page=20&search=Lebron_james"
@@ -44,7 +45,7 @@ export default class Players extends Component {
         })
         .then(res => {
             this.setState({data: res.data.data})
-            console.log('search finished.')
+            
         })
     }
 
@@ -53,7 +54,7 @@ export default class Players extends Component {
         return (
          <section className = "Players">   
             <Navbar />
-            <div>
+            <div className = "SearchDiv">
             <SearchInput searchParam = "Search Player Here..." value = {this.state.search} onChange = {this.updateSearch}/>
             <button className = "SearchButton" onClick = {this.searchPlayer}>Search</button>
             </div>

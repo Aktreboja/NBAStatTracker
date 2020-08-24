@@ -3,7 +3,8 @@
     height: 100vh;
     display: flex;
     flex-wrap: wrap;
-    margin: 0 auto;
+    margin: 130px auto;
+    padding-bottom: 30px;
     justify-content: center;
     align-items: center;
 }
