@@ -1,0 +1,15 @@
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+    
+}
+
+footer h1 {
+    width: 100%;
+    text-align: center;
+    border-top: 2px solid black;
+    padding-top: 30px;
+  
+}
