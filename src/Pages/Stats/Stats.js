@@ -17,7 +17,8 @@ export default class Stats extends Component {
             <div className = "Stats">
                 <Navbar />
                 <div className = "PlayerStat">
-                    <h1></h1>
+                    <h1>Draymond Green</h1>
+                    <p><strong> Avg field Goals: </strong></p>
                 </div>
             </div>
         )

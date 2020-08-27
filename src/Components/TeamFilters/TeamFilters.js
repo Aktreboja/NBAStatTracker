@@ -6,7 +6,7 @@ export default function TeamFilters(props) {
             <button className = "FilterButton">Conference</button>
             <button className = "FilterButton">Division</button>
             <button className = "FilterButton">Playoffs</button>
-
+            
         </div>
     )
 }
