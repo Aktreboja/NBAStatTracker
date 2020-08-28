@@ -49,14 +49,26 @@ export default class Players extends Component {
         })
     }
 
+
+    viewStatsPage = (e) => {
+        e.preventDefault()
+       
+    }
+
     render() {
-        let playersList = this.state.data.map((play) => <PlayerSelector key = {play.id} data = {play} />)
+        let playersList = this.state.data.map((play) => <PlayerSelector  key = {play.id} data = {play} />)
         return (
          <section className = "Players">   
             <Navbar />
             <div className = "SearchDiv">
             <SearchInput searchParam = "Search Player Here..." value = {this.state.search} onChange = {this.updateSearch}/>
-            <button className = "SearchButton" onClick = {this.searchPlayer}>Search</button>
+            <button type = "submit" className = "SearchButton" onClick = {this.searchPlayer}>Search</button>
+            </div>
+
+
+            {/* Add a favorited Players list (Cookie - based memory?) */}
+            <div className = "FavoritedPlayers PlayersBox">
+                <h2>Favorited Players</h2>
             </div>
             
             <div className = "PlayersBox">
