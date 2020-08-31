@@ -4,6 +4,7 @@ import axios from 'axios'
 import Navbar from "../../Components/Navbar/Navbar"
 import SearchInput from "../../Components/SearchInput/SearchInput"
 import PlayerSelector from "../../Components/Selectors/PlayerSelector/PlayerSelector"
+import Pagination from "../../Components/Pagination/Pagination"
 
 import "../../css/components/Pages/Players.css"
 
@@ -14,7 +15,10 @@ export default class Players extends Component {
         this.state = {
             data: [],
             search: '',
-            searchUrl: 'https://www.balldontlie.io/api/v1/players?per_page=20&search='
+            searchUrl: 'https://www.balldontlie.io/api/v1/players?per_page=20&search=',
+            pages: '',
+
+            meta: []
         }
     }
 
@@ -29,6 +33,7 @@ export default class Players extends Component {
             console.log(res)
             let combined = this.state.data.concat(res.data.data)
             this.setState({data: combined})
+            this.setState({meta: res.data.meta})
         })
     }
 
@@ -44,8 +49,7 @@ export default class Players extends Component {
             url: this.state.searchUrl + this.state.search.split(' ').join('_')
         })
         .then(res => {
-            this.setState({data: res.data.data})
-            
+            this.setState({data: res.data.data})            
         })
     }
 
@@ -65,12 +69,13 @@ export default class Players extends Component {
             <button type = "submit" className = "SearchButton" onClick = {this.searchPlayer}>Search</button>
             </div>
 
-
             {/* Add a favorited Players list (Cookie - based memory?) */}
             <div className = "FavoritedPlayers PlayersBox">
                 <h2>Favorited Players</h2>
             </div>
             
+            { this.state.meta ? <Pagination length = {this.state.meta.total_pages}/> : <br />}
+
             <div className = "PlayersBox">
                 {playersList}
             </div>
