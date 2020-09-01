@@ -1,15 +1,23 @@
 footer {
     width: 100%;
+    height: 200px;
     display: flex;
-    justify-content: center;
-    
-    
+    justify-content: space-between;
+    border-top: 2px solid black;
 }
 
-footer h1 {
-    width: 100%;
+.Socials {
+    width: 50%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Socials h1 {
+    width: 20%;
     text-align: center;
-    border-top: 2px solid black;
     padding-top: 30px;
+  
   
 }

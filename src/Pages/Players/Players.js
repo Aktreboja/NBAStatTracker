@@ -69,12 +69,9 @@ export default class Players extends Component {
             <button type = "submit" className = "SearchButton" onClick = {this.searchPlayer}>Search</button>
             </div>
 
-            {/* Add a favorited Players list (Cookie - based memory?) */}
-            <div className = "FavoritedPlayers PlayersBox">
-                <h2>Favorited Players</h2>
-            </div>
+            <h1 className = "PlayerHeader">Search for a player here</h1>
+
             
-            { this.state.meta ? <Pagination length = {this.state.meta.total_pages}/> : <br />}
 
             <div className = "PlayersBox">
                 {playersList}

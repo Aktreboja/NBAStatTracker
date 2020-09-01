@@ -12,24 +12,27 @@
 .PlayersBox {
     width: 80%;
     padding: 20px;
-   
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
+.PlayerHeader {
+    font-family: 'Russo One', sans-serif;
+}
+
 .SearchButton {
     width: 120px;
     height: 50px;
-    font-size: 23px;
-    background-color: cadetblue;
+    font-size: 23px;  
     border-radius: 0.3rem;
     border: 1px solid black;
     margin-left: 30px;
     transition: box-shadow 0.15s ease, color 0.3s ease;
+    cursor: pointer;
 }
 
 .SearchButton:hover {
     box-shadow: 0px 0px 20px rgba(0,0,0, 0.4);
-    color: white;
+    
 }
