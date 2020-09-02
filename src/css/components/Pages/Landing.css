@@ -17,8 +17,6 @@ a {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgba(80, 164, 155, 0.8);
-    border: 1px solid black;
     border-radius: 0.7rem;
     padding: 20px 0px; 
 }
@@ -42,29 +40,28 @@ a {
     background-position: center;
     background-size: cover;
     margin-top: 100px;
-    width: 100%;
-    height: 100vh;
-    opacity: 0.75;
+    width: 100vw;
+    max-width: 2000px;
+    height: 90vh;
+    opacity: 0.83;
     animation: fade_in_parallax 1s ease;
 }
 
 .Parallax p {
     position: absolute;
     bottom: 50%;
-    right: 20%;
     color: white;
-    font-size: 25px;
-    animation: fade_in 2s ease;
+    font-size: 35px;
+    opacity: 0;
+    -webkit-animation: fade_in 2s ease forwards;
+    animation: fade_in 2s ease forwards;
     animation-delay: 1s;
+
 }
 
 /*\
 <span>Photo by <a href="https://unsplash.com/@markusspiske?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Markus Spiske</a> on <a href="https://unsplash.com/s/photos/basketball?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 <span>Photo by <a href="https://unsplash.com/@rapiana?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ramiro Pianarosa</a> on <a href="https://unsplash.com/s/photos/kobe-bryant?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> */
-
-
-
-
 
 /* ScheduledGame Styles */
 .ScheduledGame {
@@ -75,6 +72,14 @@ a {
     margin: 10px 0px;
     padding: 0px 0px 20px 00px;
 
+}
+
+.ScheduledGame strong {
+    font-size: 25px;
+}
+
+.ScheduledGame p {
+    font-size: 23px;
 }
 
 

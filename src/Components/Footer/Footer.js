@@ -4,12 +4,15 @@ import "../../css/components/Footer.css"
 const footer = () => {
     return (
         <footer className = "Footer">
-            <h1>&copy; Aldrich Reboja</h1>
-            <div className = "Socials">
-                <h1>LinkedIn</h1>
-                <h1>Github</h1>
+
+            <div className = "Content">
+                <h1 id = "Author">&#169; Aldrich Reboja</h1>
+                <div className = "Socials">
+                    <h1 className = "HoverLink"><a target = "_blank" href = "https://www.yahoo.com">Github</a></h1>
+                    <h1 className = "HoverLink"><a target = "_blank" href = "http://www.yahoo.com">LinkedIn</a></h1>
+                </div>
             </div>
-           
+
         </footer>
     )
 }
