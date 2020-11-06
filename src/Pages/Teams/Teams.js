@@ -18,7 +18,6 @@ class Teams extends React.Component {
 
     componentDidMount() {
         document.title = "Stat Tracker | Teams"
-
         axios({
             url: "https://www.balldontlie.io/api/v1/teams"
         })
@@ -29,9 +28,7 @@ class Teams extends React.Component {
     }
 
     render() {
-
         let teamsList = this.state.data.map( (team) =>  <TeamSelector key = {team.id} team_name = {team.full_name} conference = {team.conference} city = {team.city}/> )
-
         return (
             <div>
                 <Navbar />
