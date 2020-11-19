@@ -1,8 +1,14 @@
 .SearchInput {
     width: 40vw;
-    font-size: 30px;
+    font-size: 25px;
     padding:  12px 20px;
     margin: 30px auto;
-    border-radius: 0.8rem;
+    
     border: 1px solid black;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.SearchInput:focus {
+    border-radius: 0.5rem;
 }

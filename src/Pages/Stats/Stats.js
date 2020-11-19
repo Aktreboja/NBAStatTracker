@@ -4,7 +4,8 @@ import axios from 'axios'
 import Navbar from "../../Components/Navbar/Navbar"
 import SearchInput from "../../Components/SearchInput/SearchInput"
 
-import "../../css/components/Pages/Stats.css"
+
+import "../../css/Pages/Stats.css"
 
 export default class Stats extends Component {
     constructor(props) {

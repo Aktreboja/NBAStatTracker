@@ -6,7 +6,7 @@ import SearchInput from "../../Components/SearchInput/SearchInput"
 import PlayerSelector from "../../Components/Selectors/PlayerSelector/PlayerSelector"
 import Pagination from "../../Components/Pagination/Pagination"
 
-import "../../css/components/Pages/Players.css"
+import "../../css/Pages/Players.css"
 
 export default class Players extends Component {
 
@@ -17,7 +17,6 @@ export default class Players extends Component {
             search: '',
             searchUrl: 'https://www.balldontlie.io/api/v1/players?per_page=20&search=',
             pages: '',
-
             meta: []
         }
     }
@@ -25,16 +24,6 @@ export default class Players extends Component {
 
     componentDidMount() {
         document.title = "Ball Up | Players"
-
-        axios({
-            url: "https://www.balldontlie.io/api/v1/players?per_page=20&search=Lebron_james"
-        })
-        .then(res => {
-            console.log(res)
-            let combined = this.state.data.concat(res.data.data)
-            this.setState({data: combined})
-            this.setState({meta: res.data.meta})
-        })
     }
 
     updateSearch = (e) => {
@@ -46,19 +35,19 @@ export default class Players extends Component {
         axios({
             url: this.state.searchUrl + this.state.search.split(' ').join('_')
         })
-        .then(res => {
+        .then(res => { 
             this.setState({data: res.data.data})            
         })
     }
 
 
-    viewStatsPage = (e) => {
-        e.preventDefault()
-       
+    filterRetired = (value) => {
+        return (value.data.position !== '' ? false : true)
     }
 
     render() {
-        let playersList = this.state.data.map((play) => <PlayerSelector  key = {play.id} data = {play} />)
+
+        let filtered =  (this.state.data.length > 0 ? (this.state.data.filter(play => play.position !== '')).map((play => <PlayerSelector  key =  {play.id} data  = {play} /> )) : <h3>No Players</h3> );
         return (
          <section className = "Players">   
             <Navbar />
@@ -70,12 +59,14 @@ export default class Players extends Component {
             <h1 className = "PlayerHeader">Search for a player here</h1>
 
             
-
+            
             <div className = "PlayersBox">
-                {playersList}
+                {filtered}
             </div>
            
         </section>
+        
         )
+        
     }
 }

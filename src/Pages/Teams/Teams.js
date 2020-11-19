@@ -4,7 +4,7 @@ import Navbar from "../../Components/Navbar/Navbar"
 import SearchInput from "../../Components/SearchInput/SearchInput"
 import TeamSelector from "../../Components/Selectors/TeamSelector/TeamSelector"
 import axios from "axios"
-import "../../css/components/Pages/Teams.css"
+import "../../css/Pages/Teams.css"
 
 
 class Teams extends React.Component {
@@ -32,6 +32,7 @@ class Teams extends React.Component {
         return (
             <div>
                 <Navbar />
+
                 <div className = "TeamBox">
                     {teamsList}
                 </div>

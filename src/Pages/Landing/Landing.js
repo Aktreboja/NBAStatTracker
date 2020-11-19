@@ -4,11 +4,9 @@ import Navbar from "../../Components/Navbar/Navbar"
 import PlayoffGames from "../../Containers/PlayoffGames/PlayoffGames"
 import Footer from "../../Components/Footer/Footer"
 
-import Bucket from "../../Bucket.jpg"
 
-import Sidebar from "../../Components/Sidebar/Sidebar"
+import "../../css/Pages/Landing.css"
 
-import "../../css/components/Pages/Landing.css"
 export default function Landing() {
     return (
     <div className="App">
