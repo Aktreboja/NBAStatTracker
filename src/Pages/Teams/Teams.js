@@ -4,7 +4,7 @@ import Navbar from "../../Components/Navbar/Navbar"
 import SearchInput from "../../Components/SearchInput/SearchInput"
 import TeamSelector from "../../Components/Selectors/TeamSelector/TeamSelector"
 import axios from "axios"
-import "../../css/components/Pages/Teams.css"
+import "../../css/Pages/Teams.css"
 
 
 class Teams extends React.Component {
@@ -18,7 +18,6 @@ class Teams extends React.Component {
 
     componentDidMount() {
         document.title = "Stat Tracker | Teams"
-
         axios({
             url: "https://www.balldontlie.io/api/v1/teams"
         })
@@ -29,14 +28,17 @@ class Teams extends React.Component {
     }
 
     render() {
-
         let teamsList = this.state.data.map( (team) =>  <TeamSelector key = {team.id} team_name = {team.full_name} conference = {team.conference} city = {team.city}/> )
-
         return (
             <div>
                 <Navbar />
+<<<<<<< HEAD
                 <h1 style = {{textAlign: 'center'}}>Current NBA Teams</h1>
                 <div className = "TeamGrid">
+=======
+
+                <div className = "TeamBox">
+>>>>>>> 344c4ca096ccfe543f2e57b467ec15658049005b
                     {teamsList}
                 </div>
                

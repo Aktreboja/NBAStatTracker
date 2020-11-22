@@ -1,0 +1,57 @@
+.player-header {
+    width: 80%;
+    height: fit-content;
+    margin: 30px auto;
+    display: flex;
+}
+
+
+.player-description {
+    border: 1px solid black;
+    width : 50%;
+    padding: 0px 10px;
+
+}
+
+.player-description h4  {
+    display: inline;
+}
+.player-description p {
+    text-align: left;
+    margin-left: 10px;
+}
+
+.player-img-wrap {
+    width: 50%;
+    border: 1px solid black;
+    padding: 0px 10px;
+}
+
+
+.player-body {
+    text-align: center;
+}
+
+@media only screen and (min-width: 250px) {
+    .player-header {
+        width: 90%;
+        align-items: center;
+    }
+
+    .player-description {
+        width: 50%;
+        text-align: center;
+    }
+
+    .player-img-wrap {
+        text-align: center;
+        height: 180px;
+    }
+}
+
+@media only screen and (min-width:  700px) {
+    .player-header {
+        width: 70%;
+        max-width: 800px;
+    }
+}

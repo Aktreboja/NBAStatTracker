@@ -3,12 +3,13 @@
     height: 100vh;
     display: flex;
     flex-wrap: wrap;
-    margin: 130px auto;
+    margin: auto;
     padding-bottom: 30px;
     justify-content: center;
     align-items: center;
 }
 
+<<<<<<< HEAD:src/css/components/Pages/Teams.css
 
 
 .TeamGrid {
@@ -18,3 +19,5 @@
     grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
     column-gap: 50px;
 }
+=======
+>>>>>>> 344c4ca096ccfe543f2e57b467ec15658049005b:src/css/Pages/Teams.css

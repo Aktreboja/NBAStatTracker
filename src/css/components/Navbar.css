@@ -5,8 +5,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+<<<<<<< HEAD
     border-bottom: 2px solid black;
     position: sticky;
+=======
+
+>>>>>>> 344c4ca096ccfe543f2e57b467ec15658049005b
     top: 0;
     overflow: visible;
     z-index: 1;

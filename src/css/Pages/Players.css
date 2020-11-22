@@ -5,11 +5,16 @@
     align-items: center;
 }
 
+<<<<<<< HEAD:src/css/components/Pages/Players.css
 .PlayersGrid {
     width: 45%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     column-gap: 30px;
+=======
+.SearchDiv {
+    
+>>>>>>> 344c4ca096ccfe543f2e57b467ec15658049005b:src/css/Pages/Players.css
 }
 
 .PlayersBox {
@@ -30,12 +35,14 @@
     font-size: 23px;  
     border-radius: 0.3rem;
     border: 1px solid black;
+    background-color: white;
     margin-left: 30px;
-    transition: box-shadow 0.15s ease, color 0.3s ease;
+    transition: background-color 0.15s ease, color 0.3s ease;
     cursor: pointer;
 }
 
 .SearchButton:hover {
-    box-shadow: 0px 0px 20px rgba(0,0,0, 0.4);
+    background-color: black;
+    color: white;
     
 }

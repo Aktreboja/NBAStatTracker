@@ -21,3 +21,16 @@
         opacity: 1;
     }
 }
+
+
+@media only screen and (min-width: 250px) {
+    .PlayerSelector  {
+        width: 90%;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .PlayerSelector {
+        width: 45%;
+    }
+}
