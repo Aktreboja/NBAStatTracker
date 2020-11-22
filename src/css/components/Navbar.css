@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 2px solid black;
-    position: fixed;
+    position: sticky;
     top: 0;
     overflow: visible;
     z-index: 1;
@@ -22,7 +22,7 @@
 }
 
 .NavbarLinks {
-    /*margin-right: 100px; */
+    margin-right: 50px;
     font-family: 'Russo One', sans-serif;
 }
 

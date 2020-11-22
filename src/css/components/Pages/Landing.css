@@ -2,7 +2,7 @@
     width: 100vw;
     height: 80vh;
     margin-top: 100px;
-    z-index: 10;
+    
 }
 
 
@@ -39,7 +39,6 @@ a {
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
-    margin-top: 100px;
     width: 100vw;
     max-width: 2000px;
     height: 90vh;
@@ -48,7 +47,7 @@ a {
 }
 
 .Parallax p {
-    position: absolute;
+    position: fixed;
     bottom: 50%;
     color: white;
     font-size: 35px;
@@ -56,6 +55,7 @@ a {
     -webkit-animation: fade_in 2s ease forwards;
     animation: fade_in 2s ease forwards;
     animation-delay: 1s;
+    z-index: 0;
 
 }
 

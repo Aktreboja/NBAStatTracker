@@ -35,7 +35,8 @@ class Teams extends React.Component {
         return (
             <div>
                 <Navbar />
-                <div className = "TeamBox">
+                <h1 style = {{textAlign: 'center'}}>Current NBA Teams</h1>
+                <div className = "TeamGrid">
                     {teamsList}
                 </div>
                

@@ -18,14 +18,14 @@ export default function PlayerSelector(props) {
         
     }
 
-
+    let playerURL = `/api/player/${props.data.first_name}_${props.data.last_name}`
 
     return (
-        <div className = "PlayerSelector">
+        <a className = "PlayerSelector" href = {playerURL}>
             <h1>Name: {props.data.first_name} {props.data.last_name}</h1>
             <p> <b>Position:</b> { props.data.position == "" ? "Retired" : props.data.position}</p>
             <p>Team: {props.data.team.full_name}</p>
-        </div>
+        </a>
     )
 }
 

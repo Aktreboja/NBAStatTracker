@@ -5,8 +5,11 @@
     align-items: center;
 }
 
-.SearchDiv {
-    margin-top: 150px;
+.PlayersGrid {
+    width: 45%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    column-gap: 30px;
 }
 
 .PlayersBox {

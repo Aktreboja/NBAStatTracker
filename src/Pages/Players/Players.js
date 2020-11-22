@@ -68,10 +68,7 @@ export default class Players extends Component {
             </div>
 
             <h1 className = "PlayerHeader">Search for a player here</h1>
-
-            
-
-            <div className = "PlayersBox">
+            <div className = "PlayersGrid">
                 {playersList}
             </div>
            
