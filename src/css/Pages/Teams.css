@@ -9,8 +9,6 @@
     align-items: center;
 }
 
-<<<<<<< HEAD:src/css/components/Pages/Teams.css
-
 
 .TeamGrid {
     width: 50%;
@@ -19,5 +17,3 @@
     grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
     column-gap: 50px;
 }
-=======
->>>>>>> 344c4ca096ccfe543f2e57b467ec15658049005b:src/css/Pages/Teams.css

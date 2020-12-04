@@ -1,11 +1,11 @@
 import React from 'react'
 
-import Navbar from "../../Components/Navbar/Navbar"
-import PlayoffGames from "../../Containers/PlayoffGames/PlayoffGames"
-import Footer from "../../Components/Footer/Footer"
+import Navbar from "../Components/Navbar/Navbar"
+import PlayoffGames from "../Containers/PlayoffGames/PlayoffGames"
+import Footer from "../Components/Footer/Footer"
 
 
-import "../../css/Pages/Landing.css"
+import "../css/Pages/Landing.css"
 
 export default function Landing() {
     return (

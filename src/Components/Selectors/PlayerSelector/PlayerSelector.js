@@ -16,7 +16,6 @@ export default function PlayerSelector(props) {
         
     }
 
-<<<<<<< HEAD
     let playerURL = `/api/player/${props.data.first_name}_${props.data.last_name}`
 
     return (
@@ -26,7 +25,6 @@ export default function PlayerSelector(props) {
             <p>Team: {props.data.team.full_name}</p>
         </a>
     )
-=======
      return  (
         <div className = "PlayerSelector">
         <h1>{props.data.first_name} {props.data.last_name}</h1>
@@ -34,7 +32,6 @@ export default function PlayerSelector(props) {
         <p>{props.data.team.full_name}</p>
     </div>
     ) 
->>>>>>> 344c4ca096ccfe543f2e57b467ec15658049005b
 }
 
 

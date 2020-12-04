@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import Navbar from "../../Components/Navbar/Navbar"
-import SearchInput from "../../Components/SearchInput/SearchInput"
-import PlayerSelector from "../../Components/Selectors/PlayerSelector/PlayerSelector"
-import Pagination from "../../Components/Pagination/Pagination"
+import Navbar from "../Components/Navbar/Navbar"
+import SearchInput from "../Components/SearchInput/SearchInput"
+import PlayerSelector from "../Components/Selectors/PlayerSelector/PlayerSelector"
+import Pagination from "../Components/Pagination/Pagination"
 
-import "../../css/Pages/Players.css"
+import "../css/Pages/Players.css"
 
 export default class Players extends Component {
 
@@ -57,16 +57,9 @@ export default class Players extends Component {
             </div>
 
             <h1 className = "PlayerHeader">Search for a player here</h1>
-<<<<<<< HEAD
-            <div className = "PlayersGrid">
-                {playersList}
-=======
-
-            
-            
+     
             <div className = "PlayersBox">
                 {filtered}
->>>>>>> 344c4ca096ccfe543f2e57b467ec15658049005b
             </div>
            
         </section>
