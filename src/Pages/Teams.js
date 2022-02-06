@@ -1,14 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 
 import Navbar from "../Components/Navbar/Navbar"
-import SearchInput from "../Components/SearchInput/SearchInput"
 import TeamSelector from "../Components/Selectors/TeamSelector/TeamSelector"
 import axios from "axios"
 import "../css/Pages/Teams.css"
 
 
 class Teams extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {

@@ -4,7 +4,7 @@ import axios from 'axios'
 import Navbar from "../Components/Navbar/Navbar"
 import SearchInput from "../Components/SearchInput/SearchInput"
 import PlayerSelector from "../Components/Selectors/PlayerSelector/PlayerSelector"
-import Pagination from "../Components/Pagination/Pagination"
+//import Pagination from "../Components/Pagination/Pagination"
 
 import "../css/Pages/Players.css"
 

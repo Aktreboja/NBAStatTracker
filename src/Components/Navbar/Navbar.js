@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import "../../css/components/Navbar.css"
 
-import Sidebar from "../../Components/Sidebar/Sidebar"
+//import Sidebar from "../../Components/Sidebar/Sidebar"
 
 export default function Navbar() {
 
