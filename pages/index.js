@@ -10,8 +10,11 @@ export default function Home() {
         <title>Nba Web App</title>
       </Head>
       <h1>Nba App</h1>
+      <p>
+        A simple web application modeling Nba Stats using the BallDontLie Api
+      </p>
       <nav>
-        <Link href = "/"><a>Players</a></Link>
+        <Link href = "/players"><a>Players</a></Link>
         <Link href = "/"><a>Teams</a></Link>
       </nav>
     </div>
