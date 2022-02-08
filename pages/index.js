@@ -15,7 +15,7 @@ export default function Home() {
       </p>
       <nav>
         <Link href = "/players"><a>Players</a></Link>
-        <Link href = "/"><a>Teams</a></Link>
+        
       </nav>
     </div>
   )
