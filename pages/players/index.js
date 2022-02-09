@@ -33,9 +33,7 @@ import Form from 'react-bootstrap/Form'
  *  8. weight_pounds: The weight of the player in pounds.
  * 
  */
-export default function players() {    
-   let [searchParam, setSearchParam] = useState()
-
+export default function index() {    
   return <div>
         <Head>
             <title>Ball-Up | Players</title>
@@ -66,5 +64,5 @@ export async function getServerSideProps() {
 
     let response = await Axios.get('https://www.balldontlie.io/api/v1/players')
     let players = JSON.stringify(response.data)
-    return { props: {players}}
-}
+    return { props: {players}
+}}
