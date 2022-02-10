@@ -15,3 +15,13 @@
     box-shadow: 5px 10px 10px rgba(0,0,0,0.15);
   
 }
+
+.Table {
+    width: 80%;
+    margin: auto;
+}
+
+.statsHeader {
+    text-align: center;
+    margin: 1em;
+}
