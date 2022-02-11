@@ -1,20 +1,40 @@
 .Card {
-    width: 100%;
+    width: 80%;
     height: 400px;
     margin: auto;
     display: flex;
     justify-content: center;
-    flex-direction: column;
     align-items: center;
+    flex-direction: row;
+    border: 1px solid black;
 }
 
+.imageWrapper {
+    border: 1px solid black;
+    height: 100%;
+    position: relative;
+
+}
 
 .playerImage {
-    border-radius: 10%;
-    margin: 10px;
-    box-shadow: 5px 10px 10px rgba(0,0,0,0.15);
-  
+    height: 70%;
+    width: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
+.metaData {
+    border: 1px solid red;
+    width: 50%;
+    height: 60%;
+}
+
+.playerName {
+    font-size: 2.2em;;
+}
+
 
 .Table {
     width: 80%;

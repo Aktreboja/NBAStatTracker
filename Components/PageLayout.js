@@ -10,7 +10,6 @@ export default function PageLayout({ children, title }) {
               { title }
           </title>
       </Head>
-      <NavigationBar />
       {children}
   </div>;
 }

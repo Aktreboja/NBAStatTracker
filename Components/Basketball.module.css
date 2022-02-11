@@ -1,0 +1,50 @@
+.Basketball {
+    overflow: hidden;
+}
+
+.Basketball, .curvedGrooves {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: relative;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+
+.curvedGrooves {
+    position: absolute;
+    overflow: hidden;
+    content:'';
+    display: block;
+    box-sizing: border-box;
+    
+}
+
+
+.curvedGrooves:nth-child(2) {
+    left: 60%;
+}
+
+.curvedGrooves:nth-child(1) {
+    right: 60%;
+}
+
+.line {
+    background: black;
+    position: absolute;
+}
+
+.line:nth-child(1) {
+    height: 100%;
+    width: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.line:nth-child(2) {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+}

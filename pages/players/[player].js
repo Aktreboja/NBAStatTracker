@@ -4,6 +4,7 @@ import Axios from 'axios';
 
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
+import Container from 'react-bootstrap/Container';
 
 import styles from './Players.module.css';
 
@@ -28,25 +29,32 @@ import PlayerAverageRow from '../../Components/PlayerAverageRow';
  * @param {*} param0 
  * @returns 
  */
-const Player = ({ playerInfo, playerAverages, playerMeta }) => {    
+const Player = ({ playerInfo, seasonAveragesArray, playerMeta }) => {    
     let router = useRouter()
     let { 
         first_name,
         last_name,
-        position
+        team
     } = playerInfo
 
-    let {playerID} = playerMeta
+    let { playerID, position, heightFeet, heightInches, weightPounds, draft, nbaDebutYear, jersey} = playerMeta
+    let { pickNum, roundNum } = draft
 
     let playerImage = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${playerID}.png`
-
     let PlayerComponent = (
-        <Card  className = {styles.Card}>
-
-             <img className = {styles.playerImage} src = {playerImage} alt = {`${first_name} ${last_name}`}/> 
-            <Card.Title>{ first_name } { last_name } </Card.Title>
-            <Card.Text>{ position }</Card.Text>
-
+        <Card className = {styles.Card}>
+            <Container className = {styles.imageWrapper}>
+                <img className = {styles.playerImage} src = {playerImage} alt = {`${first_name} ${last_name}`}/> 
+            </Container>
+           
+            <div className = {styles.metaData}>
+                <Card.Title className = {styles.playerName}>{ first_name } { last_name } (#{jersey}) </Card.Title>
+                <Card.Text>Position: { position }</Card.Text>
+                <Card.Text><Card.Title>Height: </Card.Title> { heightFeet } ' { heightInches } ''</Card.Text>
+                <Card.Text>Weight: { weightPounds } lbs</Card.Text>
+                <Card.Text>Draft: {roundNum} round, {pickNum} pick</Card.Text>
+                <Card.Text>Debut Year: { nbaDebutYear }</Card.Text>
+            </div>
         </Card>
     )
     
@@ -66,7 +74,7 @@ const Player = ({ playerInfo, playerAverages, playerMeta }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <PlayerAverageRow  stats = {playerAverages}/>
+                    <PlayerAverageRow  stats = {seasonAveragesArray} />
                 </tbody>
             </Table>
         </div>
@@ -87,8 +95,11 @@ export async function getServerSideProps(context) {
     let playerInfo = data.data[0]
 
     // Get the player's current season averages
+    /*
     let seasonAvgResponse = await Axios.get(`https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerInfo.id}`)
     let playerAverages = seasonAvgResponse.data.data[0]
+    console.log(playerAverages)
+    */
 
     // Retrieving the player from the nba database JSON file
     let playerImageData = await Axios.get('http://data.nba.net/data/10s/prod/v1/2021/players.json')
@@ -98,15 +109,42 @@ export async function getServerSideProps(context) {
     // Parsing through the data to retrieve the id required for player's image.
     let playersArray = playersResponse.league.standard
     let playerIndex = playersArray.findIndex(obj =>  obj.lastName.toLowerCase().includes(playerLastName) && obj.firstName.toLowerCase().includes(playerFirstName))
+    let playerMetaData = playersArray[playerIndex]
+    // Player ID required for image.
     let playerId = playersArray[playerIndex].personId
 
-    // 
+    // Meta data about the nba players
+    let { jersey, heightFeet, heightInches, weightPounds, draft, nbaDebutYear, collegeName, teamSitesOnly } = playerMetaData
+    console.log(teamSitesOnly.posFull)
 
+
+
+    // Getting all of the season averages of a player.
+    let seasonAveragesArray = []
+    let currentSeason = new Date().getFullYear() - 1
+
+    
+    for (let season = currentSeason; season > nbaDebutYear; season--) {
+        let avgResponse = await Axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=${season}&player_ids[]=${playerInfo.id}`)
+        let avgSeasonData = avgResponse.data.data[0]
+        seasonAveragesArray.push(avgSeasonData)
+    }
+    
+
+    console.log(seasonAveragesArray)
     let playerMeta = {
-        playerID: playerId
+        playerID: playerId,
+        jersey: jersey,
+        heightFeet: heightFeet,
+        heightInches: heightInches, 
+        weightPounds: weightPounds, 
+        draft: draft, 
+        nbaDebutYear: nbaDebutYear, 
+        collegeName: collegeName,
+        position: teamSitesOnly.posFull
     }
 
-    return {props : { playerInfo, playerAverages, playerMeta }}
+    return {props : { playerInfo, seasonAveragesArray, playerMeta }}
 }
 
 export default Player;
