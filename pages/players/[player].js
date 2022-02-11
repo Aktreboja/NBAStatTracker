@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Axios from 'axios';
-
+import Image from 'next/image'
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
@@ -23,8 +23,6 @@ import PlayerAverageRow from '../../Components/PlayerAverageRow';
  * 
  *  URL for the logos of all the NBA Teams
  *  - https://cdn.nba.com/logos/nba/(TeamID)/primary/L/logo.svg
- * 
- * 2/10: Rest Day , for now lol
  * 
  * @param {*} param0 
  * @returns 
@@ -115,20 +113,19 @@ export async function getServerSideProps(context) {
 
     // Meta data about the nba players
     let { jersey, heightFeet, heightInches, weightPounds, draft, nbaDebutYear, collegeName, teamSitesOnly } = playerMetaData
-    console.log(teamSitesOnly.posFull)
-
-
 
     // Getting all of the season averages of a player.
     let seasonAveragesArray = []
     let currentSeason = new Date().getFullYear() - 1
 
-    
+
+    /*
     for (let season = currentSeason; season > nbaDebutYear; season--) {
         let avgResponse = await Axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=${season}&player_ids[]=${playerInfo.id}`)
         let avgSeasonData = avgResponse.data.data[0]
         seasonAveragesArray.push(avgSeasonData)
     }
+    */
     
 
     console.log(seasonAveragesArray)

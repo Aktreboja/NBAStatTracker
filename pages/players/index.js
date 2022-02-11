@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import Head from 'next/head'
-
+import Link from 'next/link'
 import Axios from 'axios'
+import styles from './Players.module.css'
 
-// swr: Client side fetching for next.js
-import useSWR from 'swr';
+import PageLayout from '../../Components/PageLayout.js'
 
 // Bootstrap Styles
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
+
 
 
 /**
@@ -33,36 +35,54 @@ import Form from 'react-bootstrap/Form'
  *  8. weight_pounds: The weight of the player in pounds.
  * 
  */
-export default function index() {    
-  return <div>
+export default function Index() {
+    let [ searchParam, setSearchParam ] = useState('')
+    let [ searchResults, setSearchResults ] = useState([])
+
+    const updateSearchParam = event => {
+        setSearchParam(event.target.value)
+    }
+
+    const displaySearchParam = async (e) => {
+        
+        e.preventDefault()
+        const { data } = await Axios.get(`https://www.balldontlie.io/api/v1/players?search=${searchParam}`)
+        let currentPlayersArray = data.data.filter(player => player.position !== '')
+        setSearchResults(currentPlayersArray)
+        
+    }
+
+
+    let searchResultsComponent = searchResults.map((result, key) => {
+        let nameSearch = result.first_name.toLowerCase() + '_' + result.last_name.toLowerCase()
+        return (
+            <Link href = {`/players/${nameSearch}`} key = {key} passHref >
+                <a className = {styles.searchResult}>
+                {result.first_name} {result.last_name}
+                </a>
+            </Link>
+        )
+    })
+    
+  return <PageLayout>
         <Head>
-            <title>Ball-Up | Players</title>
+            <title>StatsCentral | Players</title>
         </Head>
-        <h1>Ball-Up | Players</h1>
-        <Form >
+        <h1>StatsCentral | Players</h1>
+        <Form onSubmit = {(e) => displaySearchParam(e)}>
             <Form.Group>
                 <Form.Label>Search for a Player</Form.Label>
-                <Form.Control type = "text" placeholder = "Ex: Kobe Bryant"  value = { searchParam }/>
+                <Form.Control type = "text" placeholder = "Ex: Kobe Bryant"  value = { searchParam } onChange = { updateSearchParam }/>
             </Form.Group>
-            <Button variant = "outline-dark">Search</Button>
+            <Button type = "submit" variant = "outline-dark" >Search</Button>
         </Form>
-        <Container>
+        <Container className = {styles.searchResultsGrid}>
+            <Row md = {3}>
+            { searchResultsComponent }
+            </Row>
             
         </Container>
-  </div>;
+  </PageLayout>;
 }
 
 
-/**
- * This is the server side approach, will switch to client side fetching to be able to update on input 
- * @returns 
- */
-// This gets called on every request
-export async function getServerSideProps() {
-    // const res = await fetch('https://www.balldontlie.io/api/v1/players')
-    //const players = JSON.stringify(res)
-
-    let response = await Axios.get('https://www.balldontlie.io/api/v1/players')
-    let players = JSON.stringify(response.data)
-    return { props: {players}
-}}

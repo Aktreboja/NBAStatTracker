@@ -22,7 +22,7 @@ export default function Home() {
           A simple web application modeling Nba Stats using the BallDontLie Api
         </p>
         <section>
-          <Link href = "/players"><Button variant='outline-dark' size = "lg">Players</Button></Link>
+          <Link href = "/players" passHref><Button variant='outline-dark' size = "lg">Players</Button></Link>
         </section>
     </PageLayout>
   )
