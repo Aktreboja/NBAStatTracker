@@ -11,6 +11,7 @@ import PlayerAverageRow from '../../Components/PlayerAverageRow';
 
 /**
  * 
+ * 
  * URL for getting NBA player's image
  *  - https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/(Number).png
  *  - (Number) : The ID of the player that is linked to the image / url below
@@ -21,6 +22,8 @@ import PlayerAverageRow from '../../Components/PlayerAverageRow';
  * 
  *  URL for the logos of all the NBA Teams
  *  - https://cdn.nba.com/logos/nba/(TeamID)/primary/L/logo.svg
+ * 
+ * 2/10: Rest Day , for now lol
  * 
  * @param {*} param0 
  * @returns 
