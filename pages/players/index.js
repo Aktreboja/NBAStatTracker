@@ -53,13 +53,14 @@ export default function Index() {
     }
 
 
-    let searchResultsComponent = searchResults.map((result, key) => {
-        let nameSearch = result.first_name.toLowerCase() + '_' + result.last_name.toLowerCase()
+    let searchResultsComponent = searchResults.map(({ first_name, last_name , team}, key) => {
+        let nameSearch = first_name.toLowerCase() + '_' + last_name.toLowerCase()
         return (
             <Link href = {`/players/${nameSearch}`} key = {key} passHref >
-                <a className = {styles.searchResult}>
-                {result.first_name} {result.last_name}
-                </a>
+                <Card className = {styles.searchResult}>
+                    <Card.Title>{ first_name } { last_name }</Card.Title>
+                    <Card.Text>{ team.full_name }</Card.Text>
+                </Card>
             </Link>
         )
     })
@@ -78,9 +79,8 @@ export default function Index() {
         </Form>
         <Container className = {styles.searchResultsGrid}>
             <Row md = {3}>
-            { searchResultsComponent }
+                { searchResultsComponent }
             </Row>
-            
         </Container>
   </PageLayout>;
 }
