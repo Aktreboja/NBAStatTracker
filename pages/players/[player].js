@@ -10,6 +10,8 @@ import styles from './Players.module.css';
 
 import PlayerAverageRow from '../../Components/PlayerAverageRow';
 
+import PageLayout from '../../Components/PageLayout';
+
 /**
  * 
  * 
@@ -62,7 +64,7 @@ const Player = ({ playerInfo, seasonAveragesArray, playerMeta }) => {
     
     
     return (
-        <div> 
+        <PageLayout> 
             { PlayerComponent }
             <h1 className = {styles.statsHeader}>Stats</h1>
             <Table hover responsive striped className = {styles.Table}>
@@ -75,7 +77,7 @@ const Player = ({ playerInfo, seasonAveragesArray, playerMeta }) => {
                     <PlayerAverageRow  stats = {seasonAveragesArray} />
                 </tbody>
             </Table>
-        </div>
+        </PageLayout>
     )
 }
 

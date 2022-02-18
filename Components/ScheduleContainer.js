@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
+import ScheduledGame from './ScheduledGame'
 
 /**
  * Container holding the current day's Games.
@@ -7,17 +8,17 @@ import Card from 'react-bootstrap/Card'
  * @returns 
  */
 export default function ScheduleContainer({ gameData }) {
-
-    let ScheduledGame = ({home_team, visitor_team, date}) => {
-        return (
-            <Card>
-                <h1>{home_team.full_name}</h1>
-            </Card>
-        )
-    }
+  
+  
 
     let Games = gameData.map((game) => {
-        return <ScheduledGame home_team={ game.home_team }/>
+        let gameStatus = {
+            status: game.status,
+            time: game.time,
+            home_team_score: game.home_team_score,
+            visitor_team_score: game.visitor_team_score
+        }
+        return <ScheduledGame home_team = { game.home_team } visitor_team = { game.visitor_team } date = { game.date } gameStatus = {gameStatus}/>
     })
     
 
