@@ -66,6 +66,7 @@ const Player = ({ playerInfo, seasonAveragesArray, playerMeta }) => {
     return (
         <PageLayout> 
             { PlayerComponent }
+            <h1>yeet</h1>
             <h1 className = {styles.statsHeader}>Stats</h1>
             <Table hover responsive striped className = {styles.Table}>
                 <thead >
@@ -120,15 +121,13 @@ export async function getServerSideProps(context) {
     let seasonAveragesArray = []
     let currentSeason = new Date().getFullYear() - 1
 
-
-    /*
-    for (let season = currentSeason; season > nbaDebutYear; season--) {
+    for (let season = currentSeason; season > (season-5); season--) {
         let avgResponse = await Axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=${season}&player_ids[]=${playerInfo.id}`)
         let avgSeasonData = avgResponse.data.data[0]
         seasonAveragesArray.push(avgSeasonData)
     }
-    */
     
+    // 2/18 Rest Day    
 
     console.log(seasonAveragesArray)
     let playerMeta = {
