@@ -13,8 +13,8 @@
 
 .Card {
     width: 80%;
-    height: 400px;
-    margin: auto;
+    max-width: 900px;
+    margin: 20px auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,22 +26,21 @@
     border: 1px solid black;
     height: 100%;
     position: relative;
-
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 20px auto;
+    width: 50%;
 }
 
-.playerImage {
-    height: 70%;
-    width: auto;
+
+.logoWrapper {
+    width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
+    height: 100%;
     transform: translate(-50%, -50%);
-}
-
-.metaData {
-    border: 1px solid red;
-    width: 50%;
-    height: 60%;
 }
 
 .playerName {

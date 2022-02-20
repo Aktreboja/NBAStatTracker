@@ -5,11 +5,8 @@ import Image from 'next/image'
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
-
 import styles from './Players.module.css';
-
 import PlayerAverageRow from '../../Components/PlayerAverageRow';
-
 import PageLayout from '../../Components/PageLayout';
 
 /**
@@ -29,32 +26,36 @@ import PageLayout from '../../Components/PageLayout';
  * @param {*} param0 
  * @returns 
  */
-const Player = ({ playerInfo, seasonAveragesArray, playerMeta }) => {    
-    let router = useRouter()
+const Player = ({ playerInfo, avgSeasonData, playerMeta, playerSchedule }) => {    
     let { 
         first_name,
         last_name,
         team
     } = playerInfo
 
-    let { playerID, position, heightFeet, heightInches, weightPounds, draft, nbaDebutYear, jersey} = playerMeta
+    let { playerID, teamId, position, heightFeet, heightInches, weightPounds, draft, nbaDebutYear, jersey} = playerMeta
     let { pickNum, roundNum } = draft
 
     let playerImage = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${playerID}.png`
+    let teamLogoUrl = `https://cdn.nba.com/logos/nba/${teamId}/primary/L/logo.svg`
     let PlayerComponent = (
         <Card className = {styles.Card}>
             <Container className = {styles.imageWrapper}>
-                <img className = {styles.playerImage} src = {playerImage} alt = {`${first_name} ${last_name}`}/> 
+                <div className= {styles.logoWrapper}>
+                    <Image className={styles.logo} src = {teamLogoUrl} layout = "fill" alt = {`${first_name} ${last_name}`} />
+                </div>
+                <Image className={styles.playerImage} src = {playerImage}  width = { 260 } height = { 190 } alt = {`${first_name} ${last_name}`} />
+
+                
             </Container>
-           
-            <div className = {styles.metaData}>
+            <Card.Body className = {styles.metaData}>
                 <Card.Title className = {styles.playerName}>{ first_name } { last_name } (#{jersey}) </Card.Title>
-                <Card.Text>Position: { position }</Card.Text>
-                <Card.Text><Card.Title>Height: </Card.Title> { heightFeet } ' { heightInches } ''</Card.Text>
-                <Card.Text>Weight: { weightPounds } lbs</Card.Text>
-                <Card.Text>Draft: {roundNum} round, {pickNum} pick</Card.Text>
-                <Card.Text>Debut Year: { nbaDebutYear }</Card.Text>
-            </div>
+                <Card.Text><strong>Position</strong> { position }</Card.Text>
+                <Card.Text><strong>Height: </strong> { heightFeet } ' { heightInches } ''</Card.Text>
+                <Card.Text><strong>Weight:</strong> { weightPounds } lbs</Card.Text>
+                <Card.Text><strong>Draft:</strong> {roundNum} round, {pickNum} pick</Card.Text>
+                <Card.Text><strong>Debut Year:</strong> { nbaDebutYear }</Card.Text>
+            </Card.Body>
         </Card>
     )
     
@@ -66,18 +67,20 @@ const Player = ({ playerInfo, seasonAveragesArray, playerMeta }) => {
     return (
         <PageLayout> 
             { PlayerComponent }
-            <h1>yeet</h1>
             <h1 className = {styles.statsHeader}>Stats</h1>
             <Table hover responsive striped className = {styles.Table}>
-                <thead >
+                <thead>
                     <tr>
                         { averagesComponent }
                     </tr>
                 </thead>
                 <tbody>
-                    <PlayerAverageRow  stats = {seasonAveragesArray} />
+                    <PlayerAverageRow  stats = {avgSeasonData} />
                 </tbody>
             </Table>
+
+            <h1>Player's Upcoming Games</h1>
+
         </PageLayout>
     )
 }
@@ -94,7 +97,7 @@ export async function getServerSideProps(context) {
     let response = await Axios.get(`https://www.balldontlie.io/api/v1/players?search=${player}`)
     let data = response.data
     let playerInfo = data.data[0]
-
+    console.log(playerInfo)
     // Get the player's current season averages
     /*
     let seasonAvgResponse = await Axios.get(`https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerInfo.id}`)
@@ -111,8 +114,11 @@ export async function getServerSideProps(context) {
     let playersArray = playersResponse.league.standard
     let playerIndex = playersArray.findIndex(obj =>  obj.lastName.toLowerCase().includes(playerLastName) && obj.firstName.toLowerCase().includes(playerFirstName))
     let playerMetaData = playersArray[playerIndex]
+   
     // Player ID required for image.
-    let playerId = playersArray[playerIndex].personId
+    let { personId, teamId } = playersArray[playerIndex]
+    
+    // Retrieve the team logo id from the json as well
 
     // Meta data about the nba players
     let { jersey, heightFeet, heightInches, weightPounds, draft, nbaDebutYear, collegeName, teamSitesOnly } = playerMetaData
@@ -121,17 +127,30 @@ export async function getServerSideProps(context) {
     let seasonAveragesArray = []
     let currentSeason = new Date().getFullYear() - 1
 
+    let avgResponse = await Axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=${currentSeason}&player_ids[]=${playerInfo.id}`)
+    let avgSeasonData = avgResponse.data.data[0]
+    console.log(avgSeasonData)
+    /*
     for (let season = currentSeason; season > (season-5); season--) {
         let avgResponse = await Axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=${season}&player_ids[]=${playerInfo.id}`)
         let avgSeasonData = avgResponse.data.data[0]
         seasonAveragesArray.push(avgSeasonData)
     }
+    */
     
-    // 2/18 Rest Day    
+    // Last Thing ! Getting the Upcoming Games for the player
+    let date = new Date()
+    let todaysYear = date.getFullYear()
+    let todaysDay = (date.getDate() < 10) ? '0' +  date.getDate() : date.getDate()
+    let todaysMonth = (date.getMonth() < 10) ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
 
-    console.log(seasonAveragesArray)
+    let combinedDate = todaysYear + '-' + todaysMonth + '-' + todaysDay
+    let upcomingRes = await Axios.get(`https://www.balldontlie.io/api/v1/games?start_date=${combinedDate}&end_date=2022-02-28&team_ids[]=${playerInfo.team.id}}`)   
+
+ 
     let playerMeta = {
-        playerID: playerId,
+        playerID: personId || null,
+        teamId: teamId,
         jersey: jersey,
         heightFeet: heightFeet,
         heightInches: heightInches, 
@@ -142,7 +161,7 @@ export async function getServerSideProps(context) {
         position: teamSitesOnly.posFull
     }
 
-    return {props : { playerInfo, seasonAveragesArray, playerMeta }}
+    return {props : { playerInfo, avgSeasonData, playerMeta }}
 }
 
 export default Player;
