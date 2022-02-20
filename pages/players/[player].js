@@ -9,6 +9,8 @@ import styles from './Players.module.css';
 import PlayerAverageRow from '../../Components/PlayerAverageRow';
 import PageLayout from '../../Components/PageLayout';
 
+import { retrievePlayerInformation } from '../api/player'
+
 /**
  * 
  * 
@@ -93,11 +95,13 @@ export async function getServerSideProps(context) {
     let playerLastName = player.split('_')[1]
 
 
+    console.log(await retrievePlayerInformation(context.req, context.params))
+
+
     // Get the player's Data
     let response = await Axios.get(`https://www.balldontlie.io/api/v1/players?search=${player}`)
     let data = response.data
     let playerInfo = data.data[0]
-    console.log(playerInfo)
     // Get the player's current season averages
     /*
     let seasonAvgResponse = await Axios.get(`https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerInfo.id}`)
@@ -109,7 +113,6 @@ export async function getServerSideProps(context) {
     let playerImageData = await Axios.get('http://data.nba.net/data/10s/prod/v1/2021/players.json')
     let playersResponse = playerImageData.data
     
-
     // Parsing through the data to retrieve the id required for player's image.
     let playersArray = playersResponse.league.standard
     let playerIndex = playersArray.findIndex(obj =>  obj.lastName.toLowerCase().includes(playerLastName) && obj.firstName.toLowerCase().includes(playerFirstName))
@@ -145,7 +148,7 @@ export async function getServerSideProps(context) {
     let todaysMonth = (date.getMonth() < 10) ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
 
     let combinedDate = todaysYear + '-' + todaysMonth + '-' + todaysDay
-    let upcomingRes = await Axios.get(`https://www.balldontlie.io/api/v1/games?start_date=${combinedDate}&end_date=2022-02-28&team_ids[]=${playerInfo.team.id}}`)   
+    // let upcomingRes = await Axios.get(`https://www.balldontlie.io/api/v1/games?start_date=${combinedDate}&end_date=2022-02-28&team_ids[]=${playerInfo.team.id}}`)   
 
  
     let playerMeta = {
