@@ -132,7 +132,6 @@ export async function getServerSideProps(context) {
 
     let avgResponse = await Axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=${currentSeason}&player_ids[]=${playerInfo.id}`)
     let avgSeasonData = avgResponse.data.data[0]
-    console.log(avgSeasonData)
     /*
     for (let season = currentSeason; season > (season-5); season--) {
         let avgResponse = await Axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=${season}&player_ids[]=${playerInfo.id}`)
@@ -148,7 +147,16 @@ export async function getServerSideProps(context) {
     let todaysMonth = (date.getMonth() < 10) ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
 
     let combinedDate = todaysYear + '-' + todaysMonth + '-' + todaysDay
+<<<<<<< Updated upstream
     // let upcomingRes = await Axios.get(`https://www.balldontlie.io/api/v1/games?start_date=${combinedDate}&end_date=2022-02-28&team_ids[]=${playerInfo.team.id}}`)   
+=======
+    
+    /*
+    let upcomingRes = await Axios.get(`https://www.balldontlie.io/api/v1/games?start_date=${combinedDate}&end_date=2022-02-28&team_ids[]=${playerInfo.team.id}}`)   
+    let upcomingGames = await upcomingRes.data.data[0]
+    console.log(upcomingGames)
+    */ 
+>>>>>>> Stashed changes
 
  
     let playerMeta = {
