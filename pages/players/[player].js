@@ -1,6 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/router';
-import Axios from 'axios';
 import Image from 'next/image'
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
@@ -9,6 +7,7 @@ import styles from './Players.module.css';
 import PlayerAverageRow from '../../Components/PlayerAverageRow';
 import PageLayout from '../../Components/PageLayout';
 
+// Api Route
 import { retrieveAvgSeasonData, retrieveNbaPlayerStats, retrievePlayerId } from '../api/player'
 
 /**
@@ -80,9 +79,7 @@ const Player = ({ playerInfo, avgSeasonData, playerMeta, playerSchedule }) => {
                     <PlayerAverageRow  stats = {avgSeasonData} />
                 </tbody>
             </Table>
-
             <h1>Player's Upcoming Games</h1>
-
         </PageLayout>
     )
 }

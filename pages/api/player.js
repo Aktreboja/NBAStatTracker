@@ -87,7 +87,6 @@ export const retrieveAvgSeasonData = async (id) => {
 
 /**
  * @description Retrieves the upcoming games for the NBA player
- * @param { Object} req 
  * @param { Object } params 
  * @returns { Object } Object containing the games for the following week.
  */
