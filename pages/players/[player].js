@@ -9,7 +9,7 @@ import styles from './Players.module.css';
 import PlayerAverageRow from '../../Components/PlayerAverageRow';
 import PageLayout from '../../Components/PageLayout';
 
-import { retrievePlayerInformation } from '../api/player'
+import { retrieveAvgSeasonData, retrieveNbaPlayerStats, retrievePlayerId } from '../api/player'
 
 /**
  * 
@@ -91,87 +91,10 @@ const Player = ({ playerInfo, avgSeasonData, playerMeta, playerSchedule }) => {
 export async function getServerSideProps(context) {
     // Retrieve the name of the player from the url.
     let player = context.params.player
-    let playerFirstName = player.split('_')[0]
-    let playerLastName = player.split('_')[1]
-
-
-    console.log(await retrievePlayerInformation(context.req, context.params))
-
-
-    // Get the player's Data
-    let response = await Axios.get(`https://www.balldontlie.io/api/v1/players?search=${player}`)
-    let data = response.data
-    let playerInfo = data.data[0]
-    // Get the player's current season averages
-    /*
-    let seasonAvgResponse = await Axios.get(`https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerInfo.id}`)
-    let playerAverages = seasonAvgResponse.data.data[0]
-    console.log(playerAverages)
-    */
-
-    // Retrieving the player from the nba database JSON file
-    let playerImageData = await Axios.get('http://data.nba.net/data/10s/prod/v1/2021/players.json')
-    let playersResponse = playerImageData.data
+    let playerInfo = await retrievePlayerId( context.params)
+    let avgSeasonData = await retrieveAvgSeasonData(playerInfo.id)
+    let playerMeta = await retrieveNbaPlayerStats(context.params)
     
-    // Parsing through the data to retrieve the id required for player's image.
-    let playersArray = playersResponse.league.standard
-    let playerIndex = playersArray.findIndex(obj =>  obj.lastName.toLowerCase().includes(playerLastName) && obj.firstName.toLowerCase().includes(playerFirstName))
-    let playerMetaData = playersArray[playerIndex]
-   
-    // Player ID required for image.
-    let { personId, teamId } = playersArray[playerIndex]
-    
-    // Retrieve the team logo id from the json as well
-
-    // Meta data about the nba players
-    let { jersey, heightFeet, heightInches, weightPounds, draft, nbaDebutYear, collegeName, teamSitesOnly } = playerMetaData
-
-    // Getting all of the season averages of a player.
-    let seasonAveragesArray = []
-    let currentSeason = new Date().getFullYear() - 1
-
-    let avgResponse = await Axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=${currentSeason}&player_ids[]=${playerInfo.id}`)
-    let avgSeasonData = avgResponse.data.data[0]
-    /*
-    for (let season = currentSeason; season > (season-5); season--) {
-        let avgResponse = await Axios.get(`https://www.balldontlie.io/api/v1/season_averages?season=${season}&player_ids[]=${playerInfo.id}`)
-        let avgSeasonData = avgResponse.data.data[0]
-        seasonAveragesArray.push(avgSeasonData)
-    }
-    */
-    
-    // Last Thing ! Getting the Upcoming Games for the player
-    let date = new Date()
-    let todaysYear = date.getFullYear()
-    let todaysDay = (date.getDate() < 10) ? '0' +  date.getDate() : date.getDate()
-    let todaysMonth = (date.getMonth() < 10) ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
-
-    let combinedDate = todaysYear + '-' + todaysMonth + '-' + todaysDay
-<<<<<<< Updated upstream
-    // let upcomingRes = await Axios.get(`https://www.balldontlie.io/api/v1/games?start_date=${combinedDate}&end_date=2022-02-28&team_ids[]=${playerInfo.team.id}}`)   
-=======
-    
-    /*
-    let upcomingRes = await Axios.get(`https://www.balldontlie.io/api/v1/games?start_date=${combinedDate}&end_date=2022-02-28&team_ids[]=${playerInfo.team.id}}`)   
-    let upcomingGames = await upcomingRes.data.data[0]
-    console.log(upcomingGames)
-    */ 
->>>>>>> Stashed changes
-
- 
-    let playerMeta = {
-        playerID: personId || null,
-        teamId: teamId,
-        jersey: jersey,
-        heightFeet: heightFeet,
-        heightInches: heightInches, 
-        weightPounds: weightPounds, 
-        draft: draft, 
-        nbaDebutYear: nbaDebutYear, 
-        collegeName: collegeName,
-        position: teamSitesOnly.posFull
-    }
-
     return {props : { playerInfo, avgSeasonData, playerMeta }}
 }
 
