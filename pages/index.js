@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Link from 'next/link'
 import Axios from 'axios'
-import styles from './players/Players.module.css'
+import styles from './Players.module.css'
 
 import PageLayout from '../Components/PageLayout.js'
+import IntroductionSection from '../Components/IntroductionSection';
 
 // Bootstrap Styles
 import Button from 'react-bootstrap/Button'
@@ -12,8 +13,6 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
-
-
 
 /**
  * Player JSON Guidelines for data map (playerData.*):
@@ -67,7 +66,6 @@ export default function Index() {
         
     }
 
-
     let searchResultsComponent = searchResults.map(({ first_name, last_name , team}, key) => {
         let nameSearch = first_name.toLowerCase() + '_' + last_name.toLowerCase()
         return (
@@ -85,6 +83,9 @@ export default function Index() {
             <title>StatsCentral | Players</title>
         </Head>
         <h1>StatsCentral | Players</h1>
+        <section>
+            <IntroductionSection />
+        </section>
         <Form onSubmit = {(e) => displaySearchParam(e)}>
             <Form.Group>
                 <Form.Label>Search for a Player</Form.Label>

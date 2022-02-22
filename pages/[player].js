@@ -4,11 +4,11 @@ import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import styles from './Players.module.css';
-import PlayerAverageRow from '../../Components/PlayerAverageRow';
-import PageLayout from '../../Components/PageLayout';
+import PlayerAverages from '../Components/PlayerAverages';
+import PageLayout from '../Components/PageLayout';
 
 // Api Route
-import { retrieveAvgSeasonData, retrieveNbaPlayerStats, retrievePlayerId } from '../api/player'
+import { retrieveAvgSeasonData, retrieveNbaPlayerStats, retrievePlayerId } from './api/player'
 
 /**
  * 
@@ -59,26 +59,13 @@ const Player = ({ playerInfo, avgSeasonData, playerMeta, playerSchedule }) => {
             </Card.Body>
         </Card>
     )
-    
-    // Table headers for the season averages.
-    let avgHeaders = ['Season', 'Mins', 'Points', 'FGM', 'FGA', 'FG_PCT', '3pt-FGM', '3pt-FGA', 'FG3_PCT', 'FTM', 'FTA', 'FT_PCT', 'AST', 'REB', 'OREB', 'DREB', 'STL', 'BLK', 'TO']
-    let averagesComponent = avgHeaders.map((header, key) => ( <th key = {key}>{ header }</th>))
-    
-    
+        
     return (
         <PageLayout> 
             { PlayerComponent }
             <h1 className = {styles.statsHeader}>Stats</h1>
-            <Table hover responsive striped className = {styles.Table}>
-                <thead>
-                    <tr>
-                        { averagesComponent }
-                    </tr>
-                </thead>
-                <tbody>
-                    <PlayerAverageRow  stats = {avgSeasonData} />
-                </tbody>
-            </Table>
+            <PlayerAverages stats = { avgSeasonData } />
+            
             <h1>Player's Upcoming Games</h1>
         </PageLayout>
     )
