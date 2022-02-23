@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Link from 'next/link'
 import Axios from 'axios'
-import styles from './Players.module.css'
+import styles from '../styles/Players.module.css'
+import Layout from '../styles/Layout.module.css'
 
-import PageLayout from '../Components/PageLayout.js'
 import IntroductionSection from '../Components/IntroductionSection';
 
 // Bootstrap Styles
@@ -69,7 +69,7 @@ export default function Index() {
     let searchResultsComponent = searchResults.map(({ first_name, last_name , team}, key) => {
         let nameSearch = first_name.toLowerCase() + '_' + last_name.toLowerCase()
         return (
-            <Link href = {`/players/${nameSearch}`} key = {key} passHref >
+            <Link href = {`/${nameSearch}`} key = {key} passHref >
                 <Card className = {styles.searchResult}>
                     <Card.Title>{ first_name } { last_name }</Card.Title>
                     <Card.Text>{ team.full_name }</Card.Text>
@@ -78,27 +78,27 @@ export default function Index() {
         )
     })
     
-  return <PageLayout>
+  return <div className = { Layout.introductionContainer }>
         <Head>
             <title>StatsCentral | Players</title>
         </Head>
-        <h1>StatsCentral | Players</h1>
+        <h1>NBA Stat Tracker</h1>
         <section>
             <IntroductionSection />
         </section>
-        <Form onSubmit = {(e) => displaySearchParam(e)}>
-            <Form.Group>
-                <Form.Label>Search for a Player</Form.Label>
-                <Form.Control type = "text" placeholder = "Ex: Kobe Bryant"  value = { searchParam } onChange = { updateSearchParam }/>
+        <Form onSubmit = {(e) => displaySearchParam(e)} className = {Layout.form}>
+            <Form.Group className = {Layout.formGroup}>
+                <Form.Label className = {Layout.formLabel}>Search for a Player</Form.Label>
+                <Form.Control type = "text" placeholder = "Russell Westbrook"  value = { searchParam } onChange = { updateSearchParam } className = {Layout.formControl}/>
             </Form.Group>
-            <Button type = "submit" variant = "outline-dark" >Search</Button>
+            <Button type = "submit" variant = "outline-dark" className = {Layout.SearchButton}>Search</Button>
         </Form>
         <Container className = {styles.searchResultsGrid}>
-            <Row md = {3}>
+            <Row xs={1} sm = {1} md = {4} style = {{padding: '0px 5px', display: 'flex', justifyContent: 'center', marginTop: '50px'}}>
                 { searchResultsComponent }
             </Row>
         </Container>
-  </PageLayout>;
+  </div>;
 }
 
 

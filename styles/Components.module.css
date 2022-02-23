@@ -1,0 +1,17 @@
+.StatRow {
+    
+    width: 70%;
+    display: flex;
+    justify-content: center;
+}
+
+.Stat {
+    border: 1px solid gray;
+    margin: 5px;
+    border-radius: 0.2rem;
+}
+
+.Stat p {
+    font-size: 1.5em;
+    
+}

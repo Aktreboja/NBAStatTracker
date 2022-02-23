@@ -1,9 +1,8 @@
 import React from 'react';
 import Image from 'next/image'
 import Card from 'react-bootstrap/Card';
-import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
-import styles from './Players.module.css';
+import styles from '../styles/Players.module.css';
 import PlayerAverages from '../Components/PlayerAverages';
 import PageLayout from '../Components/PageLayout';
 

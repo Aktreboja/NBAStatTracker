@@ -5,6 +5,19 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.1s;
+    margin: 5px;
+}
+
+.searchResultsGrid {
+    height: 500px;
+    margin-top: 40px;
+    overflow-y: scroll;
+    box-shadow: 5px 10px 10px rgba(0,0,0,0.1);
+}
+
+
+.searchResultsGrid::-webkit-scrollbar-thumb {
+    width: 10px;;
 }
 
 .searchResult:hover {
@@ -19,11 +32,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    border: 1px solid black;
+    border-radius: 0.6rem;
+    box-shadow: 5px 10px 10px rgba(0,0,0,0.08);
 }
 
 .imageWrapper {
-    border: 1px solid black;
+
     height: 100%;
     position: relative;
     display: flex;
