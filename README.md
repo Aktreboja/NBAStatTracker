@@ -29,7 +29,7 @@
         - Not using the search query will return a complete list of players, separated by pages which can be utilized later as a form of pagination within the app.
         - Example call on 'Lebron James' will return 
 
-        ```javascript
+        ```
         {
                 "data": [
                 {
