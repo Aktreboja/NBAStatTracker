@@ -63,7 +63,7 @@ const Player = ({ playerInfo, avgSeasonData, playerMeta, playerSchedule }) => {
             <h1 className = {styles.statsHeader}>Stats</h1>
             <PlayerAverages stats = { avgSeasonData } />
             
-            <h1>Player's Upcoming Games</h1>
+            <h1>Player&lsquo;s Upcoming Games</h1>
         </PageLayout>
     )
 }
