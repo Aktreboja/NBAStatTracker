@@ -45,13 +45,11 @@ const Player = ({ playerInfo, avgSeasonData, playerMeta, playerSchedule }) => {
                     <Image className={styles.logo} src = {teamLogoUrl} layout = "fill" alt = {`${first_name} ${last_name}`} />
                 </div>
                 <Image className={styles.playerImage} src = {playerImage}  width = { 260 } height = { 190 } alt = {`${first_name} ${last_name}`} />
-
-                
             </Container>
             <Card.Body className = {styles.metaData}>
                 <Card.Title className = {styles.playerName}>{ first_name } { last_name } (#{jersey}) </Card.Title>
                 <Card.Text><strong>Position</strong> { position }</Card.Text>
-                <Card.Text><strong>Height: </strong> { heightFeet } ' { heightInches } ''</Card.Text>
+                <Card.Text><strong>Height: </strong> { heightFeet } &lsquo; { heightInches } &lsquo;&lsquo;</Card.Text>
                 <Card.Text><strong>Weight:</strong> { weightPounds } lbs</Card.Text>
                 <Card.Text><strong>Draft:</strong> {roundNum} round, {pickNum} pick</Card.Text>
                 <Card.Text><strong>Debut Year:</strong> { nbaDebutYear }</Card.Text>

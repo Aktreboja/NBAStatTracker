@@ -14,14 +14,14 @@ export default function PlayerAverageRow({ stats }) {
     
 
     return (<div key = { index } className = {components.Stat}>
-      <h3>{ statHeader }</h3>
+      <h5>{ statHeader }</h5>
       <p>{ stat } </p>
     </div>)
     
   })
 
   return (
-      <Row md = {4} className = {components.StatRow}>
+      <Row xs = {2} sm = {2} md = {2} lg = {2} className = {components.StatRow}>
          { StatComponent }
       </Row>
         

@@ -5,6 +5,7 @@ import Axios from 'axios'
 import styles from '../styles/Players.module.css'
 import Layout from '../styles/Layout.module.css'
 
+
 import IntroductionSection from '../Components/IntroductionSection';
 
 // Bootstrap Styles
@@ -39,19 +40,20 @@ export default function Index() {
     let [ searchResults, setSearchResults ] = useState([])
     let [ playerNames, setPlayerNames ] = useState([])
 
-    useEffect(async () => {
-        let currentSeason = new Date().getFullYear() - 1
-        let playersResponse = await Axios.get(`http://data.nba.net/data/10s/prod/v1/${currentSeason}/players.json`)
-        let playersArray = []
-        let playersData = playersResponse.data.league.standard
-        //console.log(playersData)
-        playersData.forEach(player => playersArray.push(player.temporaryDisplayName))
-        // console.log(playersArray + " , size: " + playersArray.length)
 
-        setPlayerNames(playersArray)
-        console.log("New Players Array: ", playersArray)
-        
+    useEffect(() => {
+        async function fetchData() {
+            let currentSeason = new Date().getFullYear() - 1
+            let playersResponse = await Axios.get(`http://data.nba.net/data/10s/prod/v1/${currentSeason}/players.json`)
+            let playersArray = []
+            let playersData = playersResponse.data.league.standard
+            playersData.forEach(player => playersArray.push(player.temporaryDisplayName))
+            setPlayerNames(playersArray)
+        }
+        fetchData()
     }, [])
+
+
 
     const updateSearchParam = event => {
         setSearchParam(event.target.value)

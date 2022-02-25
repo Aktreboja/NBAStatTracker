@@ -66,11 +66,6 @@ export const retrieveNbaPlayerStats = async ({ player }) => {
         return playerMeta
     }   
     else return null
-
-
-    return playerStats 
-
-
 }
 
 /**
@@ -107,6 +102,15 @@ export const retrieveUpcomingGames = async (req, params) => {
     console.log(upcomingGames)
     */ 
 }
+
+/**
+ * 
+ * @returns { Object }
+ */
+export const fetchPlayers = async () => {
+   
+}
+
 
 
 

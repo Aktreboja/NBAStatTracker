@@ -45,6 +45,7 @@
     align-items: flex-end;
     margin: 20px auto;
     width: 50%;
+    border: 1px solid black;
 }
 
 
@@ -70,4 +71,17 @@
 .statsHeader {
     text-align: center;
     margin: 1em;
+}
+
+@media only screen and (min-width: 250px) {
+    .Card {
+        flex-direction: column;
+        max-width: 500px;
+    }
+
+    .imageWrapper, .logoWrapper {
+        width: 100%;
+    }
+    
+
 }
