@@ -70,13 +70,21 @@ const Player = ({ playerInfo, avgSeasonData, playerMeta, playerSchedule }) => {
 
 
 export async function getServerSideProps(context) {
-    // Retrieve the name of the player from the url.
-    let player = context.params.player
-    let playerInfo = await retrievePlayerId( context.params)
-    let avgSeasonData = await retrieveAvgSeasonData(playerInfo.id)
-    let playerMeta = await retrieveNbaPlayerStats(context.params)
-    
-    return {props : { playerInfo, avgSeasonData, playerMeta }}
+    try {
+        // Retrieve the name of the player from the url.
+        let player = context.params.player
+        let playerInfo = await retrievePlayerId( context.params)
+        let avgSeasonData = await retrieveAvgSeasonData(playerInfo.id)
+        let playerMeta = await retrieveNbaPlayerStats(context.params)
+        return {props : { playerInfo, avgSeasonData, playerMeta }}
+    }
+    catch (e) {
+        return {
+            redirect: {
+                destination: '/500'
+            }
+        }
+    }
 }
 
 export default Player;

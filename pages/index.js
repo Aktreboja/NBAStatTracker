@@ -47,8 +47,9 @@ export default function Index() {
             let playersResponse = await Axios.get(`http://data.nba.net/data/10s/prod/v1/${currentSeason}/players.json`)
             let playersArray = []
             let playersData = playersResponse.data.league.standard
-            playersData.forEach(player => playersArray.push(player.temporaryDisplayName))
+            playersData.forEach(player => {(player.temporaryDisplayName !== undefined) ?  playersArray.push(player.temporaryDisplayName) : null })
             setPlayerNames(playersArray)
+            
         }
         fetchData()
     }, [])
@@ -59,13 +60,12 @@ export default function Index() {
         setSearchParam(event.target.value)
     }
 
+    // 2/25: Rest day
     const displaySearchParam = async (e) => {
-        
         e.preventDefault()
         const { data } = await Axios.get(`https://www.balldontlie.io/api/v1/players?search=${searchParam}`)
         let currentPlayersArray = data.data.filter(player => player.position !== '')
         setSearchResults(currentPlayersArray)
-        
     }
 
     let searchResultsComponent = searchResults.map(({ first_name, last_name , team}, key) => {

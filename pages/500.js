@@ -1,0 +1,12 @@
+import React from 'react'
+import Link from 'next/link'
+import PageLayout from '../Components/PageLayout'
+
+export default function Custom500() {
+  return (
+    <PageLayout>
+        <h1>The NBA player you are trying to find does does not exist, please try again</h1>
+        <Link href= "/" passhref ><a>Return to home page</a></Link>
+    </PageLayout>
+  )
+}
