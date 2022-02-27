@@ -60,7 +60,7 @@ export default function Index() {
         setSearchParam(event.target.value)
     }
 
-    // 2/25: Rest day
+    // 2/27: Check in
     const displaySearchParam = async (e) => {
         e.preventDefault()
         const { data } = await Axios.get(`https://www.balldontlie.io/api/v1/players?search=${searchParam}`)
