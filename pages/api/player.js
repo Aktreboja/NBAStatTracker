@@ -103,16 +103,6 @@ export const retrieveUpcomingGames = async (req, params) => {
     */ 
 }
 
-/**
- * 
- * @returns { Object }
- */
-export const fetchPlayers = async () => {
-   
-}
-
-
-
 
 export default function handler(req, res) {
     return res.status(200).json({text: 'yee'})

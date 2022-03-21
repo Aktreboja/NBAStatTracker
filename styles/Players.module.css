@@ -34,6 +34,7 @@
     flex-direction: row;
     border-radius: 0.6rem;
     box-shadow: 5px 10px 10px rgba(0,0,0,0.08);
+    padding: 20px 0px;
 }
 
 .imageWrapper {
@@ -45,7 +46,7 @@
     align-items: flex-end;
     margin: 20px auto;
     width: 50%;
-    border: 1px solid black;
+  
 }
 
 

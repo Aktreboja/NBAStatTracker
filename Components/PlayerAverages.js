@@ -13,7 +13,7 @@ export default function PlayerAverageRow({ stats }) {
     if (statHeader == 'Player ID') return
     
 
-    return (<div key = { index } className = {components.Stat}>
+    return (<div key = { index } className = {components.Stat} >
       <h5>{ statHeader }</h5>
       <p>{ stat } </p>
     </div>)

@@ -40,7 +40,6 @@ export default function Index() {
     let [ searchResults, setSearchResults ] = useState([])
     let [ playerNames, setPlayerNames ] = useState([])
 
-
     useEffect(() => {
         async function fetchData() {
             let currentSeason = new Date().getFullYear() - 1
@@ -53,7 +52,6 @@ export default function Index() {
         }
         fetchData()
     }, [])
-
 
 
     const updateSearchParam = event => {

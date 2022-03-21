@@ -60,7 +60,7 @@ const Player = ({ playerInfo, avgSeasonData, playerMeta, playerSchedule }) => {
     return (
         <PageLayout> 
             { PlayerComponent }
-            <h1 className = {styles.statsHeader}>Stats</h1>
+            <h1 className = {styles.statsHeader}><u>Season Averages</u></h1>
             <PlayerAverages stats = { avgSeasonData } />
             
             <h1>Player&lsquo;s Upcoming Games</h1>
