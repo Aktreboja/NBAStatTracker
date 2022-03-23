@@ -6,6 +6,7 @@ import styles from '../styles/Players.module.css';
 import PlayerAverages from '../Components/PlayerAverages';
 import PageLayout from '../Components/PageLayout';
 
+// 3/22 rest day
 // Api Route
 import { retrieveAvgSeasonData, retrieveNbaPlayerStats, retrievePlayerId } from './api/player'
 
