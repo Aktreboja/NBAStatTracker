@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import PageLayout from '../Components/PageLayout'
+import PageLayout from '../Layout/PageLayout'
 
 export default function Custom500() {
   return (

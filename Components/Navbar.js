@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container'
 
 export default function NavigationBar() {
   return (
-    <Navbar bg = "dark">
+    <Navbar>
       <Container>
         <Navbar.Brand>Ball-Up</Navbar.Brand>
         <Nav>
