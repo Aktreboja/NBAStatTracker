@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
-import Link from 'next/link'
 import Axios from 'axios'
 import styles from '../styles/Players.module.css'
-import Layout from '../styles/Layout.module.css'
-
+import Layout from '../Stylesheets/Layout.module.scss';
 import IntroductionSection from '../Components/IntroductionSection';
+import PlayerSearchCard from '../Components/Player/PlayerSearchCard';
+import PlayerSearchForm from '../Components/Player/PlayerSearchForm';
 
 // Bootstrap Styles
-import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
-import Form from 'react-bootstrap/Form'
+
 
 export default function Index() {
     let [ searchParam, setSearchParam ] = useState('')
@@ -48,28 +46,20 @@ export default function Index() {
     let searchResultsComponent = searchResults.map(({ first_name, last_name , team}, key) => {
         let nameSearch = first_name.toLowerCase() + '_' + last_name.toLowerCase()
         return (
-            <Link href = {`/${nameSearch}`} key = {key} passHref >
-                <Card className = {styles.searchResult}>
-                    <Card.Title>{ first_name } { last_name }</Card.Title>
-                    <Card.Text>{ team.full_name }</Card.Text>
-                </Card>
-            </Link>
+            <PlayerSearchCard first_name={first_name} last_name = {last_name} team = {team} key = {key}/>
         )
     })
     
-  return <div className = { Layout.introductionContainer } >
+  return <div >
         <Head>
             <title>StatsCentral | Players</title>
         </Head>
-        <h1>NBA Stat Tracker</h1>
-        <IntroductionSection />
-        <Form onSubmit = {(e) => displaySearchParam(e)} className = {Layout.form}>
-            <Form.Group className = {Layout.formGroup}>
-                <Form.Label className = {Layout.formLabel}>Search for a Player</Form.Label>
-                <Form.Control type = "text" placeholder = "Russell Westbrook"  value = { searchParam } onChange = { updateSearchParam } className = {Layout.formControl}/>
-            </Form.Group>
-            <Button type = "submit" variant = "outline-dark" className = {Layout.SearchButton}>Search</Button>
-        </Form>
+            <h1>NBA Stat Tracker</h1>
+            <div className= { Layout.playerSearchGridContainer }>
+                <IntroductionSection />
+                <PlayerSearchForm searchHandler={displaySearchParam} searchParam = {searchParam} paramHandler = {updateSearchParam}/>
+            </div>
+
         <Container className = {styles.searchResultsGrid}>
             <Row xs={1} sm = {1} md = {4} style = {{padding: '0px 5px', display: 'flex', justifyContent: 'center', marginTop: '50px'}}>
                 { searchResultsComponent }

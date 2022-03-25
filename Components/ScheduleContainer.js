@@ -8,9 +8,6 @@ import ScheduledGame from './ScheduledGame'
  * @returns 
  */
 export default function ScheduleContainer({ gameData }) {
-  
-  
-
     let Games = gameData.map((game) => {
         let gameStatus = {
             status: game.status,

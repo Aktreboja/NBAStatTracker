@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PageLayout from '../Layout/PageLayout';
+import PageLayout from '../Components/Layout/PageLayout';
 
 
 function MyApp({ Component, pageProps }) {

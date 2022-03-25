@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/Players.module.css';
 import PlayerAverages from '../Components/PlayerAverages';
-import PageLayout from '../Layout/PageLayout';
+import PageLayout from '../Components/Layout/PageLayout';
 import PlayerCard from '../Components/Player/PlayerCard';
 
 import { PlayerMeta, playerAverages, NbaPlayerMeta, PlayerCardProps } from '../Types/Player';
