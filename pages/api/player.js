@@ -87,20 +87,7 @@ export const retrieveAvgSeasonData = async (id) => {
  */
 export const retrieveUpcomingGames = async (req, params) => {
        
-    /*
-    // Last Thing ! Getting the Upcoming Games for the player
-    let date = new Date()
-    let todaysYear = date.getFullYear()
-    let todaysDay = (date.getDate() < 10) ? '0' +  date.getDate() : date.getDate()
-    let todaysMonth = (date.getMonth() < 10) ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
 
-    let combinedDate = todaysYear + '-' + todaysMonth + '-' + todaysDay
-    
-    /*
-    let upcomingRes = await Axios.get(`https://www.balldontlie.io/api/v1/games?start_date=${combinedDate}&end_date=2022-02-28&team_ids[]=${playerInfo.team.id}}`)   
-    let upcomingGames = await upcomingRes.data.data[0]
-    console.log(upcomingGames)
-    */ 
 }
 
 

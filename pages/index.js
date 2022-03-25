@@ -5,7 +5,6 @@ import Axios from 'axios'
 import styles from '../styles/Players.module.css'
 import Layout from '../styles/Layout.module.css'
 
-
 import IntroductionSection from '../Components/IntroductionSection';
 
 // Bootstrap Styles
@@ -15,26 +14,6 @@ import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 
-/**
- * Player JSON Guidelines for data map (playerData.*):
- *  1. id: The id of the player
- *  2. first_name: the first name of the player
- *  3. height_feet: the height of the player in feet
- *  4. height_inches: the height of the player in inches
- *  5. last_name: the last name of the player.
- *  6. Position: The position that the player plays
- *  7. Team: {
- *      id: The id of the team.
- *      Abbreviation: The abbreviation of the team that the player is in.
- *      City: The city that the team is from.
- *      Conference: The conference that the team is in East/ West
- *      division: The division the team is in
- *      full_name: The full name of the team
- *      name: The name of the team
- * }
- *  8. weight_pounds: The weight of the player in pounds.
- * 
- */
 export default function Index() {
     let [ searchParam, setSearchParam ] = useState('')
     let [ searchResults, setSearchResults ] = useState([])
@@ -78,14 +57,12 @@ export default function Index() {
         )
     })
     
-  return <div className = { Layout.introductionContainer }>
+  return <div className = { Layout.introductionContainer } >
         <Head>
             <title>StatsCentral | Players</title>
         </Head>
         <h1>NBA Stat Tracker</h1>
-        <section>
-            <IntroductionSection />
-        </section>
+        <IntroductionSection />
         <Form onSubmit = {(e) => displaySearchParam(e)} className = {Layout.form}>
             <Form.Group className = {Layout.formGroup}>
                 <Form.Label className = {Layout.formLabel}>Search for a Player</Form.Label>

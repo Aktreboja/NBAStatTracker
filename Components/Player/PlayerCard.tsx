@@ -3,39 +3,17 @@ import Image from 'next/image'
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
 import styles from './PlayerCard.module.scss'
-
-interface DraftType {
-    pickNum: number,
-    roundNum: number
-}
-
-interface PlayerCardProps {
-    first_name: string,
-    last_name: string,
-    playerID: number,
-    teamID: number,
-    position: string,
-    heightFeet: number,
-    heightInches: number,
-    weightPounds: number,
-    draft: DraftType,
-    nbaDebutYear: number,
-    jersey: number
-}
+import { PlayerCardProps } from '../../Types/Player'
 
 export default function PlayerCard( { ...playerData }:  PlayerCardProps ) {
-
     // NBA player Non-stat Type data
     let { playerID, teamId, nbaDebutYear, jersey } = playerData
     // NBA Stat data
     let { first_name, last_name, position, heightFeet, heightInches, weightPounds } = playerData
     let { pickNum, roundNum } = playerData.draft
 
-
     let playerImage = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${playerID}.png`
     let teamLogoUrl = `https://cdn.nba.com/logos/nba/${teamId}/primary/L/logo.svg`
-
-    console.log(teamLogoUrl)
 
   return (
     <Card className = {styles.Card}>

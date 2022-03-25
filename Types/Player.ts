@@ -1,3 +1,5 @@
+// 3/24: Rest day
+
 
 /**
  * Nba Player Types.
@@ -88,4 +90,12 @@ export interface PlayerCardProps {
     first_name: string,
     last_name: string,
     position: string
+}
+
+
+
+/* Player Search Card */
+
+export interface PlayerSearchCard {
+    
 }
