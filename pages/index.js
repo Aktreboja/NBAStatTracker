@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Axios from 'axios'
-import styles from '../styles/Players.module.css'
-import Layout from '../Stylesheets/Layout.module.scss';
+
+
 import IntroductionSection from '../Components/IntroductionSection';
 import PlayerSearchCard from '../Components/Player/PlayerSearchCard';
 import PlayerSearchForm from '../Components/Player/PlayerSearchForm';
@@ -10,7 +10,6 @@ import PlayerSearchForm from '../Components/Player/PlayerSearchForm';
 // Bootstrap Styles
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
-
 
 export default function Index() {
     let [ searchParam, setSearchParam ] = useState('')
@@ -46,26 +45,37 @@ export default function Index() {
     let searchResultsComponent = searchResults.map(({ first_name, last_name , team}, key) => {
         let nameSearch = first_name.toLowerCase() + '_' + last_name.toLowerCase()
         return (
-            <PlayerSearchCard first_name={first_name} last_name = {last_name} team = {team} key = {key}/>
+            <PlayerSearchCard first_name={first_name} last_name = {last_name} team = {team} key = {key} />
         )
     })
     
-  return <div >
+  return <>
         <Head>
-            <title>StatsCentral | Players</title>
+            <title>StatsCentral | Welcome</title>
         </Head>
-            <h1>NBA Stat Tracker</h1>
-            <div className= { Layout.playerSearchGridContainer }>
+        <div className='landingContainer'>
+            <div className='landingLeftGrid'>
+                <h1 className= "header">StatsCentral</h1>
+                <h3 className= "landingText">A web application focused on getting the most up to date stats on NBA players.</h3>
+            </div>
+
+            <div className= "landingGridItem">
                 <IntroductionSection />
                 <PlayerSearchForm searchHandler={displaySearchParam} searchParam = {searchParam} paramHandler = {updateSearchParam}/>
             </div>
+        </div>
 
+            
+
+
+
+{/* 
         <Container className = {styles.searchResultsGrid}>
             <Row xs={1} sm = {1} md = {4} style = {{padding: '0px 5px', display: 'flex', justifyContent: 'center', marginTop: '50px'}}>
                 { searchResultsComponent }
             </Row>
-        </Container>
-  </div>;
+        </Container> */}
+  </>;
 }
 
 

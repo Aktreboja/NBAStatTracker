@@ -23,20 +23,7 @@
     align-items: center;
 }
 
-.introductionSection div {
-    width: 80%;
-    
-    min-height: 150px;
-    padding: 25px;
-    border: 1px solid black;
-    border-radius: 0.45rem;
-    font-size: 22px;
-    margin: 10px 20px;
-    text-indent: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .form {
     display: flex;
@@ -93,9 +80,3 @@
     }
 }
 
-@media only screen and (min-width: 700px) {
-    .introductionSection {
-        flex-direction: row;
-        border: 1px solid black;
-    }
-}
