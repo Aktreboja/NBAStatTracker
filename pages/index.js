@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Axios from 'axios'
 
-
+import NavBar from '../Components/Layout/Navbar';
 import IntroductionSection from '../Components/IntroductionSection';
 import PlayerSearchCard from '../Components/Player/PlayerSearchCard';
 import PlayerSearchForm from '../Components/Player/PlayerSearchForm';

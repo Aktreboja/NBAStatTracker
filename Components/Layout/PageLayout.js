@@ -1,7 +1,9 @@
 import React from 'react';
+import Navbar from '../Layout/Navbar'
 
 export default function PageLayout({ children }) {
-  return <div >
+  return <div>
+    <Navbar />
       { children }
   </div>;
 }

@@ -5,16 +5,14 @@ import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Container from 'react-bootstrap/Container'
 
-export default function NavigationBar() {
+export default function NavBar() {
   return (
-    <Navbar>
-      <Container>
-        <Navbar.Brand>Ball-Up</Navbar.Brand>
-        <Nav>
+    <Navbar fixed = "top" expand = "lg">       
+        <Nav className = "navbar-links">
           <Nav.Link href = "/players">Players</Nav.Link>
           <Nav.Link href = "/teams">Teams</Nav.Link>
+          <Nav.Link href = "/compare">Compare</Nav.Link>
         </Nav>
-      </Container>
     </Navbar>
   );
 }
