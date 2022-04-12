@@ -8,8 +8,7 @@ import PlayerSearchCard from '../Components/Player/PlayerSearchCard';
 import PlayerSearchForm from '../Components/Player/PlayerSearchForm';
 
 // Bootstrap Styles
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row'
+import { Button } from 'react-bootstrap';
 
 export default function Index() {
     let [ searchParam, setSearchParam ] = useState('')
@@ -24,7 +23,6 @@ export default function Index() {
             let playersData = playersResponse.data.league.standard
             playersData.forEach(player => {(player.temporaryDisplayName !== undefined) ?  playersArray.push(player.temporaryDisplayName) : null })
             setPlayerNames(playersArray)
-            
         }
         fetchData()
     }, [])
@@ -61,7 +59,12 @@ export default function Index() {
 
             <div className= "landingGridItem">
                 <IntroductionSection />
-                <PlayerSearchForm searchHandler={displaySearchParam} searchParam = {searchParam} paramHandler = {updateSearchParam}/>
+                <div className = "landingButtonsContainer">
+                    <Button variant = "dark" href = "/players">Search for a player</Button>
+                    <Button variant = "outline-dark" href = "/teams">View NBA Teams</Button>
+                    <Button variant = "outline-dark" href ="/compare">Compare Players</Button>
+                </div>
+                {/* <PlayerSearchForm searchHandler={displaySearchParam} searchParam = {searchParam} paramHandler = {updateSearchParam}/> */}
             </div>
         </div>
 
@@ -69,12 +72,7 @@ export default function Index() {
 
 
 
-{/* 
-        <Container className = {styles.searchResultsGrid}>
-            <Row xs={1} sm = {1} md = {4} style = {{padding: '0px 5px', display: 'flex', justifyContent: 'center', marginTop: '50px'}}>
-                { searchResultsComponent }
-            </Row>
-        </Container> */}
+
   </>;
 }
 

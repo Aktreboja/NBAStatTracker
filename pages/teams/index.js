@@ -1,5 +1,6 @@
 import React from 'react'
-
+import Image from 'next/image'
+import { retrieveTeamLogos } from '../api/team'
 
 
 /**
@@ -7,10 +8,28 @@ import React from 'react'
  * 
  * @returns 
  */
-export default function index() {
+export default function index({ teamLogos }) {
+  console.log(teamLogos)
+
+
+  let TeamComponents = teamLogos.map((team, index) => {
+    if (team.isNBAFranchise)
+    return <div className = "">
+      <h2 >{team.fullName}</h2>
+      <Image src={`https://cdn.nba.com/logos/nba/${team.teamId}/primary/L/logo.svg`} width = {300} height = {300}/>
+    </div>
+  })
+
   return (
-    <div className = "container flex-center">
-        <h2>Testing</h2>
+    <div className = " flex-center teamLogoContainer gridColsTwo">
+        {TeamComponents}
     </div>
   )
+}
+
+
+export async function getStaticProps() {
+  let teamLogos = (await retrieveTeamLogos()).teamData
+  console.log(' Logos : ', teamLogos)
+  return { props:  {teamLogos } }
 }

@@ -53,6 +53,20 @@
 }
 
 
+.landingButtonsContainer {
+    margin-top: 20px;
+    width: 40%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.landingButtonsContainer button {
+    margin: 0px 10px;
+}
+
+
 .header {
     width: 100%;
     text-align: center;
@@ -72,7 +86,13 @@
 }
 
 
-/* 2 Column Grid */
+/* Team Logo container */ 
+
+.teamLogoContainer {
+    display: flex;
+    flex-direction: column;
+}
+
 
 
 /* PlayerSearchGridContainer */
@@ -90,13 +110,20 @@
         @include grid-cols-1;
     }
 
-
-
+    .landingButtonsContainer { 
+        width: 70%;
+    }
 }
-
 
 @media only screen and (min-width: 1100px) {
     .landingContainer {
         @include gridColsTwo;
+    }
+
+
+    .landingButtonsContainer {
+        width: 60%;
+        min-width: 400px;
+        max-width: 500px;
     }
 }
