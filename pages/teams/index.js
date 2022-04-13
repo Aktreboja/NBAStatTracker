@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { retrieveTeamLogos } from '../api/team'
 
 
@@ -14,14 +15,14 @@ export default function index({ teamLogos }) {
 
   let TeamComponents = teamLogos.map((team, index) => {
     if (team.isNBAFranchise)
-    return <div className = "">
-      <h2 >{team.fullName}</h2>
-      <Image src={`https://cdn.nba.com/logos/nba/${team.teamId}/primary/L/logo.svg`} width = {300} height = {300}/>
-    </div>
+    return <Link className = "teamLogo" href = {`/teams/${team.teamId}`}>
+      {/* <h2 >{team.fullName}</h2> */}
+      <Image src={`https://cdn.nba.com/logos/nba/${team.teamId}/primary/L/logo.svg`} width = {250} height = {250} alt = {team.fullName}/>
+    </Link>
   })
 
   return (
-    <div className = " flex-center teamLogoContainer gridColsTwo">
+    <div className = "teamLogoContainer">
         {TeamComponents}
     </div>
   )
