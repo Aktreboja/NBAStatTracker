@@ -1,15 +1,11 @@
-.navbar {
-    display: flex;
-    justify-content: flex-end;
+.navbar {   
     background-color: white;
 }
 
 .navbar-links {
+    display: flex;
+    justify-content: flex-end;
     margin-right: 15px;
     width: 100%;
-    border: 1px solid black;
-}
-
-.nav {
-    color: red;
+    
 }

@@ -2,15 +2,45 @@
     display: grid;
 }
 
-@mixin gridColsTwo { 
-    display: grid;
+/* Height Mixins */
+
+@mixin heightFull {
+    height: 100%;
+    min-height: 100vh;
+}
+
+
+ /* Grid Mixins */
+
+ @mixin gridColsOne {
+    
+    grid-template-columns: repeat(1, minmax(0, 1fr)) ;
+}
+
+ @mixin gridColsTwo { 
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+@mixin gridColsThree {
+    
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@mixin gridColsFour {
+   
+    grid-template-columns: repeat(4, minmax(0, 1fr)) ;
+}
+
+@mixin gridColsFive {
+    
+    grid-template-columns: repeat(5, minmax(0, 1fr)) ;
+}
+
 @mixin grid-cols-1 {
-    display: grid;
+    
     grid-template-columns: repeat(1, minmax(0, 1fr));
 }
+
 
 .textCenter {
     text-align: center;
@@ -85,26 +115,27 @@
 }
 
 
+.flexCenterColContainer {
+    position: relative;
+    @extend .container;
+    @extend .flex-center;
+    @extend .flex-col;
+}
+
+
 /* Team Logo container */ 
 
 .teamLogoContainer {
-    @include gridColsTwo;
+    @include gridColsThree;
+    @include heightFull;
+    @extend .grid;
+    column-gap: 20px;
     justify-items: center;
-    margin: 0px auto;
-    margin-top: 20px;
+    margin: 100px auto;
+    padding: 5px 20px;
     border: 1px solid black;
 }
 
-
-/* Team Logo Styles */
-
-.teamLogo {
-    border: 1px solid rgba(0,0,0,0.5);
-    box-shadow: 5px 10px 10px rgba(0,0,0,0.1);
-    border-radius: 50%;
-    margin: 5px 0px;
-    cursor: pointer;
-}
 
 /* PlayerSearchGridContainer */
 
@@ -116,13 +147,36 @@
 }
 
 
+
+
+/* Player dynamic Page styles */
+
+.playerContainer {
+    @extend .flexCenterColContainer
+}
+
+
+
 @media only screen and (min-width: 300px) {
     .landingContainer {
-        @include grid-cols-1;
+        @include gridColsTwo;
     }
 
     .landingButtonsContainer { 
         width: 70%;
+    }
+
+
+    .teamLogoContainer {
+        @include gridColsTwo;
+        width: 80%;
+    }
+}
+
+
+@media only screen and (min-width: 800px) {
+    .teamLogoContainer {
+        @include gridColsThree;
     }
 }
 
@@ -131,10 +185,15 @@
         @include gridColsTwo;
     }
 
-
     .landingButtonsContainer {
         width: 60%;
         min-width: 400px;
         max-width: 500px;
+    }
+
+    .teamLogoContainer {
+        width: 80%;
+        max-width: 1000px;
+        @include gridColsFive;
     }
 }

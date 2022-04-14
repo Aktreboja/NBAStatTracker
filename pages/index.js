@@ -53,7 +53,7 @@ export default function Index() {
         </Head>
         <div className='landingContainer'>
             <div className='landingLeftGrid'>
-                <h1 className= "header">StatsCentral</h1>
+                <h1 className= "header" role="title">StatsCentral</h1>
                 <h3 className= "landingText">A web application focused on getting the most up to date stats on NBA players.</h3>
             </div>
 

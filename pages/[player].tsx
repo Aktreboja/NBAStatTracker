@@ -12,12 +12,12 @@ import { retrieveAvgSeasonData, retrieveNbaPlayerStats, retrievePlayerId } from 
 
 const Player = ({ playerProps, avgSeasonData }) => {      
     return (
-        <PageLayout> 
+        <section className = "playerContainer"> 
             <PlayerCard {...playerProps}/>
             <h1 className = {styles.statsHeader}><u>Season Averages</u></h1>
             <PlayerAverages stats = { avgSeasonData } />
             <h1>Player&lsquo;s Upcoming Games</h1>
-        </PageLayout>
+        </section>
     )
 }
 
