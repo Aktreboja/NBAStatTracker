@@ -45,8 +45,7 @@ export async function getServerSideProps(context) {
             last_name,
             position
         }
-
-
+        
         return {props : { playerProps, avgSeasonData, playerMeta }}
     }
     catch (e) {
