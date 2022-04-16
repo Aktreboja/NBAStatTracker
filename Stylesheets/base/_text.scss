@@ -3,12 +3,13 @@
 $primaryText: 'Alegreya Sans', sans-serif;
 $secondaryText: 'Source Serif Pro', serif;
 
-@mixin primaryText {
-    font-family: $primaryText;
-}
+@mixin primaryText {font-family: $primaryText;}
+@mixin secondaryText {font-family: $secondaryText;}
 
-@mixin secondaryText {
-    font-family: $secondaryText;
+
+h1, h2, h3, h4, h5 {
+    font-family: $primaryText;
+    font-weight: 600;
 }
 
 
@@ -23,14 +24,30 @@ $secondaryText: 'Source Serif Pro', serif;
     font-size: 2em;
 }
 
-.text-align {
-    text-align: center;
-}
+.textCenter {text-align: center;}
 
 /* individual html elements that contain text */
 
 .landingText {
+    @extend .textCenter;
     width: 85%;
     color: rgba(255,255,255, 0.7);
     margin-top: 10px;
+}
+
+.introductionText {
+    @extend .textCenter;
+    @extend .margin-y-4;
+    font-family: $primaryText;
+    font-size: 1.5em;
+    width: 80%;
+    margin: 5px auto;
+    
+}
+
+
+@media only screen and (min-width: 992px) { 
+    .introductionText {
+        font-size: 1.8em;
+    }
 }

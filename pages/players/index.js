@@ -1,9 +1,21 @@
 import React from 'react'
+import PlayerSearchForm from '../../Components/Player/PlayerSearchForm'
+import TeamCard from '../../Components/Team/TeamCard'
 
 export default function index() {
   return (
-    <div>
-      
+    <div className = "playerContainer">
+        <h1>Welcome to the players Page</h1>
+        <PlayerSearchForm />
+        <h4>Search By Team</h4>
+        <div>
+          <TeamCard />
+        </div>
     </div>
   )
 }
+
+export async function getStaticProps(context) {
+  return {props: {} }
+}
+

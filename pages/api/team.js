@@ -35,15 +35,29 @@ export const getRecentGames = async () => {
 
 
 
-
+/**
+ * Retrieves the upcoming games for a team
+ * @param {number} param The team id for to search for future games. 
+ * @returns {Object} Team related data, or null if none available (Season Ended).
+ */
 export const getUpcomingGames = async (param) => {
+    // helper Function to get the days in the month
+    const getDaysInMonth = (year, month) =>  { return new Date(year, month, 0).getDate()}
+
+    let endDate;
+
     let date = new Date()
-    let year = date.getFullYear()
-    let day = (date.getDate() < 10 ) ? `0${date.getDate()}` : date.getDate()
-    let month = (date.getMonth() < 10) ? `0${date.getMonth()}` : date.getMonth()
-    
+    let startYear = date.getFullYear()
+    let startDay = (date.getDate() < 10 ) ? `0${date.getDate()}` : date.getDate()
+    let startMonth = (date.getMonth() < 10) ? `0${date.getMonth()}` : date.getMonth()
     let startDate = `${year}-${month}-${day}`
-    let endDate = `${year}-${month}-${day}`
+
+    if (startDay + 7 > getDaysInMonth(year, month)) {
+        endDate = `${startYear}-${ startMonth + 1 }-${startDay + 7}`
+    } else {
+        endDate = `${year}-${month}-${day + 7}`
+    }
+  
     
     return startDate
     //console.log
