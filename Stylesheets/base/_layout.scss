@@ -54,20 +54,21 @@
 
 .landingLeftGrid {
     @extend .landingGridItem;
-    background-color: darkcyan;
+    background-color: #225dc3;
     min-height: 300px;
+    z-index: 0;
 }
 
 .landingButtonsContainer {
     margin-top: 20px;
     width: 40%;
-    height: 150px;
+    height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.landingButtonsContainer button { margin: 0px 10px; }
+.landingButtonsContainer button { margin: 0px 5px; }
 
 .header {
     width: 100%;
@@ -103,7 +104,6 @@
     justify-items: center;
     margin: 100px auto;
     padding: 5px 20px;
-    border: 1px solid black;
 }
 
 

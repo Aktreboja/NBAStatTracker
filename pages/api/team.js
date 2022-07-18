@@ -19,7 +19,6 @@ export const retrieveTeamMetaData = async (param) => {
     let teamResponse = await Axios.get('http://data.nba.net/data/10s/prod/v1/2021/teams.json')
     let teamData = teamResponse.data.league.sacramento
     let selectedTeam = teamData.filter(team => team.urlName == teamUrl)[0]
-
     let secondaryMetaResponse = await Axios.get('https://www.balldontlie.io/api/v1/teams')
     let secondaryData =  secondaryMetaResponse.data.data.filter(team => team.name == param)[0]
     let metaDataObject = {
@@ -28,11 +27,6 @@ export const retrieveTeamMetaData = async (param) => {
     }
     return metaDataObject
 }
-
-export const getRecentGames = async () => {
-
-}
-
 
 
 /**

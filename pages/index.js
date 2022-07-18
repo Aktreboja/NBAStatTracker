@@ -62,7 +62,6 @@ export default function Index() {
                 <div className = "landingButtonsContainer">
                     <Button variant = "dark" href = "/players">Search for a player</Button>
                     <Button variant = "outline-dark" href = "/teams">View NBA Teams</Button>
-                    <Button variant = "outline-dark" href ="/compare">Compare Players</Button>
                 </div>
                 {/* <PlayerSearchForm searchHandler={displaySearchParam} searchParam = {searchParam} paramHandler = {updateSearchParam}/> */}
             </div>
