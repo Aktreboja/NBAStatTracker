@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/Players.module.css';
+
 import PlayerAverages from '../Components/PlayerAverages';
 import PageLayout from '../Components/Layout/PageLayout';
 import PlayerCard from '../Components/Player/PlayerCard';
@@ -14,7 +14,7 @@ const Player = ({ playerProps, avgSeasonData }) => {
     return (
         <section className = "playerContainer"> 
             <PlayerCard {...playerProps}/>
-            <h1 className = {styles.statsHeader}><u>Season Averages</u></h1>
+            <h1><u>Season Averages</u></h1>
             <PlayerAverages stats = { avgSeasonData } />
             <h1>Player&lsquo;s Upcoming Games</h1>
         </section>

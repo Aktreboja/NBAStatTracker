@@ -7,7 +7,7 @@ export default function Team({primaryMeta, secondaryMeta}) {
   return (
     <div className='flexCenterColContainer'>
       <h3>{primary.fullName}</h3>
-      <Image src={`https://cdn.nba.com/logos/nba/${teamName.teamId}/primary/L/logo.svg`} width = {300} height = {300}/>
+      <Image src={`https://cdn.nba.com/logos/nba/${teamName.teamId}/primary/L/logo.svg`} alt = "player snapshot" width = {300} height = {300}/>
     </div>
   )
 }
