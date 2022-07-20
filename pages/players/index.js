@@ -14,7 +14,7 @@ export default function index() {
     </div>
   )
 }
-
+// 7/20: UI Check
 export async function getStaticProps(context) {
   return {props: {} }
 }
