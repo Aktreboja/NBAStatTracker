@@ -1,13 +1,14 @@
 import React from 'react';
+import Axios from 'axios';
+import PlayerAverages from '../../Components/PlayerAverages';
+import PageLayout from '../../Components/Layout/PageLayout';
+import PlayerCard from '../../Components/Player/PlayerCard';
 
-import PlayerAverages from '../Components/PlayerAverages';
-import PageLayout from '../Components/Layout/PageLayout';
-import PlayerCard from '../Components/Player/PlayerCard';
-
-import { PlayerMeta, playerAverages, NbaPlayerMeta, PlayerCardProps } from '../Types/Player';
+import { PlayerMeta, playerAverages, NbaPlayerMeta, PlayerCardProps } from '../../Types/Player';
 
 // Api Route
-import { retrieveAvgSeasonData, retrieveNbaPlayerStats, retrievePlayerId } from './api/player'
+import { retrieveAvgSeasonData, retrieveNbaPlayerStats, retrievePlayerId } from '../api/player';
+
 
 
 const Player = ({ playerProps, avgSeasonData }) => {      
@@ -56,5 +57,20 @@ export async function getServerSideProps(context) {
         }
     }
 }
+
+
+export async function getStaticPaths() {
+    let teamArray = []
+    let playersObject = await Axios.get('http://data.nba.net/data/10s/prod/v1/2021/players.json')
+    let playersResponseArray = playersObject.data.league.standard
+    playersResponseArray.map((player) => {
+      playersResponseArray.push({params: {team: player.playerCode }})
+    })
+    return {
+      paths: playersResponseArray,
+      fallback: true
+    }
+  }
+
 
 export default Player;
