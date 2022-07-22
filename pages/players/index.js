@@ -7,9 +7,6 @@ export default function index() {
     <div className = "playerContainer">
         <h1>Welcome to the players Page</h1>
         <PlayerSearchForm />
-        <div>
-          <TeamCard />
-        </div>
     </div>
   )
 }

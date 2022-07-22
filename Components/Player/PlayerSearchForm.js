@@ -2,9 +2,6 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-
-
-
 export default function PlayerSearchForm({ searchHandler, searchParam, paramHandler }) {
   return (
     <Form onSubmit = {(e) => searchHandler(e)} className = "form">

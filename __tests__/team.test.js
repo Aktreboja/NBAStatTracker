@@ -32,6 +32,7 @@ describe('RetrieveTeamMetaData Tests', () => {
     
 });
 
+/*
 // getRecentGames Tests
 describe('Getting the recent games of a team', () => {
     it('Returns information when a team is set', async () => {
@@ -44,6 +45,7 @@ describe('Getting the recent games of a team', () => {
 })
 
 // Get upcoming games tests
+
 describe('Getting the upcoming Games of a team', () => {
     it('Returns null because there are no games upcoming (Season has ended', async () => {
         let upcomingGamesResponse = await getUpcomingGames(2)
@@ -58,3 +60,4 @@ describe('Getting the upcoming Games of a team', () => {
     })
 
 })
+*/

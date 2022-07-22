@@ -15,15 +15,22 @@ export const retrieveTeamLogos = async () => {
 export const retrieveTeamMetaData = async (param) => {
     if (!param) return null
 
+    // Based on url param, Grabs the data from the api.
     const teamUrl = param
     let teamResponse = await Axios.get('http://data.nba.net/data/10s/prod/v1/2021/teams.json')
     let teamData = teamResponse.data.league.sacramento
     let selectedTeam = teamData.filter(team => team.urlName == teamUrl)[0]
+
+    // Grabbing the data from the BallDontLie Api
     let secondaryMetaResponse = await Axios.get('https://www.balldontlie.io/api/v1/teams')
-    let secondaryData =  secondaryMetaResponse.data.data.filter(team => team.name == param)[0]
+    let secondaryData = secondaryMetaResponse.data.data
+    let ballDontLieTeam = secondaryData.filter(team => team.name.toLowerCase() == param)
+    //let filteredData = secondaryData.filter(team => team.conference == )[0]
+
+    
     let metaDataObject = {
         primaryMeta: selectedTeam,
-        secondaryMeta: secondaryData
+        secondaryMeta: ballDontLieTeam
     }
     return metaDataObject
 }

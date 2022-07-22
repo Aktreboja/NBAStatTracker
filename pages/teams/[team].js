@@ -6,8 +6,8 @@ import { retrieveTeamMetaData } from '../api/team'
 export default function Team({primaryMeta, secondaryMeta}) {
   return (
     <div className='flexCenterColContainer'>
-      <h3>{primary.fullName}</h3>
-      <Image src={`https://cdn.nba.com/logos/nba/${teamName.teamId}/primary/L/logo.svg`} alt = "player snapshot" width = {300} height = {300}/>
+      <h3>{primaryMeta.fullName}</h3>
+      <Image src={`https://cdn.nba.com/logos/nba/${primaryMeta.teamId}/primary/L/logo.svg`} alt = "player snapshot" width = {300} height = {300}/>
     </div>
   )
 }
@@ -15,9 +15,8 @@ export default function Team({primaryMeta, secondaryMeta}) {
 export async function getStaticProps(context) {
   const teamUrl = context.params.team
   let selectedTeam = await retrieveTeamMetaData(teamUrl)
+  console.log(selectedTeam)
   let teamId = selectedTeam.secondaryMeta.id
-  
-
   return {props: {
     primaryMeta: selectedTeam.primaryMeta,
     secondaryMeta: selectedTeam.secondaryMeta
