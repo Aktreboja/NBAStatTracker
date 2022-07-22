@@ -1,6 +1,7 @@
 {
   "name": "statscentral",
   "private": true,
+  "cacheDirectories": [".next/cache"],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
