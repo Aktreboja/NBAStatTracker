@@ -1,8 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
 import Card from 'react-bootstrap/Card'
-import Container from 'react-bootstrap/Container'
-
 import { PlayerCardProps } from '../../Types/Player'
 
 export default function PlayerCard( { ...playerData }:  PlayerCardProps ) {

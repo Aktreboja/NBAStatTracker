@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Axios from 'axios'
-
-import NavBar from '../Components/Layout/Navbar';
 import IntroductionSection from '../Components/Landing/IntroductionSection';
 import PlayerSearchCard from '../Components/Player/PlayerSearchCard';
 import PlayerSearchForm from '../Components/Player/PlayerSearchForm';
@@ -15,37 +13,37 @@ export default function Index() {
     let [ searchResults, setSearchResults ] = useState([])
     let [ playerNames, setPlayerNames ] = useState([])
 
-    useEffect(() => {
-        async function fetchData() {
-            let currentSeason = new Date().getFullYear() - 1
-            let playersResponse = await Axios.get(`http://data.nba.net/data/10s/prod/v1/${currentSeason}/players.json`)
-            let playersArray = []
-            let playersData = playersResponse.data.league.standard
-            playersData.forEach(player => {(player.temporaryDisplayName !== undefined) ?  playersArray.push(player.temporaryDisplayName) : null })
-            setPlayerNames(playersArray)
-        }
-        fetchData()
-    }, [])
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         let currentSeason = new Date().getFullYear() - 1
+    //         let playersResponse = await Axios.get(`http://data.nba.net/data/10s/prod/v1/${currentSeason}/players.json`)
+    //         let playersArray = []
+    //         let playersData = playersResponse.data.league.standard
+    //         playersData.forEach(player => {(player.temporaryDisplayName !== undefined) ?  playersArray.push(player.temporaryDisplayName) : null })
+    //         setPlayerNames(playersArray)
+    //     }
+    //     fetchData()
+    // }, [])
 
 
-    const updateSearchParam = event => {
-        setSearchParam(event.target.value)
-    }
+    // const updateSearchParam = event => {
+    //     setSearchParam(event.target.value)
+    // }
 
-    // 2/27: Check in
-    const displaySearchParam = async (e) => {
-        e.preventDefault()
-        const { data } = await Axios.get(`https://www.balldontlie.io/api/v1/players?search=${searchParam}`)
-        let currentPlayersArray = data.data.filter(player => player.position !== '')
-        setSearchResults(currentPlayersArray)
-    }
+  
+    // const displaySearchParam = async (e) => {
+    //     e.preventDefault()
+    //     const { data } = await Axios.get(`https://www.balldontlie.io/api/v1/players?search=${searchParam}`)
+    //     let currentPlayersArray = data.data.filter(player => player.position !== '')
+    //     setSearchResults(currentPlayersArray)
+    // }
 
-    let searchResultsComponent = searchResults.map(({ first_name, last_name , team}, key) => {
-        let nameSearch = first_name.toLowerCase() + '_' + last_name.toLowerCase()
-        return (
-            <PlayerSearchCard first_name={first_name} last_name = {last_name} team = {team} key = {key} />
-        )
-    })
+    // let searchResultsComponent = searchResults.map(({ first_name, last_name , team}, key) => {
+    //     let nameSearch = first_name.toLowerCase() + '_' + last_name.toLowerCase()
+    //     return (
+    //         <PlayerSearchCard first_name={first_name} last_name = {last_name} team = {team} key = {key} />
+    //     )
+    // })
     
   return <>
         <Head>
@@ -54,17 +52,21 @@ export default function Index() {
         <div className='landingContainer'>
             <div className='landingLeftGrid'>
                 <h1 className= "header" role="title">StatsCentral</h1>
-                <h3 className= "landingText">A web application focused on getting the most up to date stats on NBA players.</h3>
+                <h3 className= "landingText">An application focused on retrieving stats on current NBA players.</h3>
             </div>
 
-            <div className= "landingGridItem">
-                <IntroductionSection />
-                <div className = "landingButtonsContainer">
-                    <Button variant = "dark" href = "/players">Search for a player</Button>
-                    <Button variant = "outline-dark" href = "/teams">View NBA Teams</Button>
+            
+            <IntroductionSection />
+            <div className='landingGridItem'>
+                <PlayerSearchForm /> 
+                <p>Current NBA Teams</p>
+                <div className='teamLogoContainer'>
+
                 </div>
-                {/* <PlayerSearchForm searchHandler={displaySearchParam} searchParam = {searchParam} paramHandler = {updateSearchParam}/> */}
             </div>
+
+         
+          
         </div>
 
             

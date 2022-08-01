@@ -36,14 +36,19 @@ export const retrievePlayerMetaData = async (req, params) => {
  */
 export const retrieveNbaPlayerStats = async ({ player }) => {
     if (!player) return null
-    let playerFirstName = player.split('_')[0]
-    let playerLastName = player.split('_')[1]
+    let playerFirstName = player.split('_')[0].toLowerCase()
+    let playerLastName = player.split('_')[1].toLowerCase()
 
     let nbaPlayersResponse = await Axios.get('http://data.nba.net/data/10s/prod/v1/2021/players.json')
     let nbaPlayerData = nbaPlayersResponse.data.league.standard
 
-    let playerIndex = nbaPlayerData.findIndex(obj => obj.lastName.toLowerCase().includes(playerLastName) && obj.firstName.toLowerCase().includes(playerFirstName))
+    //let playerIndex = nbaPlayerData.findIndex( => obj.lastName.toLowerCase().includes(playerLastName) && obj.firstName.toLowerCase().includes(playerFirstName))
+    let playerIndex = nbaPlayerData.findIndex(player => player.firstName.toLowerCase().includes(playerFirstName) && player.lastName.toLowerCase().includes(playerLastName))
+    console.log(playerIndex)
     let playerStats = (playerIndex ? nbaPlayerData[playerIndex] : null)
+    
+   
+
     let { personId, teamId } = nbaPlayerData[playerIndex]
 
         // Meta data about the nba players
