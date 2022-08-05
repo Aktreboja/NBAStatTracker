@@ -55,25 +55,13 @@ export default function Index() {
                 <h3 className= "landingText">An application focused on retrieving stats on current NBA players.</h3>
             </div>
 
-            
-            <IntroductionSection />
+            {/* <IntroductionSection /> */}
             <div className='landingGridItem'>
                 <PlayerSearchForm /> 
-                <p>Current NBA Teams</p>
                 <div className='teamLogoContainer'>
-
                 </div>
             </div>
-
-         
-          
         </div>
-
-            
-
-
-
-
   </>;
 }
 

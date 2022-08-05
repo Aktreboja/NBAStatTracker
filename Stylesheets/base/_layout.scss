@@ -39,10 +39,6 @@
 .landingContainer {
     @extend .container;
     @include heightFull();
-    /*
-    @extend .grid;
-    @include gridCols(2);
-    */
 }
 
 .landingText {@extend .textCenter !optional;}
