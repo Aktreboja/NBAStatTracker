@@ -35,6 +35,17 @@ export const retrieveTeamMetaData = async (param) => {
     return metaDataObject
 }
 
+export const getRecentGames = async () => {
+
+}
+
+export const retrieveAllNbaTeams = async () => {
+    let teamResponse = await Axios.get('http://data.nba.net/data/10s/prod/v1/2021/teams.json')
+    let teams = teamResponse.data.sacramento
+    return teams
+
+}
+
 
 /**
  * Retrieves the upcoming games for a team

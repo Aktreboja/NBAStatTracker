@@ -1,6 +1,8 @@
 import React from 'react'
 import PlayerSearchForm from '../../Components/Player/PlayerSearchForm'
 import TeamCard from '../../Components/Team/TeamCard'
+import { retrieveAllNbaTeams } from '../api/team'
+
 
 export default function index() {
   return (
@@ -16,6 +18,9 @@ export default function index() {
 }
 
 export async function getStaticProps(context) {
+  
+
+
   return {props: {} }
 }
 

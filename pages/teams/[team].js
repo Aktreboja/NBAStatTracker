@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { retrieveTeamMetaData } from '../api/team'
 
 export default function Team({primaryMeta, secondaryMeta}) {
+    console.log(secondaryMeta)
   return (
     <div className='flexCenterColContainer'>
       <h3>{primaryMeta.fullName}</h3>

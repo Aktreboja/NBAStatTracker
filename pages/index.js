@@ -50,15 +50,20 @@ export default function Index() {
             <title>StatsCentral | Welcome</title>
         </Head>
         <div className='landingContainer'>
-            <div className='landingLeftGrid'>
+            <div className='landingTopGrid '>
                 <h1 className= "header" role="title">StatsCentral</h1>
                 <h3 className= "landingText">An application focused on retrieving stats on current NBA players.</h3>
             </div>
-
             {/* <IntroductionSection /> */}
-            <div className='landingGridItem'>
+            <div className='landingGridItem '>
+                <div className='aboutContainer'>
+                    <p className = "aboutText">View season averages of a NBA player</p>
+                    <p className = "aboutText">View the current roster of a given team</p>
+                    <p className = "aboutText">Compare teams and players against each other to see who has the better overall stats.</p>
+                </div>
                 <PlayerSearchForm /> 
-                <div className='teamLogoContainer'>
+                <div>
+                    <p>hello</p>
                 </div>
             </div>
         </div>
