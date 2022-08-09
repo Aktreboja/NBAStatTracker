@@ -1,0 +1,19 @@
+.searchResultsContainer {
+   
+    margin: 20px 0px;
+    width: fit-content;
+    width: 100%;
+    max-width: 800px;
+    height: 480px;
+    overflow-y: scroll;
+    display: grid;
+    //grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-flow: row;
+    justify-items: center;
+    align-items: center;
+}
+
+.searchResultsContainer::-webkit-scrollbar {
+    width: 1px;
+}
+

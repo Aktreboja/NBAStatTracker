@@ -16,7 +16,7 @@
     width: 140px;
     height: 140px;
     cursor: pointer;
-
+    background-color: rgba(235,235,235);
     display: flex;
     justify-content: center;
     flex-direction: column;

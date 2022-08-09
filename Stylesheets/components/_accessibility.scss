@@ -1,0 +1,27 @@
+.tooltipContainer {
+    border: 1px solid black;
+    position: relative;
+}
+
+
+.tooltips {
+    display: none;
+    background-color: white;
+    border: 1px solid gray;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 5px 10px;
+}
+
+
+.closeComponent {
+    width: fit-content;
+    background-color: red;
+    font-size: large;
+    text-align: end;
+    cursor: pointer;
+    margin: 10px 0px;
+}

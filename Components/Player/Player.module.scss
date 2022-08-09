@@ -1,12 +1,22 @@
 
 /* Player Search Card */
 .searchResult {
-    height: 100px;
+    height: 150px;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
     cursor: pointer;
     transition: all 0.1s;
     margin: 5px;
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    
+}
+
+.searchResultImage {
+    width: 50px;
+    height: 100%;
 }
 
 /* Player Search Form */

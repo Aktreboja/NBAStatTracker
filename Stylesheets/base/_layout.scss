@@ -1,3 +1,5 @@
+@import '../base/colors';
+
 .grid {display: grid;}
 
 /* Height Mixins */
@@ -37,12 +39,6 @@
     flex-direction: $direction;
 }
 
-@mixin flexCenter($direction) {
-    display: flex;
-    align-items: center;
-    flex-direction: $direction;
-}
-
 
 @mixin justify($justify) {
     justify-content: $justify;
@@ -57,12 +53,16 @@
 }
 
 
-.playerContainer { @extend .container; }
+.playerContainer { 
+    @extend .container; 
+    background-color: rgba(0,40,80, 0.75);
+}
 
-.landingContainer {
+.landingContainer {    
     @extend .container;
     @include heightFull();
-    @include flexCenter(column);
+    @include flexCenter(center, column);
+    background: $primaryBackground;
 }
 
 .landingText {@extend .textCenter !optional;}
@@ -75,12 +75,6 @@
     align-items: center;
     flex-direction: column;
     border: 1px solid black;
-}
-
-.landingTopGrid {
-    @extend .landingGridItem;
-    background-color: #225dc3;
-    min-height: 35vh;
 }
 
 .landingButtonsContainer {

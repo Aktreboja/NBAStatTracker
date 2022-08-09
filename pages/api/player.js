@@ -47,7 +47,6 @@ export const retrieveNbaPlayerStats = async ({ player }) => {
     console.log(playerIndex)
     let playerStats = (playerIndex ? nbaPlayerData[playerIndex] : null)
     
-   
 
     let { personId, teamId } = nbaPlayerData[playerIndex]
 
@@ -95,8 +94,7 @@ export const retrieveUpcomingGames = async (req, params) => {
 }
 
 
-
-export const retrievePlayers = async () => {
+export const retrieveTeamRoster = (teamId) => {
     
 }
 
