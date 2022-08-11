@@ -29,7 +29,7 @@ const Player = ({ playerProps, avgSeasonData }) => {
                 </div>
             </div>
             <PlayerAverages stats = { avgSeasonData } />
-            <h1 style={{color: 'white'}}>Players also on the "Insert Team Name here"</h1>
+            <h1 style={{color: 'white'}}>Players also on the &quot;Insert Team Name here&quot;</h1>
             <div style={{width: '100%', height: '500px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <p style = {{color: 'white'}}>Support for this coming soon...</p>
             </div>
