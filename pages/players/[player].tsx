@@ -12,9 +12,9 @@ const Player = ({ playerProps, avgSeasonData }) => {
     return (
         <section className = "playerContainer"> 
             <PlayerCard {...playerProps}/>
-            <h1><u>Season Averages</u></h1>
+            <h1 style = {{color: 'white'}}><u>Season Averages</u></h1>
             <div className = "tooltipContainer">
-                <p>Glossary <AiOutlineInfoCircle /></p>
+                <p >Glossary <AiOutlineInfoCircle /></p>
                 <div className='tooltips'>
                     <p><b>FGM</b> - Field Goals made per game</p>
                     <p><b>FGA</b> - Field Goals attempted per game</p>
@@ -29,6 +29,10 @@ const Player = ({ playerProps, avgSeasonData }) => {
                 </div>
             </div>
             <PlayerAverages stats = { avgSeasonData } />
+            <h1 style={{color: 'white'}}>Players also on the "Insert Team Name here"</h1>
+            <div style={{width: '100%', height: '500px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <p style = {{color: 'white'}}>Support for this coming soon...</p>
+            </div>
         </section>
     )
 }

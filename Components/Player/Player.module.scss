@@ -11,7 +11,8 @@
     text-align: center;
     width: 90%;
     max-width: 600px;
-    
+    animation: fadein;
+    animation-duration: 0.5s;
 }
 
 .searchResultImage {
@@ -24,8 +25,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    
+    flex-direction: column;    
 }
 
 .formGroup {
@@ -52,4 +52,34 @@
     width: 150px;
     height: 45px;
     font-size: larger;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media only screen and (min-width: 300px) {
+    .searchResultName {
+        font-size: 1em;
+        
+    }
+
+    .searchResultTeam {
+        font-size: 0.9em;;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .searchResultName {
+        font-size: 1.5em;
+    }
+
+    .searchResultTeam {
+        font-size: 1.2em;;
+    }
 }

@@ -12,9 +12,12 @@ $form-width: (
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 1px solid black;
-    width: map.get($form-width, "md");
-    
+    width: 40%;
+    min-width: 300px;
+    background-color: rgba(45,45,45,0.8);
+    border-radius: 0.5rem;;
+    box-shadow: 5px 10px 10px rgba(0,0,0,0.2);
+    height: 200px;
 }
 
 .formGroup {
@@ -27,6 +30,7 @@ $form-width: (
   font-size: 20px; 
   text-align: center;
   margin: 10px auto;
+  color: white;
 }
 
 .formControl {

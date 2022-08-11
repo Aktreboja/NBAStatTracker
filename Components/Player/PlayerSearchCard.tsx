@@ -11,8 +11,8 @@ export default function PlayerSearchCard({first_name, last_name, teamName, key, 
         <Card className = {styles.searchResult}>
             <Image src = {`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${playerId}.png`} height=  {200} width = {200} alt = {`${first_name} ${last_name}`}/>
           <div style = {{height: '100%', display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-            <Card.Title>{ first_name } { last_name }</Card.Title>
-            <p>{teamName}</p>
+            <Card.Title className = {styles.searchResultName}>{ first_name } { last_name }</Card.Title>
+            <p className = {styles.searchResultTeam}>{teamName}</p>
           </div>
         </Card>
     </Link>

@@ -1,21 +1,29 @@
 .tooltipContainer {
-    border: 1px solid black;
     position: relative;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 
 .tooltips {
-    display: none;
     background-color: white;
     border: 1px solid gray;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
+    width: 100%;
+    max-width: 1800px;
+    min-width: 800px;
     padding: 5px 10px;
+    color: black;
+    display: grid;
+    overflow-x: scroll;
+    grid-auto-flow: column;
 }
 
+.tooltips p {
+    padding: 5px 20px;
+}
 
 .closeComponent {
     width: fit-content;

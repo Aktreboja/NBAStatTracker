@@ -18,14 +18,13 @@ export default function Index({ playerNames }) {
             <title>StatsCentral | Welcome</title>
         </Head>
         <div className='landingContainer'>
-            <div className=''>
-                <h1 className= "header" role="title">StatsCentral</h1>
+            <div>
+                <h1 className= "header" role="title"><b>NBA stat tracker</b></h1>
                 <h3 className= "landingText">An application focused on retrieving stats on current NBA players.</h3>
             </div>
             <div className='aboutContainer'>
-                <p className = "aboutText">View season averages of a NBA player</p>
+                <p className = "aboutText">View season averages of any current NBA player</p>
                 <p className = "aboutText">View the current roster of a given team</p>
-                <p className = "aboutText">Compare teams and players against each other to see who has the better overall stats.</p>
             </div>
             <PlayerSearchForm searchParam= {searchParam} paramHandler = {updateParam} /> 
             <SearchResults playerData = { playerNames } param = {searchParam}/>
