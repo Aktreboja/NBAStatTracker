@@ -13,8 +13,7 @@ export const retrieveCurrentNbaPlayers = async () => {
 
     let teamResponse = (await Axios.get('http://data.nba.net/data/10s/prod/v1/2021/teams.json')).data.league.vegas
     let nbaPlayersArray = []
-    // console.log(nbaResponse)
-    console.log(teamResponse)
+
     nbaResponse.map((player) => {
         let teamIndex = teamResponse.findIndex((playerObject) => playerObject.teamId == player.teamId)
         console.log(teamIndex)

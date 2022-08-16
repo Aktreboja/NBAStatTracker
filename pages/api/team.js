@@ -35,8 +35,11 @@ export const retrieveTeamMetaData = async (param) => {
     return metaDataObject
 }
 
-export const getRecentGames = async () => {
-
+export const getNbaTeam = async (teamId) => {
+    let teamResponse = await Axios.get('http://data.nba.net/data/10s/prod/v1/2021/teams.json')
+    let teams = teamResponse.data
+    console.log(teams.league.sacramento.filter((team) => teamId == team.teamId))
+    return teams.league.sacramento.filter((team) => teamId == team.teamId)
 }
 
 export const retrieveAllNbaTeams = async () => {

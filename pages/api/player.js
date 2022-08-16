@@ -94,9 +94,18 @@ export const retrieveUpcomingGames = async (req, params) => {
 }
 
 
-export const retrieveTeamRoster = (teamId) => {
-    
+export const retrieveTeamRoster = async (teamId) => {
+    let playersResponse = await Axios.get('http://data.nba.net/data/10s/prod/v1/2021/players.json')
+    let playersData = playersResponse.data.league.standard
+    let playerRoster = []
+    playersData = playersData.filter((player) => player.teamId ==teamId).map((player) => {
+        playerRoster.push(player)
+        console.log(player)
+
+    } )
+    return playerRoster
 }
+
 
 export default function handler(req, res) {
     return res.status(200).json({text: 'yee'})

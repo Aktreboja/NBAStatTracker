@@ -26,15 +26,15 @@ export async function getStaticProps(context) {
 }
 
 
-export async function getStaticPaths() {
-  let teamArray = []
-  let response = await axios.get('http://data.nba.net/data/10s/prod/v1/2021/teams.json')
-  let teamNickNames = response.data.league.sacramento
-  teamNickNames.map((team) => {
-    teamArray.push({params: {team: team.urlName }})
-  })
-  return {
-    paths: teamArray,
-    fallback: true
-  }
-}
+// export async function getStaticPaths() {
+//   let teamArray = []
+//   let response = await axios.get('http://data.nba.net/data/10s/prod/v1/2021/teams.json')
+//   let teamNickNames = response.data.league.sacramento
+//   teamNickNames.map((team) => {
+//     teamArray.push({params: {team: team.urlName }})
+//   })
+//   return {
+//     paths: teamArray,
+//     fallback: true
+//   }
+// }

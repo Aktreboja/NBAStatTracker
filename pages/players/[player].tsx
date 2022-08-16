@@ -1,17 +1,25 @@
 import React from 'react';
 import PlayerAverages from '../../Components/PlayerAverages';
 import PlayerCard from '../../Components/Player/PlayerCard';
+import RosterContainer from '../../Containers/RosterContainer';
 import { PlayerMeta, playerAverages, NbaPlayerMeta, PlayerCardProps } from '../../Types/Player';
 import { AiOutlineInfoCircle, AiOutlineClose }  from 'react-icons/ai'
 
-// Api Route
-import { retrieveAvgSeasonData, retrieveNbaPlayerStats, retrievePlayerId } from '../api/player';
 
-const Player = ({ playerProps, avgSeasonData }) => {   
-    console.log(playerProps)  
+// Api Route
+import { retrieveAvgSeasonData, retrieveNbaPlayerStats, retrievePlayerId, retrieveTeamRoster } from '../api/player';
+import { getNbaTeam } from '../api/team';
+
+const Player = ({ playerProps, avgSeasonData, teamRoster, teamData }) => {   
+
     return (
         <section className = "playerContainer"> 
-            <PlayerCard {...playerProps}/>
+          
+            <div className = "playerWrapper" style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', border: '1px solid black', background: 'white', padding: '15px 0px'}}>
+                <PlayerCard {...playerProps}/>
+                <PlayerAverages stats = { avgSeasonData } />
+            </div>
+            
             <h1 style = {{color: 'white'}}><u>Season Averages</u></h1>
             <div className = "tooltipContainer">
                 <p >Glossary <AiOutlineInfoCircle /></p>
@@ -28,10 +36,12 @@ const Player = ({ playerProps, avgSeasonData }) => {
                     <p><b>TO</b> - Turnovers per game</p>
                 </div>
             </div>
-            <PlayerAverages stats = { avgSeasonData } />
-            <h1 style={{color: 'white'}}>Players also on the &quot;Insert Team Name here&quot;</h1>
+            {/* <PlayerAverages stats = { avgSeasonData } /> */}
+            <h1 style={{color: 'white'}}>Players also on the {teamData[0].fullName}</h1>
+
+            {/* Roster Container goes here */}
             <div style={{width: '100%', height: '500px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <p style = {{color: 'white'}}>Support for this coming soon...</p>
+                <RosterContainer roster = {teamRoster} currentPlayerId = {playerProps.playerID} teamName = {teamData[0].fullName} />
             </div>
         </section>
     )
@@ -44,6 +54,7 @@ export async function getServerSideProps(context) {
         let playerInfo : PlayerMeta = await retrievePlayerId(context.params)
         let avgSeasonData : playerAverages = await retrieveAvgSeasonData(playerInfo.id)
         let playerMeta: NbaPlayerMeta = await retrieveNbaPlayerStats(context.params)
+      
 
         let { playerID, teamId, position, heightFeet, heightInches, weightPounds, draft, nbaDebutYear, jersey} = playerMeta
         let { first_name, last_name } = playerInfo
@@ -61,9 +72,9 @@ export async function getServerSideProps(context) {
             last_name,
             position
         }
-        
-        return {props : { playerProps, avgSeasonData, playerMeta }}
-
+        let teamData = await getNbaTeam(playerProps.teamId)
+        let teamRoster = await retrieveTeamRoster(playerProps.teamId)
+        return { props : { playerProps, avgSeasonData, playerMeta, teamRoster, teamData}}
 }
 
 export default Player;

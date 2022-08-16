@@ -26,7 +26,7 @@ export default function Index({ playerNames }) {
                 <p className = "aboutText">View season averages of any current NBA player</p>
                 <p className = "aboutText">View the current roster of a given team</p>
             </div>
-            <PlayerSearchForm searchParam= {searchParam} paramHandler = {updateParam} /> 
+            <PlayerSearchForm searchParam= { searchParam } paramHandler = {updateParam} /> 
             <SearchResults playerData = { playerNames } param = {searchParam}/>
         </div>
   </>;

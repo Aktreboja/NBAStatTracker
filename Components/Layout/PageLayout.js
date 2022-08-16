@@ -3,7 +3,7 @@ import Navbar from '../Layout/Navbar'
 
 export default function PageLayout({ children }) {
   return <>
-       {/* <Navbar />  */}
+       <Navbar /> 
       { children }
   </>;
 }

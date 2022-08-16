@@ -14,7 +14,7 @@ export default function PlayerCard( { ...playerData }:  PlayerCardProps ) {
     let teamLogoUrl = `https://cdn.nba.com/logos/nba/${teamId}/primary/L/logo.svg`
 
   return (
-    <Card className = "playerCard">
+    <Card style = {{display: 'flex', justifyContent: 'center', alignItems: 'center'}} className = "playerCard">
       <div className = "imageWrapper">
           <div className= "logoWrapper">
               <Image  src = {teamLogoUrl} layout = "fill" alt = {`${first_name} ${last_name}`} />

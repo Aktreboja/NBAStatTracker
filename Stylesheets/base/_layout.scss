@@ -149,9 +149,12 @@
     margin: 5px;
     padding: 10px 10px;
     color: white;
-    font-size: 1.6em;
+}
+
+.playerWrapper {
 
 }
+
 
 /* Player dynamic Page styles */
 .playerContainer {@extend .flexCenterColContainer;}
@@ -168,6 +171,15 @@
         @include gridCols(2);
         width: 80%;
     }
+
+    .aboutText {
+        font-size: 1.2em;
+    }
+
+    .playerWrapper {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 @media only screen and (min-width: 800px) {
@@ -176,6 +188,10 @@
 
 @media only screen and (min-width: 992px) {
     .landingContainer {@include gridCols(2);}
+
+    .playerWrapper {
+        flex-direction: row;
+    }
 
     .landingButtonsContainer {
         width: 60%;
@@ -187,5 +203,9 @@
         width: 80%;
         max-width: 1000px;
         @include gridCols(5);
+    }
+
+    .aboutText {
+        font-size: 1.4em;
     }
 }
