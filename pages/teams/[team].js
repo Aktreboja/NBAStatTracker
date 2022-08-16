@@ -13,7 +13,7 @@ export default function Team({primaryMeta, secondaryMeta}) {
   )
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const teamUrl = context.params.team
   let selectedTeam = await retrieveTeamMetaData(teamUrl)
   console.log(selectedTeam)
