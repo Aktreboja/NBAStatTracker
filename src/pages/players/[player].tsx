@@ -1,18 +1,11 @@
 import React from 'react';
-import PlayerAverages from '../../Components/PlayerAverages';
-import PlayerCard from '../../Components/Player/PlayerCard';
-
-
-import { AiOutlineInfoCircle, AiOutlineClose }  from 'react-icons/ai'
-
-
 import { GetServerSideProps } from 'next';
 
 const Player = () => {   
 
     return (
         <section className = "playerContainer"> 
-
+            cdc
         </section>
     )
 }

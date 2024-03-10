@@ -1,13 +1,11 @@
-
 import { Team } from '@/Types/Team'
 
-
 // Retrieves a specific NBA team
-// export const getNbaTeam = async (teamId : number) : Promise<Team> => {
-//     let teamResponse = await Axios.get(`https://www.balldontlie.io/api/v1/teams/${teamId}`)
-//     let team : Team = teamResponse.data
-//     return team
-// }
+export const getNbaTeam = async (teamId : number) : Promise<Team> => {
+    let teamResponse = await fetch(`https://www.balldontlie.io/api/v1/teams/${teamId}`)
+    let team : Team = await teamResponse.json()
+    return team
+}
 
 // Retrieve all NBA teams from the API.
 export const retrieveAllNbaTeams = async () : Promise<Team[]> => {

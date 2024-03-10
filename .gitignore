@@ -32,3 +32,11 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+
+# __PyCache__
+__pycache__
+
+# venv
+venv
+
