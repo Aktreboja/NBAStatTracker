@@ -1,108 +1,33 @@
-import { ResponseMeta } from "."
-import { Team } from "./Team"
+import type { Team } from "./Team";
 
+interface PlayerResponse {
+    data: BdlPlayer[];
+    meta: {
+      per_page: number;
+    };
+  }
 
-/**
- * Nba Player Types.
- */
-
-interface playerTeam {
-    id: number,
-    abbreviation: string,
-    city: string,
-    conference: string,
-    division: string,
-    full_name: string,
-    name: string
-}
-
-/* Player Meta from BallDontLie.API */
-export interface Player {
-    id: number,
-    first_name: string,
-    last_name: string,
-    position: string,
-    height_feet: number,
-    height_inches: number,
-    weight_pounds: number,
-    team: Team,
+export interface BdlPlayer {
+    college: string;
+    country: string;
+    draft_number: number;
+    draft_round: number;
+    draft_year: number;
+    first_name: string;
+    height: string;
+    id: number;
+    jersey_number: string;
+    last_name: string;
+    position: string;
+    team: Team;
+    weight: string;
 }
 
 
-
-
-
-
-export interface playerAverages {
-    games_played: number,
-    player_id: number,
-    season: number,
-    min: string,
-    fgm: number,
-    fga: number,
-    fg3m: number,
-    fg3a: number,
-    ftm: number,
-    fta: number,
-    oreb: number,
-    dreb: number,
-    reb: number,
-    ast: number,
-    stl: number,
-    blk: number,
-    turnover: number,
-    pf: number,
-    pts: number,
-    fg_pct: number,
-    fg3_pct: number,
-    ft_pct: number
-}
-
-
-
-interface Draft {
-    teamId: string,
-    pickNum: string,
-    roundNum: string,
-    seasonYear: string
-}
-
-/* Player Meta data from NBA CDN */
-export interface NbaPlayerMeta {
-    playerID: string,
-    teamId: string,
-    jersey: string,
-    heightFeet: string,
-    heightInches: string,
-    weightPounds: string,
-    draft: Draft,
-    nbaDebutYear: string,
-    collegeName: string,
-    position: string
-}
-
-
-
-export interface PlayerCardProps {
-    playerID: string,
-    teamId: string,
-    heightFeet: string,
-    heightInches: string,
-    weightPounds: string,
-    draft: Draft,
-    nbaDebutYear: string,
-    jersey: string,
-    first_name: string,
-    last_name: string,
-    position: string
-}
-
-
-
-/* Player Search Card */
-
-export interface PlayerSearchResult {
-    firstName: string;
-    lastName: string;
-    teamName: string;
+export interface NbaPlayer {
+    first_name: string;
+    full_name: string;
+    id: number;
+    is_active: boolean;
+    last_name: string;
 }

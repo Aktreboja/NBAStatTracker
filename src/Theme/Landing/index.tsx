@@ -13,6 +13,6 @@ export const MainContainer = styled(Container)({
 
 
 export const LandingText = styled(Typography)({
-    width: '33%'
+    marginX: '5px'
 })
 

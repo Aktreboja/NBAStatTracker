@@ -8,8 +8,9 @@ import { Box, Card, CardMedia } from '@mui/material';
  * Team Card for the player page
  */
 export default function TeamCard({ team }: {team: Team}) {
-  const {full_name, name, abbreviation, city, conference, division, id} = team;
+  const {full_name,abbreviation, conference, division, id} = team;
   return (
+    <Link href = {`/teams/${id}`} style = {{textDecoration: 'none'}}>
       <Card sx = {{marginX: '3px', display: 'flex', cursor: 'pointer'}}>
         <Box>
           <Image 
@@ -19,12 +20,13 @@ export default function TeamCard({ team }: {team: Team}) {
             height = {100}/>
         </Box>
         <Box component={"div"} >
-          <strong>{full_name} ({abbreviation})</strong>
+          <strong>{full_name}</strong>
           <p></p>
           <p><strong>Conference:</strong> {conference}</p>
           <p><strong>Division:</strong> {division}</p>
         </Box>
       </Card>
+    </Link>
   )
 }
 
