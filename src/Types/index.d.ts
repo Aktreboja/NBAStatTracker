@@ -13,3 +13,9 @@ export interface ResponseMeta {
     data: Player[] | Team[];
     meta: Meta;
 }
+
+
+export interface ResponseError {
+    Status: number;
+    message: string;
+}

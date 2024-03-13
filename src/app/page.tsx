@@ -1,15 +1,15 @@
 
 import React from 'react';
-import { retrieveAllNbaTeams } from '@/utils/Teams';
 import TeamCard from '../Components/Team/TeamCard';
 import Grid from '@mui/material/Grid';
 import { MainContainer, LandingText} from '@/Theme/Landing';
 import { Typography, Box, Card, CardHeader, CardContent, CardMedia } from '@mui/material';
 import LineChart from '@/Components/Charts/LineChart';
 import {Inter} from 'next/font/google'
-import { getPlayer, getPlayerByFullName, getNbaPlayer } from '@/pages/api/player';
 import { PlayerResponse } from '@/Types/Player';
-
+import { retrieveAllNbaTeams } from '@/utils/API/BDL/Team';
+import { getPlayerByFullName } from '@/utils/API/BDL/Player';
+import { getNbaPlayer } from '@/utils/API/NBA/player';
 const inter = Inter({ subsets: ['latin']})
 
 const Index = async () => {

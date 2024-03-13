@@ -1,5 +1,5 @@
 import Axios from "axios"
-import { GameParams, Game } from "../../Types/Game"
+import { GameParams, Game } from "../../../Types/Game"
 
 // Gets all the games
 // todo: Add in query parameters for games
