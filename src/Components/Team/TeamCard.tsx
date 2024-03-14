@@ -12,20 +12,13 @@ export default function TeamCard({ team }: {team: Team}) {
   if (conference.trim().length === 0) return null
   return (
     <Link href = {`/teams/${id}`} style = {{textDecoration: 'none'}}>
-      <Card sx = {{marginX: '3px', display: 'flex', cursor: 'pointer'}}>
+      <Card sx = {{marginX: '3px', cursor: 'pointer', width: 'fit-content'}}>
         <Box>
           <Image 
             src = {`https://cdn.celtics.com/logos/teams/latest/svg/${abbreviation}.svg`} 
             alt = {`${abbreviation} Icon`} 
-            width = {100} 
-            height = {100}/>
-        </Box>
-        <Box component={"div"} >
-          <strong>{full_name}</strong>
-          <p></p>
-          <p><strong>Conference:</strong> {conference}</p>
-          <p><strong>Division:</strong> {division}</p>
-          
+            width = {150} 
+            height = {150}/>
         </Box>
       </Card>
     </Link>

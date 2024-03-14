@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify
-import os
-import requests
+from Routes.BallDontLie.wrapper import make_bdl_api_request
 
 bdl_players = Blueprint('bdl_players', __name__, url_prefix='/players')
 
@@ -48,24 +47,43 @@ def find_bdl_player(player_id : float):
     """
     if request.method == 'GET':
         try:
-
-            player_request = requests.get(os.getenv('BALLDONTLIE_API_BASEURL')  + f'/players/{player_id}', headers={'Authorization': os.getenv('BALLDONTLIE_API_KEY')})
-            return player_request.json()
+            params = { 'player_ids[]': player_id }
+            response = make_bdl_api_request('/players', params = params)
+            if 'data' in response:
+                return response['data']
+            return jsonify({'message': 'Unable to retrieve player data'}), 409
         except Exception as e:
             return jsonify({'Error': str(e)}), 500
         
 
 @bdl_players.route('/search', methods = ['GET'])
 def search_player():
+    """
+    Search for a player by full name
+
+    Parameters:
+    - first_name: The NBA player's first name
+    - last_name: The NBA player's last name
+
+    Returns:
+    - Object containing the search results for the NBA player
+
+    """
     if request.method == 'GET':
         try:
             # Request Query Parameters
-            first_name_query = request.args.get('first_name')
-            last_name_query = request.args.get('last_name')
-            player_request = requests.get(os.getenv('BALLDONTLIE_API_BASEURL')  + f'/players?first_name={first_name_query}&last_name={last_name_query}', headers={'Authorization': os.getenv('BALLDONTLIE_API_KEY')})
-            if player_request.status_code == 200:
-                return player_request.json()
-            else:
-                return jsonify({'Error'})
+            first_name = request.args.get('first_name')
+            last_name = request.args.get('last_name')
+            if first_name is None:
+                return jsonify({'message': 'Missing required query parameter: first_name'}), 409
+            elif last_name is None:
+                return jsonify({'message': 'Missing required query parameter: last_name'}), 409
+            params = { 'first_name': first_name, 'last_name': last_name}
+            response = make_bdl_api_request('/players', params=params)
+            if 'data' in response:
+                return response['data']
+            return jsonify({'message': 'Unable to find player'}), 409
         except Exception as e:
             return jsonify({'Error': str(e)}), 500
+
+

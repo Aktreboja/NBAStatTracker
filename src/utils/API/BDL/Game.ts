@@ -1,4 +1,3 @@
-import Axios from "axios"
 import { GameParams, Game } from "../../../Types/Game"
 
 // Gets all the games

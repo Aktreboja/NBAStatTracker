@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-import os
 import requests
 from Routes.BallDontLie.wrapper import make_bdl_api_request
 
@@ -79,3 +78,27 @@ def get_specific_team(team_id: int):
         except Exception as e:
             # Handle any other unexpected errors
             return jsonify({'status': 500, 'message': str(e)})
+        
+
+@bdl_teams.route('/<team_id>/players', methods = ['GET'])
+def get_teams_players(team_id: int):
+    """
+        Retrieve all the players in the team
+
+        Parameters:
+
+        - team_id: the team ID to search players for.
+        
+        Returns:
+
+        - an array of players associated with the team
+    """
+    if request.method == 'GET':
+        try:
+            params = { 'team_ids[]': team_id }
+            response = make_bdl_api_request('/players', params=params)
+            if 'data' in response:
+                return response['data']
+            return jsonify({})
+        except requests.exceptions.HTTPError as err:
+            return jsonify({'message': f'Server Error: {str(err)}'}), 500

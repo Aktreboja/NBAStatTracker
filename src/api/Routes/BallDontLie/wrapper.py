@@ -23,4 +23,4 @@ def make_bdl_api_request(endpoint: str, params=None):
         return response.json()
     except requests.exceptions.RequestException as err:
         # Handle connection errors, timeouts, etc.
-        return jsonify({'status': 500, 'message': str(err)})
+        return jsonify({'message': str(err)}), 500

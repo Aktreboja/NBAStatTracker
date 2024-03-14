@@ -21,7 +21,7 @@ export const retrieveAllNbaTeams = async () : Promise<Team[]> => {
         const response = await fetch(process.env.NEXT_PUBLIC_BASEURL + '/api/bdl/teams');
         if (!response.ok) throw new Error(`Error fetching all teams: ${response.status}`);
         const teams = await response.json();
-        return teams.data;
+        return teams;
     } catch (error) {
         console.error('Error retrieving NBA teams:', error);
         return [];

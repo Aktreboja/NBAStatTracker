@@ -34,6 +34,7 @@ const LineChart: React.FC<LineChartProps> = ({ data, labels }) => {
             ],
           },
           options: {
+            responsive: true,
             scales: {
               x: {
                 title: {
