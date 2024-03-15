@@ -25,10 +25,10 @@ const LineChart: React.FC<LineChartProps> = ({ data, labels }) => {
             labels: labels,
             datasets: [
               {
-                label: 'Data',
+                label: 'Points',
                 data: data,
                 fill: false,
-                borderColor: 'rgb(75, 192, 192)',
+                borderColor: 'rgb(6, 123, 194)',
                 tension: 0.14,
               },
             ],
@@ -39,13 +39,13 @@ const LineChart: React.FC<LineChartProps> = ({ data, labels }) => {
               x: {
                 title: {
                   display: true,
-                  text: 'X Axis',
+                  text: 'Dates Played',
                 },
               },
               y: {
                 title: {
-                  display: true,
-                  text: 'Y Axis',
+                  display: false,
+                  text: '',
                 },
               },
             },

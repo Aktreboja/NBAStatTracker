@@ -1,6 +1,8 @@
 from flask import Blueprint, request, jsonify
 import requests
 from Routes.BallDontLie.wrapper import make_bdl_api_request
+from nba_api.stats.endpoints import commonteamroster
+from nba_api.stats.static import teams
 
 bdl_teams = Blueprint('bdl_teams', __name__, url_prefix='/teams')
 
@@ -98,7 +100,18 @@ def get_teams_players(team_id: int):
             params = { 'team_ids[]': team_id }
             response = make_bdl_api_request('/players', params=params)
             if 'data' in response:
-                return response['data']
+                return response
             return jsonify({})
         except requests.exceptions.HTTPError as err:
             return jsonify({'message': f'Server Error: {str(err)}'}), 500
+        
+
+@bdl_teams.route('/exp', methods = ['GET'])
+def get_team_roster():
+    if request.method == 'GET':
+        try:
+            test = teams.find_teams_by_full_name('Cleveland Cavaliers')
+            response = commonteamroster.CommonTeamRoster(team_id=1610612739, season=2023)
+            return test
+        except:
+            return []

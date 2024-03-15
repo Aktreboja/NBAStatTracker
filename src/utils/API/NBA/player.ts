@@ -1,12 +1,13 @@
 
 import { NbaPlayer } from "@/Types/Player"
+import { make_nba_api_request } from "./wrapper"
 // Retrieve player from nba  api
 
 export const getNbaPlayer = async (firstName: string, lastName:string) : Promise<NbaPlayer[]> => {
     try {
-        const response = await fetch(process.env.NEXT_PUBLIC_BASEURL + `/api/nba/players/player?first_name=${firstName}&last_name=${lastName}`)
-        if (!response.ok) throw new Error(`Error Retrieving Player: ${response.status}`)
-        return await response.json()
+        const params = {'first_name': firstName, 'last_name': lastName}
+        const response = await make_nba_api_request('/players/player', params)
+        return await response
     } catch (error) {
         throw new Error((error as Error).message)
     }

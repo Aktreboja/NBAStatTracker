@@ -8,10 +8,10 @@ import { Box, Card, CardMedia } from '@mui/material';
  * Team Card for the player page
  */
 export default function TeamCard({ team }: {team: Team}) {
-  const {full_name,abbreviation, conference, division, id} = team;
+  const {full_name,abbreviation, conference, division, id } = team;
   if (conference.trim().length === 0) return null
   return (
-    <Link href = {`/teams/${id}`} style = {{textDecoration: 'none'}}>
+    <Link href = {`/teams/${abbreviation}`} style = {{textDecoration: 'none'}}>
       <Card sx = {{marginX: '3px', cursor: 'pointer', width: 'fit-content'}}>
         <Box>
           <Image 

@@ -31,3 +31,16 @@ export interface NbaPlayer {
     is_active: boolean;
     last_name: string;
 }
+
+export interface NbaRosterPlayer {
+  experience: string;
+  height: string;
+  jersey_number: string;
+  player_id: number;
+  player_name: string;
+  position: string;
+  school: string;
+  season: string;
+  team_id: number;
+  weight: string;
+}

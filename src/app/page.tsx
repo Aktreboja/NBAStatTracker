@@ -11,6 +11,8 @@ import { retrieveAllNbaTeams } from '@/utils/API/BDL/Team';
 import { getPlayerByFullName } from '@/utils/API/BDL/Player';
 import { getNbaPlayer } from '@/utils/API/NBA/player';
 import { Team } from '@/Types/Team';
+import { retrievePreviousGameStats } from '@/utils/API/BDL/stats';
+import { PlayerStats } from '@/Types/stats';
 
 
 const inter = Inter({ subsets: ['latin']})
@@ -29,12 +31,22 @@ interface FeaturedPlayerProps {
 const Index = async () => {
     const teamData = await retrieveAllNbaTeams()
 
-    const lebron_data : PlayerResponse = await getPlayerByFullName('Lebron', 'James')
-    const { data } = lebron_data
-
+    const data : BdlPlayer[] = await getPlayerByFullName('Lebron', 'James')
+ 
     const nba_data = await getNbaPlayer('Lebron', 'James')
 
-    const gData = [12, 19, 3, 5, 2, 3];
+    // Get recent games
+    const recentGames : PlayerStats[] = await retrievePreviousGameStats('237', '2024-03-01')
+    
+    const dateLabels = []
+    const ptsData = []
+    for (let i = 0; i < recentGames.length; i++) {
+        ptsData.push(recentGames[i].pts)
+        dateLabels.push(recentGames[i].game.date)
+    }
+    console.log(dateLabels)
+
+    const gData = [32, 19, 3, 5, 2, 3];
     const labels = ['January', 'February', 'March', 'April', 'May', 'June'];
 
     return <Box component={'main'} className={`${inter.className}`}>
@@ -93,7 +105,7 @@ const Index = async () => {
                         item
                         xs = {12}>
                         {/* Featured Player  */}
-                        <FeaturedPlayer data={data} nbaData={nba_data} chartData={{graphData: gData, labels: labels}}/>
+                        <FeaturedPlayer data={data} nbaData={nba_data} chartData={{graphData: ptsData, labels: dateLabels}}/>
                     </Grid>
 
                     <Grid
@@ -115,7 +127,7 @@ const FeaturedPlayer: React.FC<FeaturedPlayerProps> = ({ data, nbaData, chartDat
         <Typography variant = "h4" sx = {{width: '100%' , marginY: '20px'}} align='center'>Featured Player</Typography>
         <Box component={'div'} sx = {{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '90%', maxWidth: '1200px'}}>
             {
-                (data && data.length > 0)  && ( nbaData && nbaData.length > 0 ) &&
+                (data && data.length > 0)  && ( nbaData && nbaData.length > 0 ) ?
                 <Card
                     sx = {{width: '650px', minWidth: '400px', height: 'fit-content', display: 'flex', flexDirection: 'column',  alignItems: 'center', position: 'relative', marginX: '60px'}}>
                     <CardMedia
@@ -133,7 +145,7 @@ const FeaturedPlayer: React.FC<FeaturedPlayerProps> = ({ data, nbaData, chartDat
                         <Typography variant='body1'>{data[0].team.full_name}</Typography>
                         <Typography variant='body2'>{data[0].position}</Typography>
                     </CardContent>
-                </Card>
+                </Card> : <p>heehee</p>
             }
             {
                 chartData && 
