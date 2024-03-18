@@ -3,16 +3,14 @@ import React from 'react';
 import TeamCard from '../Components/Team/TeamCard';
 import Grid from '@mui/material/Grid';
 import { MainContainer, LandingText} from '@/Theme/Landing';
-import { Typography, Box, Card, CardHeader, CardContent, CardMedia } from '@mui/material';
-import LineChart from '@/Components/Charts/LineChart';
+import { Typography, Box } from '@mui/material';
 import {Inter} from 'next/font/google'
-import { BdlPlayer, NbaPlayer, PlayerResponse } from '@/Types/Player';
 import { retrieveAllNbaTeams } from '@/utils/API/BDL/Team';
-import { getPlayerByFullName } from '@/utils/API/BDL/Player';
-import { getNbaPlayer } from '@/utils/API/NBA/player';
 import { Team } from '@/Types/Team';
 import { retrievePreviousGameStats } from '@/utils/API/BDL/stats';
 import { PlayerStats } from '@/Types/stats';
+import FeaturedPlayer from '@/Components/Player/FeaturedPlayer';
+import { PlayerInfo, retrievePlayerInformation } from '@/utils';
 
 
 const inter = Inter({ subsets: ['latin']})
@@ -22,18 +20,17 @@ interface ChartDataProps {
     labels: string[];
 }
 
-interface FeaturedPlayerProps {
-    data: BdlPlayer[];
-    nbaData: NbaPlayer[]
-    chartData: ChartDataProps
-}
+
 
 const Index = async () => {
     const teamData = await retrieveAllNbaTeams()
 
-    const data : BdlPlayer[] = await getPlayerByFullName('Lebron', 'James')
+    // const data : BdlPlayer[] = await getPlayerByFullName('Lebron', 'James')
  
-    const nba_data = await getNbaPlayer('Lebron', 'James')
+    // const nba_data : NbaPlayer[] = await getNbaPlayer('Lebron', 'James')
+
+    const player_data  = await retrievePlayerInformation('Lebron', 'James') as PlayerInfo;
+    const { bdlData, nbaData } = player_data
 
     // Get recent games
     const recentGames : PlayerStats[] = await retrievePreviousGameStats('237', '2024-03-01')
@@ -45,9 +42,6 @@ const Index = async () => {
         dateLabels.push(recentGames[i].game.date)
     }
     console.log(dateLabels)
-
-    const gData = [32, 19, 3, 5, 2, 3];
-    const labels = ['January', 'February', 'March', 'April', 'May', 'June'];
 
     return <Box component={'main'} className={`${inter.className}`}>
         <MainContainer maxWidth = {false} disableGutters = {true} >
@@ -105,7 +99,7 @@ const Index = async () => {
                         item
                         xs = {12}>
                         {/* Featured Player  */}
-                        <FeaturedPlayer data={data} nbaData={nba_data} chartData={{graphData: ptsData, labels: dateLabels}}/>
+                        <FeaturedPlayer data={bdlData} nbaData={nbaData} chartData={{graphData: ptsData, labels: dateLabels}}/>
                     </Grid>
 
                     <Grid
@@ -121,42 +115,6 @@ const Index = async () => {
 }
 
 
-const FeaturedPlayer: React.FC<FeaturedPlayerProps> = ({ data, nbaData, chartData }) => {
-    return (
-    <Box component = {"section"} sx = {{ height: 'fit', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-        <Typography variant = "h4" sx = {{width: '100%' , marginY: '20px'}} align='center'>Featured Player</Typography>
-        <Box component={'div'} sx = {{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '90%', maxWidth: '1200px'}}>
-            {
-                (data && data.length > 0)  && ( nbaData && nbaData.length > 0 ) ?
-                <Card
-                    sx = {{width: '650px', minWidth: '400px', height: 'fit-content', display: 'flex', flexDirection: 'column',  alignItems: 'center', position: 'relative', marginX: '60px'}}>
-                    <CardMedia
-                        component={"img"}
-                        image={`https://cdn.celtics.com/logos/teams/latest/svg/${data[0].team.abbreviation}.svg`} 
-                        sx = {{width: '75%', height: 'auto', position:'absolute', top: '-30px'}}>
-                    </CardMedia>
-                    <CardMedia
-                        component={"img"}
-                        image={`https://cdn.nba.com/headshots/nba/latest/1040x760/${nbaData[0].id}.png`}
-                        sx = {{width: '80%', height: 'auto', paddingLeft: '5px', paddingRight: '5px', zIndex: '50'}}>
-                    </CardMedia>
-                    <CardContent>
-                        <Typography variant='h5' fontWeight={600}>{data[0].first_name} {data[0].last_name}</Typography>
-                        <Typography variant='body1'>{data[0].team.full_name}</Typography>
-                        <Typography variant='body2'>{data[0].position}</Typography>
-                    </CardContent>
-                </Card> : <p>heehee</p>
-            }
-            {
-                chartData && 
-                <Box component={'div'} sx={{width: '80%'}}>
-                    <LineChart data={chartData.graphData} labels={chartData.labels} />
-                </Box>
-            }
-        </Box>
-    </Box>
-    )
-}
 
 const CurrentTeams: React.FC<{teams: Team[]}> = ({ teams }) => {
     if (!teams || teams.length == 0 ) return null

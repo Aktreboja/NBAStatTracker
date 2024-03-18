@@ -44,3 +44,9 @@ export interface NbaRosterPlayer {
   team_id: number;
   weight: string;
 }
+
+export interface FeaturedPlayerProps {
+  data: BdlPlayer;
+  nbaData: NbaPlayer;
+  chartData: ChartDataProps
+}
