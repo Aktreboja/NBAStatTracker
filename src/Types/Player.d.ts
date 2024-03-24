@@ -45,8 +45,18 @@ export interface NbaRosterPlayer {
   weight: string;
 }
 
+export interface GraphData {
+  data: {
+    points: any[];
+    assists: any[];
+    rebounds: any[];
+    minutes: any[];
+};
+labels: string[];
+}
+
 export interface FeaturedPlayerProps {
   data: BdlPlayer;
   nbaData: NbaPlayer;
-  chartData: ChartDataProps
+  chartData: GraphData
 }

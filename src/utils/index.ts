@@ -25,12 +25,21 @@ export const calculateDaysBefore = (days: number) => {
     // Check if the date is past the previous
     if (dayDifferential < 0) {
         // Set to the new month
-        let alteredDate = new Date(today.setDate(today.getDate() + dayDifferential))
+        let alteredDate = new Date(today.setDate(today.getDate() - days))
         year = alteredDate.getFullYear()
         month = alteredDate.getMonth() + 1
         day = alteredDate.getDate()
         return `${year}-${month > 10 ? month : `0${month}`}-${day > 10 ? day : `0${day}`}`
-    } else return `${year}-${month > 10 ? month : `0${month}`}-${dayDifferential > 10 ? day : `0${dayDifferential}`}`
+    } else return `${year}-${month > 10 ? month : `0${month}`}-${dayDifferential >= 10 ? dayDifferential : `0${dayDifferential}`}`
+}
+
+export const todaysDate = () => {
+    let today = new Date()
+    let year = today.getFullYear()
+    let month = today.getMonth() + 1
+    let day = today.getDate()
+
+    return `${year}-${month > 10 ? month : `0${month}`}-${day >= 10 ? day : `0${day}`}`
 }
 
 

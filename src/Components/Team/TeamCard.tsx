@@ -11,7 +11,7 @@ export default function TeamCard({ team }: {team: Team}) {
   const {full_name,abbreviation, conference, division, id } = team;
   if (conference.trim().length === 0) return null
   return (
-    <Link href = {`/teams/${abbreviation}`} style = {{textDecoration: 'none'}}>
+    <Link href = {`/teams/${abbreviation}`} style = {{textDecoration: 'none'}} title={full_name}>
       <Card sx = {{marginX: '3px', cursor: 'pointer', width: 'fit-content'}}>
         <Box>
           <Image 

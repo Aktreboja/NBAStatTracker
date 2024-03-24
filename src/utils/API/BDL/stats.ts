@@ -4,7 +4,6 @@ import { make_bdl_api_request } from "./wrapper"
 export const retrievePreviousGameStats = async (playerId: string, startDate: string) => {
     try {
         const query = {'player_id': playerId , 'start_date': startDate}
-        console.log('Query: ', query)
         const response = await make_bdl_api_request('/stats/player/previous_games', query);
 
         return await response

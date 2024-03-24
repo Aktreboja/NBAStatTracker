@@ -6,11 +6,13 @@ import Chart, { ChartOptions } from 'chart.js/auto';
 interface LineChartProps {
   data: number[];
   labels: string[];
+  title: string
 }
 
-const LineChart: React.FC<LineChartProps> = ({ data, labels }) => {
+const LineChart: React.FC<LineChartProps> = ({ data, labels, title }) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
   const chartInstance = useRef<Chart | null>(null);
+
 
   useEffect(() => {
     if (chartRef.current) {
@@ -25,7 +27,7 @@ const LineChart: React.FC<LineChartProps> = ({ data, labels }) => {
             labels: labels,
             datasets: [
               {
-                label: 'Points',
+                label: title,
                 data: data,
                 fill: false,
                 borderColor: 'rgb(6, 123, 194)',
@@ -59,7 +61,7 @@ const LineChart: React.FC<LineChartProps> = ({ data, labels }) => {
     }
   }, [data, labels]);
 
-  return <canvas ref={chartRef} style={{width: '70%'}}/>;
+  return <canvas ref={chartRef} style={{}}/>;
 };
 
 export default LineChart;

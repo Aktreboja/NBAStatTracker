@@ -1,17 +1,17 @@
 
 import React from 'react';
-import TeamCard from '../Components/Team/TeamCard';
 import Grid from '@mui/material/Grid';
 import { MainContainer, LandingText} from '@/Theme/Landing';
 import { Typography, Box } from '@mui/material';
 import {Inter} from 'next/font/google'
 import { retrieveAllNbaTeams } from '@/utils/API/BDL/Team';
-import { Team } from '@/Types/Team';
 import { retrievePreviousGameStats } from '@/utils/API/BDL/stats';
 import { PlayerStats } from '@/Types/stats';
 import FeaturedPlayer from '@/Components/Player/FeaturedPlayer';
 import { PlayerInfo, retrievePlayerInformation } from '@/utils';
-
+import { calculateDaysBefore } from '@/utils';
+import CurrentTeams from '@/Components/UI/Teams/CurrentTeams';
+import Navbar from '@/Components/UI/Navbar';
 
 const inter = Inter({ subsets: ['latin']})
 
@@ -19,38 +19,46 @@ interface ChartDataProps {
     graphData: number[];
     labels: string[];
 }
-
-
-
 const Index = async () => {
     const teamData = await retrieveAllNbaTeams()
-
-    // const data : BdlPlayer[] = await getPlayerByFullName('Lebron', 'James')
- 
-    // const nba_data : NbaPlayer[] = await getNbaPlayer('Lebron', 'James')
-
     const player_data  = await retrievePlayerInformation('Lebron', 'James') as PlayerInfo;
     const { bdlData, nbaData } = player_data
 
-    // Get recent games
-    const recentGames : PlayerStats[] = await retrievePreviousGameStats('237', '2024-03-01')
+    // Get recent games from the past month
+    const recentGames : PlayerStats[] = await retrievePreviousGameStats((bdlData.id).toString(), calculateDaysBefore(30))
     
     const dateLabels = []
-    const ptsData = []
+    const points = []
+    const assists = []
+    const rebounds = []
+    const minutes = []
+
     for (let i = 0; i < recentGames.length; i++) {
-        ptsData.push(recentGames[i].pts)
+        points.push(recentGames[i].pts)
+        assists.push(recentGames[i].ast)
+        rebounds.push(recentGames[i].oreb + recentGames[i].dreb)
+        minutes.push(recentGames[i].min)
         dateLabels.push(recentGames[i].game.date)
     }
-    console.log(dateLabels)
 
-    return <Box component={'main'} className={`${inter.className}`}>
+    const graphData = {
+        data: {
+            points,
+            assists,
+            rebounds,
+            minutes
+        },
+        labels: dateLabels
+    }
+
+    return <Box component={'main'} className={`${inter.className}`} >
+        <Navbar />
         <MainContainer maxWidth = {false} disableGutters = {true} >
             <Typography variant='h4' fontWeight={700} marginTop={'40px'} textAlign={'center'}>NBA Stat Tracker</Typography>
             <Typography variant='h6' textAlign={'center'}>A Platform for everything NBA.</Typography>
             <Grid 
                 container
                 justifyItems={'center'}
-                
                 sx = {{
                     width: '80%',
                     marginY: '20px',
@@ -97,9 +105,10 @@ const Index = async () => {
                     >
                     <Grid
                         item
-                        xs = {12}>
-                        {/* Featured Player  */}
-                        <FeaturedPlayer data={bdlData} nbaData={nbaData} chartData={{graphData: ptsData, labels: dateLabels}}/>
+                        xs = {12}
+                        sx={{ marginBottom: '20px'}}>
+                        
+                        <FeaturedPlayer data={bdlData} nbaData={nbaData} chartData={graphData} />
                     </Grid>
 
                     <Grid
@@ -115,29 +124,6 @@ const Index = async () => {
 }
 
 
-
-const CurrentTeams: React.FC<{teams: Team[]}> = ({ teams }) => {
-    if (!teams || teams.length == 0 ) return null
-    return (
-    <Box component={"div"}>
-        <Typography variant='h3' align='center' marginY = "10px" >Current NBA Teams</Typography>
-        <Grid
-            container
-            spacing={2}
-            width={"80%"}
-            maxWidth={'lg'}
-            justifyItems={'center'}
-            marginX = {'auto'}
-            >
-                {
-                    teams && teams.map((team, key) => <Grid key = {key} item xs = {6} sm = {4} lg = {3} xl = {2}>
-                        <TeamCard  team={team}/>
-                    </Grid>)
-                }
-        </Grid>
-    </Box>
-    )
-}
 
 
 

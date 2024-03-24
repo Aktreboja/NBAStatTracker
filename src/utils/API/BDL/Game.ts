@@ -1,4 +1,6 @@
 import { GameParams, Game } from "../../../Types/Game"
+import { make_bdl_api_request } from "./wrapper";
+import { todaysDate } from "@/utils";
 
 // Gets all the games
 // todo: Add in query parameters for games
@@ -23,5 +25,15 @@ export const getGame = async (gameId: number) => {
         console.error("Error retrieveing Game.")
         return null;
     }
+}
 
+
+export const getUpcomingGames = async (teamId: number) => {
+    try{
+        console.log('today: ', todaysDate())
+        const response = await make_bdl_api_request(`/games/${teamId}/upcoming_games?start_date=${todaysDate()}`)
+        return await response
+    } catch (error) {
+        throw new Error(`Error fetching upcoming games: ${(error as Error).message}`)
+    }
 }
