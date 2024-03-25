@@ -19,7 +19,7 @@ export interface Game {
     season: number;
     period: number;
     status: string;
-    time: string;
+    time: string | null;
     postseason: boolean;
     home_team: Team;
     visitor_team: Team;

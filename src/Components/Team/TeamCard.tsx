@@ -1,33 +1,40 @@
-import React, {  useState } from 'react'
+
+'use client'
+import React from 'react'
 import { Team } from '@/Types/Team';
 import Image from 'next/image';
+import Link from 'next/link'
+import { Box, Card, CardMedia } from '@mui/material';
+import { styled } from '@mui/system';
 
+// Styled Card component 
+const TeamComponent = styled(Card)({
+  marginX: '3px',
+  cursor: 'pointer',
+  width: 'fit-content',
+  '&:hover': {
+    backgroundColor: 'rgba(200,200,200, 0.25)',
+    transition: 'background-color 0.15s'
+  }
+})
 /**
  * Team Card for the player page
  */
-export default function TeamCard({team}: {team: Team}) {
-  
-
-  const {full_name, name, abbreviation, city, conference, division, id} = team;
-
+export default function TeamCard({ team }: {team: Team}) {
+  const {full_name,abbreviation, conference, division, id } = team;
+  if (conference.trim().length === 0) return null
   return (
-    <div className='shadow-lg px-4 py-2 flex min-w-max cursor-pointer hover:shadow-xl duration-100'>
-      <div>
-        {/* todo: Add Team Logo here */}
-        <Image 
-          src = {`https://cdn.celtics.com/logos/teams/latest/svg/${abbreviation}.svg`} 
-          alt = {`${abbreviation} Icon`} 
-          width = {100} 
-          height = {100}/>
-      </div>
-      <div>
-        <strong>{full_name}</strong>
-        <p>{abbreviation}</p>
-        <p><strong>Conference:</strong> {conference}</p>
-        <p><strong>Division:</strong> {division}</p>
-      </div>
-
-    </div>
+    <Link href = {`/teams/${abbreviation}`} style = {{textDecoration: 'none'}} title={full_name}>
+      <TeamComponent>
+      <Box>
+          <Image 
+            src = {`https://cdn.celtics.com/logos/teams/latest/svg/${abbreviation}.svg`} 
+            alt = {`${abbreviation} Icon`} 
+            width = {150} 
+            height = {150}/>
+        </Box>
+      </TeamComponent>
+    </Link>
   )
 }
 
