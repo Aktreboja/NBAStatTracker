@@ -30,7 +30,6 @@ export const getGame = async (gameId: number) => {
 
 export const getUpcomingGames = async (teamId: number) => {
     try{
-        console.log('today: ', todaysDate())
         const response = await make_bdl_api_request(`/games/${teamId}/upcoming_games?start_date=${todaysDate()}`)
         return await response
     } catch (error) {

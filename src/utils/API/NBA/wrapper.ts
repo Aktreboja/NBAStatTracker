@@ -1,8 +1,6 @@
 export const make_nba_api_request = async (endpoint: string, params?: Record<string, string>) => {
     try {
         const queryString = params ? `?${new URLSearchParams(params)}` : '';
-        // console.log('query params: ', queryString)
-        // console.log(`${process.env.NEXT_PUBLIC_BASEURL}${endpoint}${queryString}`)
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/nba${endpoint}${queryString}`);
 
         if (!response.ok) {

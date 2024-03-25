@@ -10,7 +10,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 export default function RootLayout({ children}: { children: React.ReactNode}) {
 
-  const darkModePref = useMediaQuery('(prefers-color-scheme: dark');
+  // Work on this later
+  // const darkModePref = useMediaQuery('(prefers-color-scheme: dark');
   
   // Memoize result from OS preferences on dark mode.
   const theme = useMemo(

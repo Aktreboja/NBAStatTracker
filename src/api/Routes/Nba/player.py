@@ -1,5 +1,6 @@
 from flask import request, Blueprint
-from nba_api.stats.static.players import find_players_by_full_name, find_players_by_first_name, find_players_by_last_name
+from nba_api.stats.static.players import find_players_by_full_name, find_players_by_first_name, find_players_by_last_name, get_active_players
+from nba_api.stats.static import players
 
 nba_players = Blueprint('nba_players', __name__, url_prefix="/players")
 
@@ -41,5 +42,12 @@ def find_player_by_full_name():
     else:
         return "no Query Parameters provided"
     return player
+
+
+
+@nba_players.route('/active_players', methods = ['GET'])
+def get_active_players():
+    response = players.get_active_players()
+    return response
 
 

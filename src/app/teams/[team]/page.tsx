@@ -9,6 +9,7 @@ import { retrieveNbaTeam, retrieveTeamRoster } from '@/utils/API/NBA/team'
 import Image from 'next/image'
 import Navbar from '@/Components/UI/Navbar'
 import Link from 'next/link'
+import PlayerCard from '@/Components/Player/PlayerCard'
 
 
 const Team = async ({params} : {params: {team: string}}) => {
@@ -48,29 +49,32 @@ const Team = async ({params} : {params: {team: string}}) => {
 }
 
 
-const PlayerCard: React.FC<{player: NbaRosterPlayer}> = ({ player }) => {
-  let {player_name, player_id, jersey_number, position, height, weight, experience} = player
 
-  if (experience == 'R') experience = 'Rookie'
-  return (
-  <Link href={`/players/${player_name}`} style={{textDecoration: 'none'}}>
-  <Card variant='outlined'>
-        <CardContent>
-          <CardMedia
-            sx={{height: 250, width: '100%'}}
-            image={`https://cdn.nba.com/headshots/nba/latest/1040x760/${player_id}.png`}/>
-            <Box sx={{width: '100%', marginTop: '10px'}}>
-              <Typography variant='h6' textAlign={'center'} fontWeight={600} noWrap>{`${player_name} (${jersey_number})`}</Typography>
-              <Typography variant='body1' textAlign={'center'}>Height: {height}</Typography>
-              <Typography variant='body1' textAlign={'center'}>Weight: {weight} lbs</Typography>
-              <Typography variant='body1' textAlign={'center'}>Position: {position}</Typography>
-              <Typography variant='body1' textAlign={'center'}>Years: {experience}</Typography>
-            </Box>
+
+
+// const PlayerCard: React.FC<{player: NbaRosterPlayer}> = ({ player }) => {
+//   let {player_name, player_id, jersey_number, position, height, weight, experience} = player
+
+//   if (experience == 'R') experience = 'Rookie'
+//   return (
+//   <Link href={`/players/${player_name}`} style={{textDecoration: 'none'}}>
+//   <Card variant='outlined'>
+//         <CardContent>
+//           <CardMedia
+//             sx={{height: 250, width: '100%'}}
+//             image={`https://cdn.nba.com/headshots/nba/latest/1040x760/${player_id}.png`}/>
+//             <Box sx={{width: '100%', marginTop: '10px'}}>
+//               <Typography variant='h6' textAlign={'center'} fontWeight={600} noWrap>{`${player_name} (${jersey_number})`}</Typography>
+//               <Typography variant='body1' textAlign={'center'}>Height: {height}</Typography>
+//               <Typography variant='body1' textAlign={'center'}>Weight: {weight} lbs</Typography>
+//               <Typography variant='body1' textAlign={'center'}>Position: {position}</Typography>
+//               <Typography variant='body1' textAlign={'center'}>Years: {experience}</Typography>
+//             </Box>
           
-        </CardContent>
-    </Card>
-  </Link>)
-}
+//         </CardContent>
+//     </Card>
+//   </Link>)
+// }
 
 
 export default Team

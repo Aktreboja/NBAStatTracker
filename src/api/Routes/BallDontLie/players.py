@@ -85,5 +85,6 @@ def search_player():
             return jsonify({'message': 'Unable to find player'}), 409
         except Exception as e:
             return jsonify({'Error': str(e)}), 500
+        
 
 
