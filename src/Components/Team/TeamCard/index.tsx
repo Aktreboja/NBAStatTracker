@@ -37,5 +37,3 @@ export default function TeamCard({ team }: {team: Team}) {
     </Link>
   )
 }
-
-
