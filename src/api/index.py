@@ -14,12 +14,7 @@ app.register_blueprint(bdl)
 app.register_blueprint(nba)
 
 
-@app.before_request
-def before_request():
-    if request.endpoint != 'static':
-        # Only add headers for non-static requests
-        api_key = os.getenv('BALLDONTLIE_API_KEY')
-        request.headers['Authorization'] = api_key
+
 
 @app.route("/api/players/<player_name>", methods = ['GET'])
 def find_player(player_name: str) -> Union[List[Dict[str, Any]], Tuple[Dict[str,Any], int]]:
