@@ -6,7 +6,7 @@ export const make_bdl_api_request = async (endpoint: string, params?: Record<str
         if (!response.ok) {
             let errorMessage = `HTTP error! status: ${response.status}`;
             // Extract the error message from the response if available
-            const responseBody = await response.json();
+            const responseBody = await response.text();
             if (responseBody) {
                 errorMessage += `, Message: ${responseBody}`;
             }
