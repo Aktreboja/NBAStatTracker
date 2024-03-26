@@ -22,7 +22,8 @@ def make_bdl_api_request(endpoint: str, params=None):
         if response.status_code == 200:
             return response.json()
         else:
-             return response.json()
+             return response.text()
     except requests.exceptions.RequestException as err:
         # Handle connection errors, timeouts, etc.
+        print('')
         return jsonify({'message': str(err)}), 500
