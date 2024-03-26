@@ -34,7 +34,6 @@ const generatePosition = (pos: string) => {
 }
 
 const PlayerCard: React.FC<{player: NbaRosterPlayer}> = ({ player }) => {
-    if (!player) return 
     let { player_id, player_name, jersey_number, height, weight, position, experience } = player
     
     return (

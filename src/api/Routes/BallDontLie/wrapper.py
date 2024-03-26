@@ -16,7 +16,7 @@ def make_bdl_api_request(endpoint: str, params=None):
     headers = {'Authorization': os.getenv('BALLDONTLIE_API_KEY')}
     base_url = os.getenv('BALLDONTLIE_API_BASEURL')
     url = f'{base_url}{endpoint}'
-
+    print(headers)
     try:
         response = requests.get(url, headers=headers, params=params)
         response.raise_for_status()  # Raises HTTPError for bad response status codes
