@@ -14,7 +14,7 @@ def make_bdl_api_request(endpoint: str, params=None):
     - JSON object: Response from the BallDontLieAPI.
     """
     headers = {'Authorization': os.getenv('BALLDONTLIE_API_KEY')}
-    base_url = os.getenv('BALLDONTLIE_API_KEY')
+    base_url = os.getenv('BALLDONTLIE_API_BASEURL')
     url = f'{base_url}{endpoint}'
     try:
         response = requests.get(url, headers=headers, params=params)
