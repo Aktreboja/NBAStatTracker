@@ -13,8 +13,7 @@ def make_bdl_api_request(endpoint: str, params=None):
     Returns:
     - JSON object: Response from the BallDontLieAPI.
     """
-    # todo : Find a fix for deployment issues with headers
-    headers = {'Authorization': '1f0994ae-5c9f-4eee-b826-e4780b58fa16'}
+    headers = {'Authorization': os.getenv('BALLDONTLIE_API_KEY')}
     base_url = os.getenv('BALLDONTLIE_API_BASEURL')
     url = f'{base_url}{endpoint}'
     try:
