@@ -11,9 +11,17 @@ import Navbar from '@/Components/UI/Navbar';
 import { getUpcomingGames } from '@/utils/API/BDL/Game';
 import { Game } from '@/Types/Game';
 
-const Player = async ({params} : {params: { player: string }}) => {   
+const Player = async ({params = {}} : {params?: { player?: string }}) => {   
 
-    let player_name = params.player.split('%20')
+    const { player } = params;
+
+    if (!player) return (
+        <Container>
+            <Typography>Error: Team Paramter is missing</Typography>
+      </Container>
+    )
+
+    let player_name = player.split('%20')
     const player_info = await retrievePlayerInformation(player_name[0], player_name[1]) as PlayerInfo
     const {bdlData, nbaData} = player_info
 

@@ -12,22 +12,30 @@ import Link from 'next/link'
 import PlayerCard from '@/Components/Player/PlayerCard'
 
 
-const Team = async ({params} : {params: {team: string}}) => {
+const Team = async ({params = {}} : { params?: {team?: string }}) => {
+
+  const { team } = params;
+  if (!team) {
+    return (
+      <Container>
+        <Typography>Error: Team Paramter is missing</Typography>
+      </Container>
+    )
+  }
 
   // Retrieving roster
-  const roster : NbaRosterPlayer[] = await retrieveTeamRoster(params.team)
-  const team : NbaTeam = await retrieveNbaTeam(params.team)
+  const roster : NbaRosterPlayer[] = await retrieveTeamRoster(team)
+  const teamResponse : NbaTeam = await retrieveNbaTeam(team)
 
-  if (roster.length > 0)
+  const {full_name, city, abbreviation} = teamResponse
   return (
-
     <Container maxWidth = "xl" sx = {{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <Navbar />
        <Box component={'section'} sx = {{display: 'flex'}}>
-         <Image src = {`https://cdn.celtics.com/logos/teams/latest/svg/${team.abbreviation}.svg`} width={150} height = {150} alt = {`${team.full_name}`}/>
+         <Image src = {`https://cdn.celtics.com/logos/teams/latest/svg/${abbreviation}.svg`} width={150} height = {150} alt = {`${full_name}`}/>
          <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-           <Typography fontWeight={700} sx = {{typography: {sm: 'h5', md: 'h3'}, fontWeight: {sm: 500, md: 700}}}>{team.full_name}</Typography>
-           <Typography>{team.city}</Typography>
+           <Typography fontWeight={700} sx = {{typography: {sm: 'h5', md: 'h3'}, fontWeight: {sm: 500, md: 700}}}>{full_name}</Typography>
+           <Typography>{city}</Typography>
          </Box>
        </Box>
        <Typography fontWeight={'600'} marginY={3} sx = {{ typography: { sm: 'body1', md: 'h4'}}}>Current Roster</Typography>
@@ -35,16 +43,14 @@ const Team = async ({params} : {params: {team: string}}) => {
          rowGap={4}
          columnSpacing={4}
          container
-         >
-           {roster.map((player, key) => <Grid key={key} item xs = {12} sm = {6} lg = {4} xl = {3}>
-             <PlayerCard player = {player}/>
-           </Grid>)}
+         >{
+          roster.length > 0 &&roster.map((player, key) => <Grid key={key} item xs = {12} sm = {6} lg = {4} xl = {3}>
+          <PlayerCard player = {player}/>
+        </Grid>)
+         }
+
        </Grid>
     </Container>
-    // <MainContainer>
-    //   <Navbar />
-
-    // </MainContainer>
   )
 }
 
