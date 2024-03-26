@@ -59,7 +59,7 @@ const LineChart: React.FC<LineChartProps> = ({ data, labels, title }) => {
         });
       }
     }
-  }, [data, labels]);
+  }, [data, labels, title]);
 
   return <canvas ref={chartRef} style={{}}/>;
 };

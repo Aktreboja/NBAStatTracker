@@ -8,14 +8,14 @@ import ScheduledGame from './ScheduledGame'
  * @returns 
  */
 export default function ScheduleContainer({ gameData }) {
-    let Games = gameData.map((game) => {
+    let Games = gameData.map((game, key) => {
         let gameStatus = {
             status: game.status,
             time: game.time,
             home_team_score: game.home_team_score,
             visitor_team_score: game.visitor_team_score
         }
-        return <ScheduledGame home_team = { game.home_team } visitor_team = { game.visitor_team } date = { game.date } gameStatus = {gameStatus}/>
+        return <ScheduledGame key={key} home_team = { game.home_team } visitor_team = { game.visitor_team } date = { game.date } gameStatus = {gameStatus}/>
     })
     
 
