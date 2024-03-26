@@ -1,13 +1,14 @@
 from flask import Blueprint, request, jsonify
-import os
 import requests
 from Routes.BallDontLie.wrapper import make_bdl_api_request
+from flask_cors import cross_origin
 
 bdl_games = Blueprint('bdl_games', __name__, url_prefix='/games')
 
 
 
 @bdl_games.route('/<team_id>/upcoming_games', methods = ['GET'])
+@cross_origin()
 def get_upcoming_games(team_id: int):
     """
         Retrieve a Team's upcoming Games.

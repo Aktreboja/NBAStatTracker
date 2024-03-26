@@ -1,5 +1,5 @@
 
-
+'use client'
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import { MainContainer, LandingText} from '@/Theme/Landing';
@@ -13,44 +13,62 @@ import { PlayerInfo, retrievePlayerInformation } from '@/utils';
 import { calculateDaysBefore } from '@/utils';
 import CurrentTeams from '@/Components/UI/Teams/CurrentTeams';
 import Navbar from '@/Components/UI/Navbar';
+import { useEffect, useState } from 'react';
+import { Team } from '@/Types/Team';
+import { FeaturedPlayerProps } from '@/Types/Player';
 
 const inter = Inter({ subsets: ['latin']})
 
-interface ChartDataProps {
-    graphData: number[];
-    labels: string[];
-}
-const Index = async () => {
-    const teamData = await retrieveAllNbaTeams()
-    const player_data  = await retrievePlayerInformation('Lebron', 'James') as PlayerInfo;
-    const { bdlData, nbaData } = player_data
 
-    // Get recent games from the past month
-    const recentGames : PlayerStats[] = await retrievePreviousGameStats((bdlData.id).toString(), calculateDaysBefore(30))
-    
-    const dateLabels = []
-    const points = []
-    const assists = []
-    const rebounds = []
-    const minutes = []
 
-    for (let i = 0; i < recentGames.length; i++) {
-        points.push(recentGames[i].pts)
-        assists.push(recentGames[i].ast)
-        rebounds.push(recentGames[i].oreb + recentGames[i].dreb)
-        minutes.push(recentGames[i].min)
-        dateLabels.push(recentGames[i].game.date)
-    }
+const Index = () => {
+    const [playerData, setPlayerData] = useState<FeaturedPlayerProps>();
+    const [teams, setTeams] = useState<Team[]>([])
 
-    const graphData = {
-        data: {
-            points,
-            assists,
-            rebounds,
-            minutes
-        },
-        labels: dateLabels
-    }
+    useEffect(() => {
+        const retrievedIndexInfo = async () => {
+            const teamData = await retrieveAllNbaTeams()
+            const player_data  = await retrievePlayerInformation('Lebron', 'James') as PlayerInfo;
+            const { bdlData, nbaData } = player_data
+        
+            // Get recent games from the past month
+            const recentGames : PlayerStats[] = await retrievePreviousGameStats((bdlData.id).toString(), calculateDaysBefore(30))
+            
+            const dateLabels = []
+            const points = []
+            const assists = []
+            const rebounds = []
+            const minutes = []
+        
+            for (let i = 0; i < recentGames.length; i++) {
+                points.push(recentGames[i].pts)
+                assists.push(recentGames[i].ast)
+                rebounds.push(recentGames[i].oreb + recentGames[i].dreb)
+                minutes.push(recentGames[i].min)
+                dateLabels.push(recentGames[i].game.date)
+            }
+        
+            const graphData = {
+                data: {
+                    points,
+                    assists,
+                    rebounds,
+                    minutes
+                },
+                labels: dateLabels
+            }
+            
+            const featuredPlayer: FeaturedPlayerProps = {
+                data: bdlData,
+                nbaData: nbaData,
+                chartData: graphData
+            }
+            setPlayerData(featuredPlayer)
+            setTeams(teamData)
+        }
+        retrievedIndexInfo()
+    }, [])
+
 
     return <Box component={'main'} className={`${inter.className}`} >
         <Navbar />
@@ -108,16 +126,19 @@ const Index = async () => {
                         item
                         xs = {12}
                         sx={{ marginBottom: '20px'}}>
+                        {playerData && <FeaturedPlayer data={playerData.data} nbaData={playerData.nbaData} chartData={playerData.chartData} />}
                         
-                        <FeaturedPlayer data={bdlData} nbaData={nbaData} chartData={graphData} />
                     </Grid>
+                    {
+                        teams && teams.length > 0 &&
+                        <Grid
+                            item
+                            xs = {12}>
+                            {/* Current teams box */}
+                            <CurrentTeams teams={teams} />
+                        </Grid>
+                    }
 
-                    <Grid
-                        item
-                        xs = {12}>
-                        {/* Current teams box */}
-                        <CurrentTeams teams={teamData} />
-                    </Grid>
                 </Grid>
             </Box>
         </MainContainer>

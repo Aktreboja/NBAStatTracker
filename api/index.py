@@ -4,10 +4,13 @@ from nba_api.stats.static import players
 from dotenv import load_dotenv
 from Routes.BallDontLie.index import bdl
 from Routes.Nba.index import nba
+from flask_cors import CORS, cross_origin
 import os
 load_dotenv()
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Blueprint for architecture routing
 app.register_blueprint(bdl)
@@ -17,6 +20,7 @@ app.register_blueprint(nba)
 
 
 @app.route("/api/players/<player_name>", methods = ['GET'])
+@cross_origin()
 def find_player(player_name: str) -> Union[List[Dict[str, Any]], Tuple[Dict[str,Any], int]]:
     """
     Get information about an NBA player by their full name.

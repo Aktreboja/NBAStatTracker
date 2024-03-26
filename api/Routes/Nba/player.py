@@ -1,10 +1,12 @@
 from flask import request, Blueprint
 from nba_api.stats.static.players import find_players_by_full_name, find_players_by_first_name, find_players_by_last_name, get_active_players
 from nba_api.stats.static import players
+from flask_cors import cross_origin
 
 nba_players = Blueprint('nba_players', __name__, url_prefix="/players")
 
 @nba_players.route('/player')
+@cross_origin()
 def find_player_by_full_name():
 
     """
@@ -46,6 +48,7 @@ def find_player_by_full_name():
 
 
 @nba_players.route('/active_players', methods = ['GET'])
+@cross_origin()
 def get_active_players():
     response = players.get_active_players()
     return response

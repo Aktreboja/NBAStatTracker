@@ -3,10 +3,12 @@ from nba_api.stats.static.players import find_players_by_full_name, find_players
 from nba_api.stats.static.teams import find_team_by_abbreviation
 from nba_api.stats.endpoints import commonteamroster
 import requests
+from flask_cors import cross_origin
 
 nba_teams = Blueprint('nba_teams', __name__, url_prefix="/teams")
 
 @nba_teams.route('/roster/<abr>')
+@cross_origin()
 def get_team_roster(abr: str):
     """
     Retrieves the team roster in a team
@@ -50,6 +52,7 @@ def get_team_roster(abr: str):
     
 
 @nba_teams.route('/<abr>', methods = ['GET'])
+@cross_origin()
 def get_team_info(abr: str):
     if request.method == 'GET':
         try:

@@ -1,9 +1,11 @@
 from flask import Blueprint, request, jsonify
 from Routes.BallDontLie.wrapper import make_bdl_api_request
+from flask_cors import cross_origin
 
 bdl_players = Blueprint('bdl_players', __name__, url_prefix='/players')
 
 @bdl_players.route('/<player_id>', methods = ['GET'])
+@cross_origin()
 def find_bdl_player(player_id : float):
     """
     Get information about an NBA player from the BallDontLieAPI by their id.
@@ -57,6 +59,7 @@ def find_bdl_player(player_id : float):
         
 
 @bdl_players.route('/search', methods = ['GET'])
+@cross_origin()
 def search_player():
     """
     Search for a player by full name

@@ -1,10 +1,12 @@
 from flask import Blueprint, request, jsonify
 import requests
 from Routes.BallDontLie.wrapper import make_bdl_api_request
+from flask_cors import cross_origin
 
 bdl_stats = Blueprint('bdl_stats', __name__, url_prefix='/stats')
 
 @bdl_stats.route('/player/previous_games', methods = ['GET'])
+@cross_origin()
 def get_previous_player_stats():
     """
     Retrieve the players stats from previous games

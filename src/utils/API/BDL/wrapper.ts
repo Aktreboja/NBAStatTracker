@@ -1,5 +1,4 @@
 export const make_bdl_api_request = async (endpoint: string, params?: Record<string, string>) => {
-    'use server'
     try {
         const queryString = params ? `?${new URLSearchParams(params)}` : '';
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/bdl${endpoint}${queryString}`);

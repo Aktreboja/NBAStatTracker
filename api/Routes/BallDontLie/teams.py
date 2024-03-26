@@ -3,10 +3,12 @@ import requests
 from Routes.BallDontLie.wrapper import make_bdl_api_request
 from nba_api.stats.endpoints import commonteamroster
 from nba_api.stats.static import teams
+from flask_cors import cross_origin
 
 bdl_teams = Blueprint('bdl_teams', __name__, url_prefix='/teams')
 
 @bdl_teams.route('/', methods = ['GET'])
+@cross_origin()
 def get_all_teams():
     '''
     Get All Teams from BallDontLie API
@@ -49,6 +51,7 @@ def get_all_teams():
         
 
 @bdl_teams.route('/<team_id>', methods = ['GET'])
+@cross_origin()
 def get_specific_team(team_id: int):
     '''
         Search for a specific team from BallDontLie API
@@ -84,6 +87,7 @@ def get_specific_team(team_id: int):
         
 
 @bdl_teams.route('/<team_id>/players', methods = ['GET'])
+@cross_origin()
 def get_teams_players(team_id: int):
     """
         Retrieve all the players in the team
@@ -108,6 +112,7 @@ def get_teams_players(team_id: int):
         
 
 @bdl_teams.route('/exp', methods = ['GET'])
+@cross_origin()
 def get_team_roster():
     if request.method == 'GET':
         try:
