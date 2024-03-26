@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint
 
 from Routes.BallDontLie.players import bdl_players
 from Routes.BallDontLie.teams import bdl_teams
