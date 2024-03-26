@@ -13,14 +13,17 @@ def make_bdl_api_request(endpoint: str, params=None):
     Returns:
     - JSON object: Response from the BallDontLieAPI.
     """
-    headers = {'Authorization': os.getenv('BALLDONTLIE_API_KEY')}
+    headers = {'Authorization': os.getenv('')}
     base_url = os.getenv('BALLDONTLIE_API_BASEURL')
-    url = f'{base_url}{endpoint}'
     print(headers)
+    url = f'{base_url}{endpoint}'
     try:
         response = requests.get(url, headers=headers, params=params)
         response.raise_for_status()  # Raises HTTPError for bad response status codes
-        return response.json()
+        if response.status_code == 200:
+            return response.json()
+        else:
+             return response.json()
     except requests.exceptions.RequestException as err:
         # Handle connection errors, timeouts, etc.
         return jsonify({'message': str(err)}), 500
