@@ -1,107 +1,187 @@
-# StatsCentral
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a name="readme-top"></a>
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
 
-## Author: Aldrich Reboja
 
 
-### Description
 
-    - Stats central is a web application that utilizes several api endpoints, including ** BalldontLie ** and the ** NBA CDN **
-    - Through the application an user will be able to
-        - View a specific player's stats
-        - View the upcoming schedule of a player.
-        - View some historic details about the player (draft pick, college, etc.)
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
+  <h3 align="center">Nba Stat Tracker</h3>
 
-### Routes
-
-    - /
-        1. Index page  
-    - /players/(playerFirstName_playerLastName)
-        1. Search a basketball player by typing their full name, with an underscore in between the first and last names (ex: Lebron_James)
-
-
-### API Guide
-
-    1. Retrieving basic information from the original API (Balldontlie)
-        - API call ( https://www.balldontlie.io/api/v1/players?search={ player Name })
-            - 'search' query will allow you to be able to find a specific player.
-        - Not using the search query will return a complete list of players, separated by pages which can be utilized later as a form of pagination within the app.
-        - Example call on 'Lebron James' will return 
-
-        ```
-        {
-                "data": [
-                {
-                    "id": 237,
-                    "first_name": "LeBron",
-                    "height_feet": 6,
-                    "height_inches": 8,
-                    "last_name": "James",
-                    "position": "F",
-                    "team": {
-                        "id": 14,
-                        "abbreviation": "LAL",
-                        "city": "Los Angeles",
-                        "conference": "West",
-                        "division": "Pacific",
-                        "full_name": "Los Angeles Lakers",
-                        "name": "Lakers"
-                    },
-                    "weight_pounds": 250
-                }
-            ],
-            "meta": {
-                "total_pages": 1,
-                "current_page": 1,
-                "next_page": null,
-                "per_page": 25,
-                "total_count": 1
-            }
-        }
-        ```
+  <p align="center">
+    A Next.js Web Application centered on simplifying NBA data analysis.
+<!--     <br />
+    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a> -->
+  </p>
+</div>
 
 
-    2. Combining the balldontlie with the NBA CDN
 
-    - Although we attain a decent amount of information from the BallDontLie API, we miss out on a decent amount of crucial information; some that help make the application feel more live rather than just plain numbers. 
-    - The advantages of referencing the CDN in this project
-
-        1. Retrieving the Player's image and Team Logo.
-        2. Retrieving meta data on the player (draft pick, college(optional), associated teams, etc.)
-
-    - To retrieve the NBA CDN call the following:
-        1. http://data.nba.net/data/10s/prod/v1/(season)/players.json
-        2. (Season) Being the current season (to calculate the season go back 1 year from the current year).
-        3. Returns a JSON file containing all of the NBA players on file for this season.
-        4. To retrieve the specific player you simply do a search on the Object's values and and isolate the specific player you need.
-    
-    3. Retrieving the NBA picture and Team Logo.
-
-    - To be able to retrieve the current NBA headshots and their respective team logos, you will need the following API links.
-
-        1. https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/(Number).png
-            -   The 'Number' at the end is the player ID where we find from the information attained from the NBA CDN API
-            -   By utilizing this link with the correct number we will be able to find any player's headshot, assuming that the data is complete and an image exists (A current issue for players that are registered within JSON file but are not currently playing in the NBA ** usually overseas playing at a different league or maybe a free agent **)
-        2. https://cdn.nba.com/logos/nba/(TeamID)/primary/L/logo.svg
-            - The team 'TeamID' being the id of the team that the player currently plays for, also retrieved from the NBA CDN API link
-            - This link so far seems pretty stable in terms of consistently generating an image, however testing and error handling needs to be implemented to ensure everything goes smoothly in case such a situation were to occur.
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
 
-### Current issues / bugs to fix
-    - [ ] Player search sometimes returns incomplete info on the player
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+NBA Stat Tracker is a seamless Next.js web application that provides basic analytical information about anything NBA related.
+
+Some current features include:
+    1. Navigate across various teams in the NBA.
+    2. Be able to view the roster of each team, showcasing player specific metadata such as experience, position and player number
+    3. View recent player specific stats from the last couple of weeks (points, assists, blocks, rebounds, etc.).
+    4. View a player's upcoming games.
 
 
-### Upcoming Features
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-    - [ ] Compare page to be able to compare players based on their season averages.
 
-#### Languages / Frameworks used
+### Built With
 
-    - Frontend
-        1. React
-        2. React-Bootstrap
+* [![Next][Next.js]][Next-url]
+* [![React][React.js]][React-url]
+* [![MUI][MaterialUI]][MaterialUI-url]
+* [![TypeScript][TypeScript]][TypeScript-url]
+* [![Flask][Flask]][Flask-url]
 
-    - Backend
-        1. Node.js
-        2. Next.js
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm install npm@latest -g
+
+  # pnpm
+  npm install pnpm -g
+  ```
+
+### Installation
+
+_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+
+1. Get a free API Key at [https://www.balldontlie.com](https://www.balldontlie.com)
+2. Clone the repo
+   ```sh
+   git clone https://github.com/Aktreboja/NBAStatTracker.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Set up virtualenv for Flask api:
+    ```sh
+    python -m venv .venv
+
+    # Windows
+    \.venv\Scripts\activate
+
+    # MacOS
+    source .venv/bin/activate
+    ```
+5. Enter your API in `.env`
+   ```env
+   BALLDONTLIE_API_KEY = "API_KEY_HERE"
+   BALLDONTLIE_API_BASEURL = "https://api.balldontlie.io/v1"
+   NEXT_PUBLIC_BASEURL = http://127.0.0.1:5328
+   ```
+
+6. Run the application (or specific portions of it
+    ```sh
+    # Runs the full application
+    pnpm run dev
+
+    # Runs the flask api server
+    pnpm run flask-dev
+
+    # Runs the nextjs app
+    pnpm run next-dev
+    ```
+   
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- ROADMAP -->
+## Roadmap
+
+- [ ] Add Search bar functionality
+- [ ] Add Loading components for initial rendering of pages
+- [ ] Create Demo videos / documentaion
+- [ ] Convert from REST to GraphQL api.
+- [ ] Experimental Roadmap Features
+    - [ ] Troubleshoot 401 errors within Vercel Deployment (Server components)
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Aldrich Reboja - aktreboja@gmail.com
+
+Project Link: [https://github.com/aktreboja/NBAStatTracker](https://github.com/aktreboja/NBAStatTracker)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/aktreboja
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[TypeScript]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
+[TypeScript-url]: https://www.typescriptlang.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Flask]: https://img.shields.io/badge/Flask-007ACC?style=for-the-badge&logo=flask&logoColor=white
+[Flask-url]: https://flask.palletsprojects.com/en/3.0.x/
+[MaterialUI]: https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
+[MaterialUI-url]: https://mui.com/material-ui/
