@@ -1,154 +1,39 @@
 
-'use client'
 import React from 'react';
-import Grid from '@mui/material/Grid';
-import { MainContainer, LandingText} from '@/Theme/Landing';
-import { Typography, Box } from '@mui/material';
-import {Inter} from 'next/font/google'
-import { retrieveAllNbaTeams } from '@/utils/API/BDL/Team';
-import { retrievePreviousGameStats } from '@/utils/API/BDL/stats';
-import { PlayerStats } from '@/Types/stats';
-import FeaturedPlayer from '@/Components/Player/FeaturedPlayer';
-import { PlayerInfo, retrievePlayerInformation } from '@/utils';
-import { calculateDaysBefore } from '@/utils';
-import CurrentTeams from '@/Components/UI/Teams/CurrentTeams';
-import Navbar from '@/Components/UI/Navbar';
-import { useEffect, useState } from 'react';
-import { Team } from '@/Types/Team';
-import { FeaturedPlayerProps } from '@/Types/Player';
-
-const inter = Inter({ subsets: ['latin']})
+import { retrieveAllNbaTeams } from '@/utils/Teams';
+import TeamCard from '../Components/Team/TeamCard';
 
 
+export default async function Index() {
 
-const Index = () => {
-    const [playerData, setPlayerData] = useState<FeaturedPlayerProps>();
-    const [teams, setTeams] = useState<Team[]>([])
+    const teams = await retrieveAllNbaTeams()
 
-    useEffect(() => {
-        const retrievedIndexInfo = async () => {
-            const teamData = await retrieveAllNbaTeams()
-            const player_data  = await retrievePlayerInformation('Lebron', 'James') as PlayerInfo;
-            const { bdlData, nbaData } = player_data
-        
-            // Get recent games from the past month
-            const recentGames : PlayerStats[] = await retrievePreviousGameStats((bdlData.id).toString(), calculateDaysBefore(30))
-            
-            const dateLabels = []
-            const points = []
-            const assists = []
-            const rebounds = []
-            const minutes = []
-        
-            for (let i = 0; i < recentGames.length; i++) {
-                points.push(recentGames[i].pts)
-                assists.push(recentGames[i].ast)
-                rebounds.push(recentGames[i].oreb + recentGames[i].dreb)
-                minutes.push(recentGames[i].min)
-                dateLabels.push(recentGames[i].game.date)
-            }
-        
-            const graphData = {
-                data: {
-                    points,
-                    assists,
-                    rebounds,
-                    minutes
-                },
-                labels: dateLabels
-            }
-            
-            const featuredPlayer: FeaturedPlayerProps = {
-                data: bdlData,
-                nbaData: nbaData,
-                chartData: graphData
-            }
-            setPlayerData(featuredPlayer)
-            setTeams(teamData)
-        }
-        retrievedIndexInfo()
-    }, [])
+    return <section className='min-w-screen flex flex-col justify-center'>
+            <div className='border border-black'>
+                <h1 className= "" role="title"><strong>NBA stat tracker</strong></h1>
+                <div className=''>
+                    <h3>An application focused on retrieving stats on current NBA players.</h3>
+                    <div>
+                        <p>View season averages of any current NBA player</p>
+                        <p>View the current roster of a given team</p>
+                    </div>
+                </div>
 
-
-    return <Box component={'main'} className={`${inter.className}`} >
-        <Navbar />
-        <MainContainer maxWidth = {false} disableGutters = {true} >
-            <Typography variant='h4' fontWeight={700} marginTop={'40px'} textAlign={'center'}>NBA Stat Tracker</Typography>
-            <Typography variant='h6' textAlign={'center'}>A Platform for everything NBA.</Typography>
-            <Grid 
-                container
-                justifyItems={'center'}
-                sx = {{
-                    width: '80%',
-                    marginY: '20px',
-                    maxWidth: '1200px'
-                }}>
-                <Grid
-                    item
-                    xs = {12}
-                    lg = {4}
-                    sx={{paddingX: '5px'}}
-                    >
-                    <Typography variant = "h6" fontWeight={600} >Explore Player Stats</Typography>
-                    <LandingText variant='body2' paragraph>
-                        Explore Player Stats: Dive deep into the performance metrics of your favorite NBA players. From scoring averages to rebounds and assists, our web app provides comprehensive player statistics to satisfy every basketball enthusiast&apos;s curiosity.
-                    </LandingText>
-                </Grid>
-                <Grid
-                    item
-                    xs = {12}
-                    lg = {4}
-                    sx={{paddingX: '5px'}}>
-                    <Typography variant = "h6" fontWeight={600}>Discover Team Insights</Typography>
-                    <LandingText variant='body2' paragraph >
-                        Gain valuable insights into NBA teams with our comprehensive team profiles. Explore win-loss records, team statistics, player rosters, and more. Whether you&apos;re a die-hard fan or a fantasy basketball aficionado, our web app equips you with the information you need to stay ahead of the game.
-                    </LandingText>
-                </Grid>
-                <Grid
-                    item
-                    xs = {12}
-                    lg = {4} 
-                    sx={{paddingX: '5px'}}>
-                    <Typography variant = "h6" fontWeight={600}>Stay Updated with Live Data</Typography>
-                    <LandingText variant='body2' paragraph >
-                        Stay in the loop with real-time updates on game scores, player performances, and league standings. Our web app keeps you informed with live data feeds, ensuring you never miss a beat during the NBA season. Whether you&apos;re tracking your favorite team&apos;s progress or following individual player stats, we&apos;ve got you covered with up-to-the-minute information.
-                    </LandingText>
-                </Grid>
-
-            </Grid>
-
-            <Box
-                component = {"section"} sx = {{width: '100%', height: 'fit'}}>
-                <Grid
-                    container
-                    >
-                    <Grid
-                        item
-                        xs = {12}
-                        sx={{ marginBottom: '20px'}}>
-                        {playerData && <FeaturedPlayer data={playerData.data} nbaData={playerData.nbaData} chartData={playerData.chartData} />}
-                        
-                    </Grid>
+            </div>
+            <div className=''>
+                <p className='text-center'><strong className='w-full text-center'>Current Teams</strong></p>
+                <div className='flex flex-wrap justify-center'>
                     {
-                        teams && teams.length > 0 &&
-                        <Grid
-                            item
-                            xs = {12}>
-                            {/* Current teams box */}
-                            <CurrentTeams teams={teams} />
-                        </Grid>
+                        teams.map((team, key) => {
+                            return <TeamCard team={team} key={key} />
+                        })
                     }
+                </div>
 
-                </Grid>
-            </Box>
-        </MainContainer>
-    </Box>;
+            </div>
+    </section>;
 }
 
 
-
-
-
-export default Index;
 
 
