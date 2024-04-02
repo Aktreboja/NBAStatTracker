@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { retrieveAllNbaTeams } from '@/utils/Teams';
+import { retrieveAllNbaTeams } from '@/utils/API/BDL/Team';
 import TeamCard from '../Components/Team/TeamCard';
 
 
