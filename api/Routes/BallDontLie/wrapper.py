@@ -19,10 +19,7 @@ def make_bdl_api_request(endpoint: str, params=None):
     try:
         response = requests.get(url, headers=headers, params=params)
         response.raise_for_status()  # Raises HTTPError for bad response status codes
-        if response.status_code == 200:
-            return response.json()
-        else:
-             return response.text()
+        return response.json()
     except requests.exceptions.RequestException as err:
         # Handle connection errors, timeouts, etc.
         return jsonify({'message': str(err)}), 500
