@@ -17,7 +17,7 @@ import { aboutText } from '../../data.json'
 const inter = Inter({ subsets: ['latin']})
 
 const Index = async () => {
-    const teamData = await retrieveAllNbaTeams()
+    // const teamData = await retrieveAllNbaTeams()
     const player_data  = await retrievePlayerInformation('Lebron', 'James') as PlayerInfo;
     const { bdlData, nbaData } = player_data
 
