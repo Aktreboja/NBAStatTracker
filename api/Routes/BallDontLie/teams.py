@@ -44,7 +44,7 @@ def get_all_teams():
             if 'data' in response:
                 return response['data']
             else:
-                return jsonify({'status': 409, 'message': f'Unable to find data. {response}'}), 409
+                return jsonify({'status': 409, 'message': f'Unable to find teams data. '}), 409
         except requests.exceptions.HTTPError as err:
             return jsonify({f'Error: {err}'}), 500
         
