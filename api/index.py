@@ -15,4 +15,3 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 # Blueprint for architecture routing
 app.register_blueprint(bdl)
 app.register_blueprint(nba)
-

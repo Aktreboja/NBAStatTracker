@@ -7,8 +7,10 @@
   ],
   "scripts": {
     "flask-dev": " python -m pip install -r requirements.txt && flask --app  api/index run -p 5328 --debug",
+    "flask-prod": "python -m pip install -r requirements.txt && python api/waitress_server.py",
     "next-dev": "next dev",
     "dev": "concurrently \"pnpm run next-dev\" \"pnpm run flask-dev\"",
+    "prod": "concurrently \"pnpm run next-dev\" \"pnpm run flask-prod\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
