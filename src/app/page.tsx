@@ -96,7 +96,7 @@ const Index = async () => {
                         item
                         xs = {12}>
                         {/* Current teams box */}
-                        <CurrentTeams teams={teamData} />
+                        {/* <CurrentTeams teams={teamData} /> */}
                     </Grid>
                 </Grid>
             </Box>
