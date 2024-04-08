@@ -20,6 +20,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.15",
+    "@mui/material-nextjs": "^5.15.11",
     "@mui/system": "^5.15.15",
     "@types/chart.js": "^2.9.41",
     "bootstrap": "^5.1.3",
