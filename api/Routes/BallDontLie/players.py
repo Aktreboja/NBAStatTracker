@@ -53,7 +53,8 @@ def find_bdl_player(player_id : float):
             response = make_bdl_api_request('/players', params = params)
             if 'data' in response:
                 return response['data']
-            return jsonify({'message': 'Unable to retrieve player data'}), 409
+            else:
+                return jsonify({ 'status': 409, 'message': 'Unable to retrieve player data'}), 409
         except Exception as e:
             return jsonify({'Error': str(e)}), 500
         
@@ -85,7 +86,7 @@ def search_player():
             response = make_bdl_api_request('/players', params=params)
             if 'data' in response:
                 return response['data']
-            return jsonify({'message': 'Unable to find player'}), 409
+            return jsonify({ 'status': 409, 'message': 'Unable to find player'}), 409
         except Exception as e:
             return jsonify({'Error': str(e)}), 500
         

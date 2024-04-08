@@ -29,6 +29,6 @@ def get_previous_player_stats():
             if 'data' in response:
                 return response['data']
             else:
-                return jsonify({'message': 'Error retrieving stats'}), 409
+                return jsonify({'status': 409, 'message': 'Error retrieving stats'}), 409
         except requests.exceptions.HTTPError as err:
             return jsonify({'message': str(err)}), 500
