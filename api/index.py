@@ -1,10 +1,9 @@
 from flask import Flask, jsonify, request
-from typing import List, Dict, Tuple, Union, Any
-from nba_api.stats.static import players
 from dotenv import load_dotenv
 from Routes.BallDontLie.index import bdl
 from Routes.Nba.index import nba
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
+import logging
 
 load_dotenv()
 
@@ -15,3 +14,11 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 # Blueprint for architecture routing
 app.register_blueprint(bdl)
 app.register_blueprint(nba)
+
+# Error handler for Not found
+@app.errorhandler(404)
+def not_found(error):
+    requested_url = request.url
+    logging.error(f"404 Error: {requested_url} was not found.")
+    return jsonify({'error': 'Not found', 'requested_url': requested_url}), 404
+
