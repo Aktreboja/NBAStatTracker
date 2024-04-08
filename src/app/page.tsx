@@ -1,39 +1,112 @@
 
 import React from 'react';
+import Grid from '@mui/material/Grid';
+import { MainContainer, LandingText} from '@/Theme/Landing';
+import { Typography, Box } from '@mui/material';
+import {Inter} from 'next/font/google'
 import { retrieveAllNbaTeams } from '@/utils/API/BDL/Team';
-import TeamCard from '../Components/Team/TeamCard';
+import { retrievePreviousGameStats } from '@/utils/API/BDL/stats';
+import { PlayerStats } from '@/Types/stats';
+import FeaturedPlayer from '@/Components/Player/FeaturedPlayer';
+import { PlayerInfo, retrievePlayerInformation } from '@/utils';
+import { calculateDaysBefore } from '@/utils';
+import CurrentTeams from '@/Components/UI/Teams/CurrentTeams';
+import Navbar from '@/Components/UI/Navbar';
+import { aboutText } from '../../data.json'
 
+const inter = Inter({ subsets: ['latin']})
 
-export default async function Index() {
+const Index = async () => {
+    const teamData = await retrieveAllNbaTeams()
+    const player_data  = await retrievePlayerInformation('Lebron', 'James') as PlayerInfo;
+    const { bdlData, nbaData } = player_data
 
-    const teams = await retrieveAllNbaTeams()
+    // Get recent games from the past month
+    const recentGames : PlayerStats[] = await retrievePreviousGameStats((bdlData.id).toString(), calculateDaysBefore(30))
+    
+    const dateLabels = []
+    const points = []
+    const assists = []
+    const rebounds = []
+    const minutes = []
 
-    return <section className='min-w-screen flex flex-col justify-center'>
-            <div className='border border-black'>
-                <h1 className= "" role="title"><strong>NBA stat tracker</strong></h1>
-                <div className=''>
-                    <h3>An application focused on retrieving stats on current NBA players.</h3>
-                    <div>
-                        <p>View season averages of any current NBA player</p>
-                        <p>View the current roster of a given team</p>
-                    </div>
-                </div>
+    for (let i = 0; i < recentGames.length; i++) {
+        points.push(recentGames[i].pts)
+        assists.push(recentGames[i].ast)
+        rebounds.push(recentGames[i].oreb + recentGames[i].dreb)
+        minutes.push(recentGames[i].min)
+        dateLabels.push(recentGames[i].game.date)
+    }
 
-            </div>
-            <div className=''>
-                <p className='text-center'><strong className='w-full text-center'>Current Teams</strong></p>
-                <div className='flex flex-wrap justify-center'>
+    const graphData = {
+        data: {
+            points,
+            assists,
+            rebounds,
+            minutes
+        },
+        labels: dateLabels
+    }
+
+    return <Box component={'main'} className={`${inter.className}`} >
+        <Navbar />
+        <MainContainer maxWidth = {false} disableGutters = {true} >
+            <Typography variant='h4' fontWeight={700} marginTop={'40px'} textAlign={'center'}>NBA Stat Tracker</Typography>
+            <Typography variant='h6' textAlign={'center'}>A Platform for everything NBA.</Typography>
+            <Grid 
+                container
+                justifyItems={'center'}
+                sx = {{
+                    width: '80%',
+                    marginY: '20px',
+                    maxWidth: '1200px'
+                }}>
+
                     {
-                        teams.map((team, key) => {
-                            return <TeamCard team={team} key={key} />
-                        })
+                        aboutText.map((text, key) => (
+                        <Grid
+                            key = { key }
+                            item
+                            xs = {12}
+                            lg = {4}
+                            sx={{paddingX: '5px'}}
+                            >
+                            <Typography variant = "h6" fontWeight={600} >{text.headline}</Typography>
+                            <LandingText variant='body2' paragraph>
+                                { text.description }
+                            </LandingText>
+                        </Grid>
+                        ))
                     }
-                </div>
+            </Grid>
+            <Box
+                component = {"section"} sx = {{width: '100%', height: 'fit'}}>
+                <Grid
+                    container
+                    >
+                    <Grid
+                        item
+                        xs = {12}
+                        sx={{ marginBottom: '20px'}}>
+                        
+                        <FeaturedPlayer data={bdlData} nbaData={nbaData} chartData={graphData} />
+                    </Grid>
 
-            </div>
-    </section>;
+                    <Grid
+                        item
+                        xs = {12}>
+                        {/* Current teams box */}
+                        <CurrentTeams teams={teamData} />
+                    </Grid>
+                </Grid>
+            </Box>
+        </MainContainer>
+    </Box>;
 }
 
 
 
+
+
+export default Index;
 
