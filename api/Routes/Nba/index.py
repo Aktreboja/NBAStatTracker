@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from Routes.Nba.player import nba_players
-from Routes.Nba.team import nba_teams
+from api.Routes.Nba.player import nba_players
+from api.Routes.Nba.team import nba_teams
 
 nba = Blueprint('nba_api', __name__, url_prefix='/api/nba')
 

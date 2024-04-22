@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from dotenv import load_dotenv
-from Routes.BallDontLie.index import bdl
-from Routes.Nba.index import nba
+from api.Routes.BallDontLie.index import bdl
+from api.Routes.Nba.index import nba
 from flask_cors import CORS
 import logging
 
@@ -22,3 +22,8 @@ def not_found(error):
     logging.error(f"404 Error: {requested_url} was not found.")
     return jsonify({'error': 'Not found', 'requested_url': requested_url}), 404
 
+
+
+@app.route("/api/health")
+def health_check():
+    return jsonify({"message": "Web API is up"})

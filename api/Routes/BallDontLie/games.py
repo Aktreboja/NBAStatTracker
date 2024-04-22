@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 import requests
-from Routes.BallDontLie.wrapper import make_bdl_api_request
+from api.Routes.BallDontLie.wrapper import make_bdl_api_request
 from flask_cors import cross_origin
 
 bdl_games = Blueprint('bdl_games', __name__, url_prefix='/games')

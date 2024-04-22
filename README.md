@@ -146,10 +146,9 @@ _Below is an example of how you can instruct your audience on installing and set
 
 - [ ] Add Search bar functionality
 - [ ] Add Loading components for initial rendering of pages
-- [ ] Create Demo videos / documentaion
 - [ ] Convert from REST to GraphQL api.
-- [ ] Experimental Roadmap Features
-  - [ ] Troubleshoot 401 errors within Vercel Deployment (Server components)
+- [X] Experimental Roadmap Features
+  - [X] Troubleshoot 401 errors within Vercel Deployment (Server components)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

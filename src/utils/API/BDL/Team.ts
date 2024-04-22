@@ -22,7 +22,7 @@ export const getNbaTeam = async (
 // Retrieve all NBA teams from the API.
 export const retrieveAllNbaTeams = async (): Promise<Team[]> => {
   try {
-    const response: Team[] = await make_bdl_api_request("/teams/");
+    const response: Team[] = await make_bdl_api_request("/teams/all");
     const teams = await response;
     return teams;
   } catch (error) {

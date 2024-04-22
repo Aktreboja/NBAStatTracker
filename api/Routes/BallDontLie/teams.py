@@ -1,13 +1,13 @@
 from flask import Blueprint, request, jsonify
 import requests
-from Routes.BallDontLie.wrapper import make_bdl_api_request
+from api.Routes.BallDontLie.wrapper import make_bdl_api_request
 from nba_api.stats.endpoints import commonteamroster
 from nba_api.stats.static import teams
 from flask_cors import cross_origin
 
 bdl_teams = Blueprint('bdl_teams', __name__, url_prefix='/teams')
 
-@bdl_teams.route('/', methods = ['GET'])
+@bdl_teams.route('/all', methods = ['GET'])
 @cross_origin()
 def get_all_teams():
     '''
