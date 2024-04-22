@@ -1,39 +1,66 @@
+import React from "react";
+import Grid from "@mui/material/Grid";
+import { MainContainer, LandingText } from "@/Theme/Landing";
+import { Typography, Box } from "@mui/material";
+import { Inter } from "next/font/google";
+import FeaturedPlayer from "@/Components/Player/FeaturedPlayer";
+import CurrentTeams from "@/Components/UI/Teams/CurrentTeams";
+import Navbar from "@/Components/UI/Navbar";
+import { aboutText } from "../../data.json";
 
-import React from 'react';
-import { retrieveAllNbaTeams } from '@/utils/API/BDL/Team';
-import TeamCard from '../Components/Team/TeamCard';
+const inter = Inter({ subsets: ["latin"] });
 
+const Index = () => {
+  return (
+    <Box component={"main"} className={`${inter.className}`}>
+      <Navbar />
+      <MainContainer maxWidth={false} disableGutters={true}>
+        <Typography
+          variant="h4"
+          fontWeight={700}
+          marginTop={"40px"}
+          textAlign={"center"}
+        >
+          NBA Stat Tracker
+        </Typography>
+        <Typography variant="h6" textAlign={"center"}>
+          A Platform for everything NBA.
+        </Typography>
+        <Grid
+          container
+          justifyItems={"center"}
+          sx={{
+            width: "80%",
+            marginY: "20px",
+            maxWidth: "1200px",
+          }}
+        >
+          {aboutText.map((text, key) => (
+            <Grid key={key} item xs={12} lg={4} sx={{ paddingX: "5px" }}>
+              <Typography variant="h6" fontWeight={600}>
+                {text.headline}
+              </Typography>
+              <LandingText variant="body2" paragraph>
+                {text.description}
+              </LandingText>
+            </Grid>
+          ))}
+        </Grid>
+        <Box component={"section"} sx={{ width: "100%", height: "fit" }}>
+          <Grid container>
+            <Grid item xs={12} sx={{ marginBottom: "20px" }}>
+              <FeaturedPlayer firstName="Lebron" lastName="James" />
+            </Grid>
 
-export default async function Index() {
+            <Grid item xs={12}>
+              {/* Current teams box */}
+              <CurrentTeams />
+            </Grid>
+          </Grid>
+        </Box>
+      </MainContainer>
+    </Box>
+  );
+};
 
-    const teams = await retrieveAllNbaTeams()
-
-    return <section className='min-w-screen flex flex-col justify-center'>
-            <div className='border border-black'>
-                <h1 className= "" role="title"><strong>NBA stat tracker</strong></h1>
-                <div className=''>
-                    <h3>An application focused on retrieving stats on current NBA players.</h3>
-                    <div>
-                        <p>View season averages of any current NBA player</p>
-                        <p>View the current roster of a given team</p>
-                    </div>
-                </div>
-
-            </div>
-            <div className=''>
-                <p className='text-center'><strong className='w-full text-center'>Current Teams</strong></p>
-                <div className='flex flex-wrap justify-center'>
-                    {
-                        teams.map((team, key) => {
-                            return <TeamCard team={team} key={key} />
-                        })
-                    }
-                </div>
-
-            </div>
-    </section>;
-}
-
-
-
-
+export default Index;

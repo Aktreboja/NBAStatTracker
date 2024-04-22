@@ -44,8 +44,7 @@ def get_all_teams():
             if 'data' in response:
                 return response['data']
             else:
-                print(response)
-                return jsonify({'status': 409, 'message': f'Unable to find data. {response}'}), 409
+                return jsonify({'status': 409, 'message': f'Unable to find teams data. '}), 409
         except requests.exceptions.HTTPError as err:
             return jsonify({f'Error: {err}'}), 500
         
@@ -77,7 +76,7 @@ def get_specific_team(team_id: int):
             if 'data' in response:
                 return jsonify(response['data'])
             else:
-                return jsonify({'status': 409,'message': 'Data not found'})
+                return jsonify({'status': 409,'message': 'Unable to Retrieve BDL Team Data'}), 409
         except requests.exceptions.HTTPError as err:
             # Handle HTTP errors returned from the API request
             return jsonify({'status': 500, 'message': str(err)})
@@ -106,18 +105,7 @@ def get_teams_players(team_id: int):
             response = make_bdl_api_request('/players', params=params)
             if 'data' in response:
                 return response
-            return jsonify({})
+            return jsonify({'status': 409, 'message': 'Error retrieving players in the team'}), 409
         except requests.exceptions.HTTPError as err:
             return jsonify({'message': f'Server Error: {str(err)}'}), 500
-        
-
-@bdl_teams.route('/exp', methods = ['GET'])
-@cross_origin()
-def get_team_roster():
-    if request.method == 'GET':
-        try:
-            test = teams.find_teams_by_full_name('Cleveland Cavaliers')
-            response = commonteamroster.CommonTeamRoster(team_id=1610612739, season=2023)
-            return test
-        except:
-            return []
+                            

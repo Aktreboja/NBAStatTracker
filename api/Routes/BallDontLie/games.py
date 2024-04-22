@@ -5,8 +5,6 @@ from flask_cors import cross_origin
 
 bdl_games = Blueprint('bdl_games', __name__, url_prefix='/games')
 
-
-
 @bdl_games.route('/<team_id>/upcoming_games', methods = ['GET'])
 @cross_origin()
 def get_upcoming_games(team_id: int):
@@ -24,9 +22,10 @@ def get_upcoming_games(team_id: int):
             params = {'team_ids[]': team_id, 'start_date': start_date}
             params['per_page'] = 10
             response = make_bdl_api_request('/games', params=params)
-            if 'data' in response:
+            if isinstance(response, dict) and 'data' in response:
                 return response['data']
-            return jsonify({'message': response})
+            else:
+                return jsonify({ 'status': 409, 'message': "Unable to retrieve Team's Upcoming Games"}), 409
         except requests.exceptions.HTTPError as err:
             return jsonify({'message': f'Server Error: {str(err)}'}),500
         

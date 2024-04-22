@@ -1,35 +1,36 @@
-const {retrieveTeamMetaData, getUpcomingGames ,retrieveTeamLogos} = require('../pages/api/team')
+const {
+  retrieveTeamMetaData,
+  getUpcomingGames,
+  retrieveTeamLogos,
+} = require("../pages/api/team");
 
 // RetrieveTeamLogos Tests
-describe('RetrieveTeamLogos', () => {
-    it('Returns an object containing all of the teams in the nba', async () => {
-        let teamsResponse = await retrieveTeamLogos()
-        console.log(teamsResponse)
-        expect(teamsResponse).toBeDefined()
-    })
-})
+describe("RetrieveTeamLogos", () => {
+  it("Returns an object containing all of the teams in the nba", async () => {
+    let teamsResponse = await retrieveTeamLogos();
+    console.log(teamsResponse);
+    expect(teamsResponse).toBeDefined();
+  });
+});
 
 // RetrieveTeamMetaData Tests
-describe('RetrieveTeamMetaData Tests', () => {
+describe("RetrieveTeamMetaData Tests", () => {
+  // nba.net JSON file tests
+  it("Returns null when a param is not defined", async () => {
+    let response = await retrieveTeamMetaData();
+    expect(response).toBeNull();
+  });
+  it("Returns Hawks data when a the param is Hawks is defined, Accessing the teams Full Name", async () => {
+    let response = await retrieveTeamMetaData("hawks");
+    let primaryMeta = response.primaryMeta;
+    expect(primaryMeta.fullName).toBe("Atlanta Hawks");
+  });
 
-    // nba.net JSON file tests
-    it('Returns null when a param is not defined', async () => {
-        let response = await retrieveTeamMetaData()
-        expect(response).toBeNull()
-    })
-    it('Returns Hawks data when a the param is Hawks is defined, Accessing the teams Full Name', async () => {
-        let response = await retrieveTeamMetaData("hawks")
-        let primaryMeta = response.primaryMeta
-        expect(primaryMeta.fullName).toBe('Atlanta Hawks')
-    })
-
-
-    // BallDontLie API tests
-    it('Fetches the data from BallDontLie API specific to the team name ', async () => {
-        let secondaryMeta = await retrieveTeamMetaData('Hawks')
-        expect(secondaryMeta.secondaryMeta.name).toBe('Hawks')
-    })
-    
+  // BallDontLie API tests
+  it("Fetches the data from BallDontLie API specific to the team name ", async () => {
+    let secondaryMeta = await retrieveTeamMetaData("Hawks");
+    expect(secondaryMeta.secondaryMeta.name).toBe("Hawks");
+  });
 });
 
 /*
