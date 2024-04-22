@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from Routes.BallDontLie.wrapper import make_bdl_api_request
+from api.Routes.BallDontLie.wrapper import make_bdl_api_request
 from flask_cors import cross_origin
 
 bdl_players = Blueprint('bdl_players', __name__, url_prefix='/players')

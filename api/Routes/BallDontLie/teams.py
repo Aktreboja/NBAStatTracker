@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 import requests
-from Routes.BallDontLie.wrapper import make_bdl_api_request
+from api.Routes.BallDontLie.wrapper import make_bdl_api_request
 from nba_api.stats.endpoints import commonteamroster
 from nba_api.stats.static import teams
 from flask_cors import cross_origin
