@@ -1,28 +1,26 @@
-'use client'
-import React, { useEffect, useRef } from 'react';
-import Chart, { ChartOptions } from 'chart.js/auto';
-
+"use client";
+import React, { useEffect, useRef } from "react";
+import Chart, { ChartOptions } from "chart.js/auto";
 
 interface LineChartProps {
   data: number[];
   labels: string[];
-  title: string
+  title: string;
 }
 
 const LineChart: React.FC<LineChartProps> = ({ data, labels, title }) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
   const chartInstance = useRef<Chart | null>(null);
 
-
   useEffect(() => {
     if (chartRef.current) {
       if (chartInstance.current) {
         chartInstance.current.destroy(); // Destroy existing chart instance
       }
-      const ctx = chartRef.current.getContext('2d');
+      const ctx = chartRef.current.getContext("2d");
       if (ctx) {
         chartInstance.current = new Chart(ctx, {
-          type: 'line',
+          type: "line",
           data: {
             labels: labels,
             datasets: [
@@ -30,7 +28,7 @@ const LineChart: React.FC<LineChartProps> = ({ data, labels, title }) => {
                 label: title,
                 data: data,
                 fill: false,
-                borderColor: 'rgb(6, 123, 194)',
+                borderColor: "rgb(6, 123, 194)",
                 tension: 0.14,
               },
             ],
@@ -41,27 +39,27 @@ const LineChart: React.FC<LineChartProps> = ({ data, labels, title }) => {
               x: {
                 title: {
                   display: true,
-                  text: 'Dates Played',
+                  text: "Dates Played",
                 },
               },
               y: {
                 title: {
                   display: false,
-                  text: '',
+                  text: "",
                 },
               },
             },
             animation: {
-                duration: 1000,
-                easing: 'linear'
-            }
+              duration: 1000,
+              easing: "linear",
+            },
           } as ChartOptions, // ChartOptions type is necessary for TypeScript
         });
       }
     }
   }, [data, labels, title]);
 
-  return <canvas ref={chartRef} style={{}}/>;
+  return <canvas ref={chartRef} style={{}} />;
 };
 
 export default LineChart;

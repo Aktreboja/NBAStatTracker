@@ -6,7 +6,7 @@
     ".next/cache"
   ],
   "scripts": {
-    "flask-dev": " python -m pip install -r requirements.txt && flask --app  api/index run -p 5328 --debug",
+    "flask-dev": " python -m pip install -r requirements.txt && flask --app  api/index run -p 5328 ",
     "flask-prod": "python -m pip install -r requirements.txt && python api/waitress_server.py",
     "next-dev": "next dev",
     "dev": "concurrently \"pnpm run next-dev\" \"pnpm run flask-dev\"",
@@ -15,7 +15,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
-    "prepare": "husky"
+    "prepare": "husky",
+    "format": "prettier . --write"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
