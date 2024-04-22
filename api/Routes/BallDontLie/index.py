@@ -1,9 +1,9 @@
 from flask import Blueprint
 
-from Routes.BallDontLie.players import bdl_players
-from Routes.BallDontLie.teams import bdl_teams
-from Routes.BallDontLie.games import bdl_games
-from Routes.BallDontLie.stats import bdl_stats
+from players import bdl_players
+from teams import bdl_teams
+from games import bdl_games
+from stats import bdl_stats
 
 bdl = Blueprint('bdl', __name__, url_prefix='/api/bdl')
 
